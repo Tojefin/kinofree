@@ -5,7 +5,7 @@
 <body class="index">
 
 <div class="search-line">
-    <div id="yohoho" data-tv="1" data-resize="1" data-fast="1">
+    <div id="yohoho" data-tv="1" data-resize="1">
         <div class="brand">KinoFree</div>
         <div class="form">
             <input type="text" placeholder="Название фильма / ID КиноПоиск" id="search-title" name="title" style="width: 250px">
@@ -51,29 +51,29 @@
                 if (/kinopoisk\.ru/i.test(title.value)) {
                     var exec = /(film\/|movie\/).*?([0-9]{3,7})\//gi.exec(title.value);
                     if (exec && exec[2]) {
-                        player.data = exec[2];
+                        player.dataset.kinopoisk = exec[2];
                         if (window.location.hostname === '/') {
-                            window.location.href = '/#' + player.data;
+                            window.location.href = '/#' + player.dataset.kinopoisk;
                             return;
                         }
-                        window.location.hash = '#' + player.data;
-                        document.title = 'КиноПоиск: ' + player.data;
+                        window.location.hash = '#' + player.dataset.kinopoisk;
+                        document.title = 'КиноПоиск: ' + player.dataset.kinopoisk;
                     }
                 } else if (/^\d+$/.test(title.value)) {
-                    player.data = title.value;
+                    player.dataset.kinopoisk = title.value;
                     if (window.location.hostname === '/') {
-                        window.location.href = '/#' + player.data;
+                        window.location.href = '/#' + player.dataset.kinopoisk;
                         return;
                     }
-                    window.location.hash = '#' + player.data;
-                    document.title = 'КиноПоиск: ' + player.data;
+                    window.location.hash = '#' + player.dataset.kinopoisk;
+                    document.title = 'КиноПоиск: ' + player.dataset.kinopoisk;
                 } else {
-                    player.title = encodeURIComponent(title.value);
+                    player.dataset.title = encodeURIComponent(title.value);
                     if (window.location.hostname === '/') {
-                        window.location.href = '/#' + player.title;
+                        window.location.href = '/#' + player.dataset.title;
                         return;
                     }
-                    window.location.hash = '#' + player.title;
+                    window.location.hash = '#' + player.dataset.title;
                     document.title = title.value;
                 }
                 items = [];
