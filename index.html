@@ -51,22 +51,22 @@
                 if (/kinopoisk\.ru/i.test(title.value)) {
                     var exec = /(film\/|movie\/).*?([0-9]{3,7})\//gi.exec(title.value);
                     if (exec && exec[2]) {
-                        player.dataset.kinopoisk = exec[2];
+                        player.dataset.title = exec[2];
                         if (window.location.hostname === '/') {
-                            window.location.href = '/#' + player.dataset.kinopoisk;
+                            window.location.href = '/#' + player.dataset.title;
                             return;
                         }
-                        window.location.hash = '#' + player.dataset.kinopoisk;
-                        document.title = 'КиноПоиск: ' + player.dataset.kinopoisk;
+                        window.location.hash = '#' + player.dataset.title;
+                        document.title = 'КиноПоиск: ' + player.dataset.title;
                     }
                 } else if (/^\d+$/.test(title.value)) {
-                    player.dataset.kinopoisk = title.value;
+                    player.dataset.title = title.value;
                     if (window.location.hostname === '/') {
-                        window.location.href = '/#' + player.dataset.kinopoisk;
+                        window.location.href = '/#' + player.dataset.title;
                         return;
                     }
-                    window.location.hash = '#' + player.dataset.kinopoisk;
-                    document.title = 'КиноПоиск: ' + player.dataset.kinopoisk;
+                    window.location.hash = '#' + player.dataset.title;
+                    document.title = 'КиноПоиск: ' + player.dataset.title;
                 } else {
                     player.dataset.title = encodeURIComponent(title.value);
                     if (window.location.hostname === '/') {
