@@ -46,34 +46,34 @@
         }
 
         function parse() {
-            var yohoho = document.querySelector('#yohoho');
-            if (title && title.value && yohoho) {
+            var player.options = document.querySelector('#yohoho');
+            if (title && title.value && player.options) {
                 if (/kinopoisk\.ru/i.test(title.value)) {
                     var exec = /(film\/|movie\/).*?([0-9]{3,7})\//gi.exec(title.value);
                     if (exec && exec[2]) {
-                        yohoho.dataset.kinopoisk = exec[2];
-                        if (window.location.hostname === 'yohoho.cc') {
-                            window.location.href = 'https://4h0y.gitlab.io/#' + yohoho.dataset.kinopoisk;
+                        player.data = exec[2];
+                        if (window.location.hostname === '/') {
+                            window.location.href = '/#' + player.data;
                             return;
                         }
-                        window.location.hash = '#' + yohoho.dataset.kinopoisk;
-                        document.title = 'КиноПоиск: ' + yohoho.dataset.kinopoisk;
+                        window.location.hash = '#' + player.data;
+                        document.title = 'КиноПоиск: ' + player.data;
                     }
                 } else if (/^\d+$/.test(title.value)) {
-                    yohoho.dataset.kinopoisk = title.value;
-                    if (window.location.hostname === 'yohoho.cc') {
-                        window.location.href = 'https://4h0y.gitlab.io/#' + yohoho.dataset.kinopoisk;
+                    player.data = title.value;
+                    if (window.location.hostname === '/') {
+                        window.location.href = '/#' + player.data;
                         return;
                     }
-                    window.location.hash = '#' + yohoho.dataset.kinopoisk;
-                    document.title = 'КиноПоиск: ' + yohoho.dataset.kinopoisk;
+                    window.location.hash = '#' + player.data;
+                    document.title = 'КиноПоиск: ' + player.data;
                 } else {
-                    yohoho.dataset.title = encodeURIComponent(title.value);
-                    if (window.location.hostname === 'yohoho.cc') {
-                        window.location.href = 'https://4h0y.bitbucket.io/#' + yohoho.dataset.title;
+                    player.title = encodeURIComponent(title.value);
+                    if (window.location.hostname === '/') {
+                        window.location.href = '/#' + player.title;
                         return;
                     }
-                    window.location.hash = '#' + yohoho.dataset.title;
+                    window.location.hash = '#' + player.title;
                     document.title = title.value;
                 }
                 items = [];
