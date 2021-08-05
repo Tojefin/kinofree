@@ -1,0 +1,108 @@
+
+body{
+	margin: 0;
+	font-family: 'Montserrat', sans-serif;
+	font-size: 16px;
+	line-height: 1.6;
+	color: #fff;
+}
+
+*,
+*:before,
+*:after{
+	box-sizing: border-box;
+}
+
+h1, h2, h3, h4, h5, h6 {margin: 0;}
+
+.main {
+	width: 100%;
+	height: 100vh;
+	background-image: linear-gradient(0deg, rgba(0,0,0,0.45), rgba(0,0,0,0.75)),  url("../img/main.svg");
+	background-size: cover;
+	content: '';
+    display: table;
+}
+.container {
+	padding: 30px 60px;
+	max-width: 1200px;
+    width: 900px;
+    min-height: 505px;
+    margin: 260px auto 0;
+    justify-content: center;
+}
+.title{
+	font-weight: 700;
+    line-height: 1.1;
+    font-size: 6rem;
+	width: 900px;
+}
+.subtitle{
+	padding: 6px;
+}
+.form{
+	margin: 20px auto;
+	display: flex;
+    flex-flow: row;
+    align-items: center;
+    flex-grow: 1;
+}
+.search{
+	display: block;
+    width: 50%;
+    padding: 10px 12px;
+    background-image: none;
+    background-clip: padding-box;
+    border: none;
+    border-radius: 3px;
+    transition: border-color ease-in-out 0.15s, box-shadow ease-in-out 0.15s;
+    background-color: transparent;
+    color: inherit;
+    height: auto;
+}
+.button{
+    display: table;
+    cursor: pointer;
+    font-size: inherit;
+    font-family: inherit;
+    line-height: inherit;
+    letter-spacing: inherit;
+    text-transform: inherit;
+    font-weight: inherit;
+    text-decoration: none;
+    border: 0 none transparent;
+    outline-width: 0;
+    margin: 0;
+    font-style: initial;
+    white-space: nowrap;
+    user-select: none;
+    vertical-align: middle;
+    text-align: center;
+    padding: 10px 30px;
+    align-self: flex-start;
+    background-color: #9ce4fb;
+    color: #111111;
+    border-radius: 8px;
+}
+
+.footer {
+	width: 100%;
+	height: min-content;
+	background-color: #242424;
+	background-size: cover;
+	content: '';
+    display: table;
+}
+.menu{
+	margin-left: auto;
+	margin-right: auto;
+	width: 600px;
+	display: grid;
+	grid-template-columns: 200px 200px 200px;
+}
+.menu_button{
+	height: 50px;
+    width: 50px;
+    background-image: none;
+    margin: 10px auto 10px;
+}
