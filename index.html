@@ -5,7 +5,7 @@
 <body class="index">
 
 <div class="search-line">
-    <div id="player" data-tv="1" data-resize="1" data-fast="1">
+    <div id="yohoho" data-tv="1" data-resize="1" data-fast="1">
         <div class="brand">KinoFree</div>
         <div class="form">
             <input type="text" placeholder="Название фильма / ID КиноПоиск" id="search-title" name="title" style="width: 250px">
@@ -46,34 +46,34 @@
         }
 
         function parse() {
-            var player = document.querySelector('#player');
-            if (title && title.value && player) {
+            var yohoho = document.querySelector('#yohoho');
+            if (title && title.value && yohoho) {
                 if (/kinopoisk\.ru/i.test(title.value)) {
                     var exec = /(film\/|movie\/).*?([0-9]{3,7})\//gi.exec(title.value);
                     if (exec && exec[2]) {
-                        player.data = exec[2];
-                        if (window.location.hostname === 'tojefin.github.io/kinofree') {
-                            window.location.href = 'https://tojefin.github.io/kinofree/#' + player.data;
+                        yohoho.dataset.kinopoisk = exec[2];
+                        if (window.location.hostname === 'yohoho.cc') {
+                            window.location.href = 'https://4h0y.gitlab.io/#' + yohoho.dataset.kinopoisk;
                             return;
                         }
-                        window.location.hash = '#' + player.data;
-                        document.title = 'КиноПоиск: ' + player.data;
+                        window.location.hash = '#' + yohoho.dataset.kinopoisk;
+                        document.title = 'КиноПоиск: ' + yohoho.dataset.kinopoisk;
                     }
                 } else if (/^\d+$/.test(title.value)) {
-                    player.data = title.value;
-                    if (window.location.hostname === 'tojefin.github.io/kinofree') {
-                        window.location.href = 'https://tojefin.github.io/kinofree/#' + player.data;
+                    yohoho.dataset.kinopoisk = title.value;
+                    if (window.location.hostname === 'yohoho.cc') {
+                        window.location.href = 'https://4h0y.gitlab.io/#' + yohoho.dataset.kinopoisk;
                         return;
                     }
-                    window.location.hash = '#' + player.data;
-                    document.title = 'КиноПоиск: ' + player.data;
+                    window.location.hash = '#' + yohoho.dataset.kinopoisk;
+                    document.title = 'КиноПоиск: ' + yohoho.dataset.kinopoisk;
                 } else {
-                    player.title = encodeURIComponent(title.value);
-                    if (window.location.hostname === 'tojefin.github.io/kinofree') {
-                        window.location.href = 'https://tojefin.github.io/kinofree/#' + player.title;
+                    yohoho.dataset.title = encodeURIComponent(title.value);
+                    if (window.location.hostname === 'yohoho.cc') {
+                        window.location.href = 'https://4h0y.bitbucket.io/#' + yohoho.dataset.title;
                         return;
                     }
-                    window.location.hash = '#' + player.title;
+                    window.location.hash = '#' + yohoho.dataset.title;
                     document.title = title.value;
                 }
                 items = [];
