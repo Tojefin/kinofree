@@ -51,22 +51,22 @@
                 if (/kinopoisk\.ru/i.test(title.value)) {
                     var exec = /(film\/|movie\/).*?([0-9]{3,7})\//gi.exec(title.value);
                     if (exec && exec[2]) {
-                        player.dataset.title = exec[2];
+                        player.dataset.film = exec[2];
                         if (window.location.hostname === '/') {
-                            window.location.href = '/#' + player.dataset.title;
+                            window.location.href = '/#' + player.dataset.film;
                             return;
                         }
-                        window.location.hash = '#' + player.dataset.title;
-                        document.title = 'KinoFree | ' + player.dataset.title;
+                        window.location.hash = '#' + player.dataset.film;
+                        document.title = 'KinoFree | ' + player.dataset.film;
                     }
                 } else if (/^\d+$/.test(title.value)) {
-                    player.dataset.title = title.value;
+                    player.dataset.film = title.value;
                     if (window.location.hostname === '/') {
-                        window.location.href = '/#' + player.dataset.title;
+                        window.location.href = '/#' + player.dataset.film;
                         return;
                     }
-                    window.location.hash = '#' + player.dataset.title;
-                    document.title = 'KinoFree | ' + player.dataset.title;
+                    window.location.hash = '#' + player.dataset.film;
+                    document.title = 'KinoFree | ' + player.dataset.film;
                 } else {
                     player.dataset.title = encodeURIComponent(title.value);
                     if (window.location.hostname === '/') {
