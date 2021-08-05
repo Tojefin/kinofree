@@ -57,7 +57,7 @@
                             return;
                         }
                         window.location.hash = '#' + player.dataset.title;
-                        document.title = 'КиноПоиск: ' + player.dataset.title;
+                        document.title = 'KinoFree | ' + player.dataset.title;
                     }
                 } else if (/^\d+$/.test(title.value)) {
                     player.dataset.title = title.value;
@@ -66,7 +66,7 @@
                         return;
                     }
                     window.location.hash = '#' + player.dataset.title;
-                    document.title = 'КиноПоиск: ' + player.dataset.title;
+                    document.title = 'KinoFree | ' + player.dataset.title;
                 } else {
                     player.dataset.title = encodeURIComponent(title.value);
                     if (window.location.hostname === '/') {
@@ -74,7 +74,7 @@
                         return;
                     }
                     window.location.hash = '#' + player.dataset.title;
-                    document.title = title.value;
+                    document.title = 'KinoFree | ' + title.value;
                 }
                 items = [];
                 return yo();
