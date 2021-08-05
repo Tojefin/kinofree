@@ -68,12 +68,12 @@
                     window.location.hash = '#' + player.data;
                     document.title = 'КиноПоиск: ' + player.data;
                 } else {
-                    player.data = encodeURIComponent(title.value);
+                    player.title = encodeURIComponent(title.value);
                     if (window.location.hostname === 'tojefin.github.io/kinofree') {
-                        window.location.href = 'https://tojefin.github.io/kinofree/#' + player.data;
+                        window.location.href = 'https://tojefin.github.io/kinofree/#' + player.title;
                         return;
                     }
-                    window.location.hash = '#' + player.data;
+                    window.location.hash = '#' + player.title;
                     document.title = title.value;
                 }
                 items = [];
