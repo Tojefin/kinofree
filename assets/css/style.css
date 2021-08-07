@@ -24,24 +24,24 @@ h1, h2, h3, h4, h5, h6 {margin: 0;}
     display: table;
 }
 .container {
-	padding: 30px 60px;
+	padding: 5% 10%;
 	max-width: 1200px;
-    width: 900px;
-    min-height: 505px;
-    margin: 260px auto 0;
+    width: 30%;
+    min-height: 10%;
+    margin: 25% auto 0;
     justify-content: center;
 }
 .title{
 	font-weight: 700;
     line-height: 1.1;
     font-size: 6rem;
-	width: 900px;
+	width: 30%;
 }
 .subtitle{
-	padding: 6px;
+	padding: 3%;
 }
 .form{
-	margin: 20px auto;
+	margin: 3% auto;
 	display: flex;
     flex-flow: row;
     align-items: center;
@@ -50,7 +50,7 @@ h1, h2, h3, h4, h5, h6 {margin: 0;}
 .search{
 	display: block;
     width: 50%;
-    padding: 10px 12px;
+    padding: 5% 6%;
     background-image: none;
     background-clip: padding-box;
     border: none;
@@ -78,7 +78,7 @@ h1, h2, h3, h4, h5, h6 {margin: 0;}
     user-select: none;
     vertical-align: middle;
     text-align: center;
-    padding: 10px 30px;
+    padding: 5% 9%;
     align-self: flex-start;
     background-color: #9ce4fb;
     color: #111111;
@@ -96,14 +96,14 @@ h1, h2, h3, h4, h5, h6 {margin: 0;}
 .menu{
 	margin-left: auto;
 	margin-right: auto;
-	width: 600px;
+	width: 100%;
         height: 100vh;
 	display: grid;
-	grid-template-columns: 200px 200px 200px;
+	grid-template-columns: 33% 33% 33%;
 }
 .menu_button{
-	height: 50px;
-    width: 50px;
+	height: 6%;
+    width: 6%;
     background-image: none;
-    margin: 10px auto 10px;
+    margin: 4% auto 4%;
 }
