@@ -27,7 +27,7 @@ h1, h2, h3, h4, h5, h6 {margin: 0;}
 	padding: 5% 10%;
 	max-width: 1200px;
     width: 30%;
-    min-height: 10%;
+    min-height: 0;
     margin: 25% auto 0;
     justify-content: center;
 }
@@ -97,7 +97,7 @@ h1, h2, h3, h4, h5, h6 {margin: 0;}
 	margin-left: auto;
 	margin-right: auto;
 	width: 100%;
-        height: 100vh;
+        height: min-content;
 	display: grid;
 	grid-template-columns: 33% 33% 33%;
 }
