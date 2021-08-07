@@ -17,7 +17,7 @@ h1, h2, h3, h4, h5, h6 {margin: 0;}
 
 .main {
 	width: 100%;
-	height: 15%;
+	height: 100%;
 	background-image: linear-gradient(0deg, rgba(0,0,0,0.45), rgba(0,0,0,0.75)),  url("../img/main.svg");
 	background-size: cover;
 	content: '';
@@ -28,7 +28,7 @@ h1, h2, h3, h4, h5, h6 {margin: 0;}
 	max-width: 1200px;
     width: 30%;
     min-height: 0;
-    margin: 25% auto 0;
+    margin: 5% auto 0;
     justify-content: center;
 }
 .title{
@@ -58,7 +58,7 @@ h1, h2, h3, h4, h5, h6 {margin: 0;}
     transition: border-color ease-in-out 0.15s, box-shadow ease-in-out 0.15s;
     background-color: transparent;
     color: inherit;
-    height: auto;
+    height: 2%;
 }
 .button{
     display: table;
