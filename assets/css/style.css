@@ -103,8 +103,8 @@ color: 222;
 	grid-template-columns: 33% 33% 33%;
 }
 .menu_button{
-	height: 6%;
-    width: 6%;
+	height: 10%;
+    width: 10%;
     background-image: none;
     margin: 4% auto 4%;
 }
