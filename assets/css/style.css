@@ -79,7 +79,7 @@ color: #fff;
     user-select: none;
     vertical-align: middle;
     text-align: center;
-    padding: 3% 8%;
+    padding: 1% 2%;
     align-self: flex-start;
     background-color: #9ce4fb;
     color: #111111;
@@ -97,16 +97,17 @@ color: #fff;
 .menu{
 	margin-left: auto;
 	margin-right: auto;
-	width: 100%;
+	width: 90%;
         height: 20%;
 	display: grid;
 position: fixed;
-bottom: 5%;
-	grid-template-columns: 33% 33% 33%;
+bottom: 2%;
+	grid-template-columns: 30% 30% 30%;
 }
 .menu_button{
 	height: 8%;
     width: 8%;
     background-image: none;
     margin: 4% auto 4%;
+color: #fff;
 }
