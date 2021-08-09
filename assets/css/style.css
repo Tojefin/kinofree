@@ -98,11 +98,11 @@ color: #fff;
 	margin-left: auto;
 	margin-right: auto;
 	width: 100%;
-        height: 20%;
+        height: 5%;
 	display: grid;
 position: fixed;
-bottom: 2%;
-	grid-template-columns: 33% 33% 33%;
+bottom: 0%;
+	grid-template-columns: 1fr 1fr 1fr;
 }
 .menu_button{
 	height: 20%;
