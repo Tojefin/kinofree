@@ -102,7 +102,7 @@ color: #fff;
 background-color: #242424;
 	display: grid;
 position: fixed;
-bottom: 0.5%;
+bottom: 0;
 	grid-template-columns: 1fr 1fr 1fr;
 }
 .menu_button{
@@ -110,4 +110,5 @@ bottom: 0.5%;
     width: 20%;
     margin: 8% auto 8%;
 color: #fff;
+bottom: 1%;
 }
