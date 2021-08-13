@@ -105,8 +105,8 @@ bottom: 0;
 	grid-template-columns: 1fr 1fr 1fr;
 }
 .menu_button{
-	height: 15vw;
-    width: 15vw;
+	height: 5vw;
+    width: 5vw;
 margin-top: 2%;
 margin-right: auto;
 margin-left: auto;
