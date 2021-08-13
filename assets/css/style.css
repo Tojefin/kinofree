@@ -97,7 +97,6 @@ color: #fff;
 .menu{
 	margin-left: auto;
 	margin-right: auto;
-margin-bottom: 2%;
 	width: 100%;
         height: 5%;
 background-color: #242424;
@@ -109,7 +108,7 @@ bottom: 0;
 .menu_button{
 	height: 20%;
     width: 20%;
-    margin: 8% auto 8%;
+    margin-bottom: 2%;
 color: #fff;
 bottom: 1%;
 }
