@@ -27,7 +27,7 @@ h1, h2, h3, h4, h5, h6 {margin: 0;}
 	padding: 5% 10%;
 	max-width: 1200px;
     width: 70%;
-    min-height: 20%;
+    min-height: 20vh;
     margin: 5% auto 0;
     justify-content: center;
 }
@@ -105,8 +105,8 @@ bottom: 0;
 	grid-template-columns: 1fr 1fr 1fr;
 }
 .menu_button{
-	height: 5em;
-    width: 5em;
+	height: 2vw;
+    width: 2vw;
 margin-top: 2%;
 margin-right: auto;
 margin-left: auto;
