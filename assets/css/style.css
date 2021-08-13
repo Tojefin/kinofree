@@ -108,6 +108,9 @@ bottom: 0;
 .menu_button{
 	height: 20%;
     width: 20%;
+margin-top: 2%;
+margin-right: auto;
+margin-left: auto;
     margin-bottom: 2%;
 color: #fff;
 bottom: 1%;
