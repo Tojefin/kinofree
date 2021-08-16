@@ -84,7 +84,7 @@
                     if (exec && exec[2]) {
                         player.dataset.kinopoisk = exec[2];
                         if (window.location.href === 'https://tojefin.github.io/kinofree/') {
-                            window.location.href = '/#' + player.dataset.kinopoisk;
+                            window.location.href = 'kinofree/watch' + player.dataset.kinopoisk;
                             return;
                         }
                         window.location.hash = '/watch#' + player.dataset.kinopoisk;
@@ -101,7 +101,7 @@
                 } else {
                     player.dataset.title = encodeURIComponent(title.value);
                     if (window.location.href === 'https://tojefin.github.io/kinofree/') {
-                        window.location.href = '/#' + player.dataset.title;
+                        window.location.href = 'kinofree/watch';
                         return;
                     }
                     window.location.hash = '/watch#' + player.dataset.title;
