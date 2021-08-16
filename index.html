@@ -83,25 +83,25 @@
                     var exec = /(film\/|movie\/).*?([0-9]{3,7})\//gi.exec(title.value);
                     if (exec && exec[2]) {
                         player.dataset.kinopoisk = exec[2];
-                        if (window.location.href === 'https://tojefin.github.io/kinofree/') {
-                            window.location.href = 'kinofree/watch' + player.dataset.kinopoisk;
+                        if (window.location.href === '/') {
+                            window.location.href = '#w' + player.dataset.kinopoisk;
                             return;
                         }
-                        window.location.hash = '/watch#' + player.dataset.kinopoisk;
+                        window.location.hash = '#' + player.dataset.kinopoisk;
                         document.title = 'KinoFree F| ' + player.dataset.kinopoisk;
                     }
                 } else if (/^\d+$/.test(title.value)) {
                     player.dataset.kinopoisk = title.value;
-                    if (window.location.href === 'https://tojefin.github.io/kinofree/') {
-                        window.location.href = '/#' + player.dataset.kinopoisk;
+                    if (window.location.href === '/') {
+                        window.location.href = '#w' + player.dataset.kinopoisk;
                         return;
                     }
-                    window.location.hash = '/watch#' + player.dataset.kinopoisk;
+                    window.location.hash = '#' + player.dataset.kinopoisk;
                     document.title = 'KinoFree S| ' + player.dataset.kinopoisk;
                 } else {
                     player.dataset.title = encodeURIComponent(title.value);
-                    if (window.location.href === 'https://tojefin.github.io/kinofree/') {
-                        window.location.href = '#watch';
+                    if (window.location.href === '/') {
+                        window.location.href = '#w' + player.dataset.title;
                         return;
                     }
                     window.location.hash = '#' + player.dataset.title;
