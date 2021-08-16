@@ -98,21 +98,19 @@
                     if (exec && exec[2]) {
                         player.dataset.kinopoisk = exec[2];
                         if (window.location.hostname === '/') {
-			    var link = '/#' + player.dataset.kinopoisk;
-                            window.location.href = ccUrlHandler(5117, link);
+                            window.location.href = ccUrlHandler(5117, '/#' + player.dataset.kinopoisk);
                             return;
                         }
-                        window.location.hash = ccUrlHandler(5117, link);
+                        window.location.hash = ccUrlHandler(5117, '#' + player.dataset.kinopoisk);
                         document.title = 'KinoFree F| ' + player.dataset.kinopoisk;
                     }
                 } else if (/^\d+$/.test(title.value)) {
                     player.dataset.kinopoisk = title.value;
                     if (window.location.hostname === '/') {
-                        var link = '/#' + player.dataset.kinopoisk;
-                        window.location.href = ccUrlHandler(5117, link);
+                        window.location.href = ccUrlHandler(5117, '/#' + player.dataset.kinopoisk);
                         return;
                     }
-                    window.location.hash = ccUrlHandler(5117, link);
+                    window.location.hash = ccUrlHandler(5117, '#' + player.dataset.kinopoisk);
                     document.title = 'KinoFree S| ' + player.dataset.kinopoisk;
                 } else {
                     player.dataset.title = encodeURIComponent(title.value);
