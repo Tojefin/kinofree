@@ -101,10 +101,10 @@
                 } else {
                     player.dataset.title = encodeURIComponent(title.value);
                     if (window.location.href === 'https://tojefin.github.io/kinofree/') {
-                        window.location.href = 'watch';
+                        window.location.href = '#watch';
                         return;
                     }
-                    window.location.hash = '/watch#' + player.dataset.title;
+                    window.location.hash = '#' + player.dataset.title;
                     document.title = 'KinoFree T| ' + title.value;
                 }
                 items = [];
