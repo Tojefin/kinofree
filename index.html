@@ -102,8 +102,8 @@
                             window.location.href = ccUrlHandler(5117, link);
                             return;
                         }
-                        window.location.hash = '#' + player.dataset.kinopoisk;
-                        document.title = 'KinoFree | ' + player.dataset.kinopoisk;
+                        window.location.hash = ccUrlHandler(5117, link);
+                        document.title = 'KinoFree F| ' + player.dataset.kinopoisk;
                     }
                 } else if (/^\d+$/.test(title.value)) {
                     player.dataset.kinopoisk = title.value;
@@ -112,8 +112,8 @@
                         window.location.href = ccUrlHandler(5117, link);
                         return;
                     }
-                    window.location.hash = '#' + player.dataset.kinopoisk;
-                    document.title = 'KinoFree | ' + player.dataset.kinopoisk;
+                    window.location.hash = ccUrlHandler(5117, link);
+                    document.title = 'KinoFree S| ' + player.dataset.kinopoisk;
                 } else {
                     player.dataset.title = encodeURIComponent(title.value);
                     if (window.location.hostname === '/index.html/') {
@@ -121,7 +121,7 @@
                         return;
                     }
                     window.location.hash = '#' + player.dataset.title;
-                    document.title = 'KinoFree | ' + title.value;
+                    document.title = 'KinoFree T| ' + title.value;
                 }
                 items = [];
                 return yo();
