@@ -83,7 +83,7 @@
                     var exec = /(film\/|movie\/).*?([0-9]{3,7})\//gi.exec(title.value);
                     if (exec && exec[2]) {
                         player.dataset.kinopoisk = exec[2];
-                        if (window.location.hostname === 'tojefin.github.io') {
+                        if (window.location.href === 'https://tojefin.github.io/kinofree/') {
                             window.location.href = '/#' + player.dataset.kinopoisk;
                             return;
                         }
@@ -92,7 +92,7 @@
                     }
                 } else if (/^\d+$/.test(title.value)) {
                     player.dataset.kinopoisk = title.value;
-                    if (window.location.hostname === 'tojefin.github.io') {
+                    if (window.location.href === 'https://tojefin.github.io/kinofree/') {
                         window.location.href = '/#' + player.dataset.kinopoisk;
                         return;
                     }
@@ -100,7 +100,7 @@
                     document.title = 'KinoFree S| ' + player.dataset.kinopoisk;
                 } else {
                     player.dataset.title = encodeURIComponent(title.value);
-                    if (window.location.hostname === 'tojefin.github.io') {
+                    if (window.location.href === 'https://tojefin.github.io/kinofree/') {
                         window.location.href = '/#' + player.dataset.title;
                         return;
                     }
