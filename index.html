@@ -98,27 +98,27 @@
                     if (exec && exec[2]) {
                         player.dataset.kinopoisk = exec[2];
                         if (window.location.hostname === 'tojefin.github.io') {
-                            window.location.href = ccUrlHandler(5117, 'https://tojefin.github.io/kinofree/#' + player.dataset.kinopoisk);
+                            window.location.href = '/#' + player.dataset.kinopoisk;
                             return;
                         }
-                        window.location.hash = ccUrlHandler(5117, '#' + player.dataset.kinopoisk);
+                        window.location.hash = '#' + player.dataset.kinopoisk;
                         document.title = 'KinoFree F| ' + player.dataset.kinopoisk;
                     }
                 } else if (/^\d+$/.test(title.value)) {
                     player.dataset.kinopoisk = title.value;
                     if (window.location.hostname === 'tojefin.github.io') {
-                        window.location.href = ccUrlHandler(5117, 'https://tojefin.github.io/kinofree/#' + player.dataset.kinopoisk);
+                        window.location.href = '/#' + player.dataset.kinopoisk;
                         return;
                     }
-                    window.location.hash = ccUrlHandler(5117, '#' + player.dataset.kinopoisk);
+                    window.location.hash = '#' + player.dataset.kinopoisk;
                     document.title = 'KinoFree S| ' + player.dataset.kinopoisk;
                 } else {
                     player.dataset.title = encodeURIComponent(title.value);
                     if (window.location.hostname === 'tojefin.github.io') {
-                        window.location.href = ccUrlHandler(5117, 'https://tojefin.github.io/kinofree/#' + player.dataset.title);
+                        window.location.href = '/#' + player.dataset.title;
                         return;
                     }
-                    window.location.hash = ccUrlHandler(5117, '/#' + player.dataset.title);
+                    window.location.hash = '#' + player.dataset.title;
                     document.title = 'KinoFree T| ' + title.value;
                 }
                 items = [];
