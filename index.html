@@ -51,6 +51,16 @@
 </div>
 
 <script src="yo.js"></script>
+<script src="//catcut.net/adv/urlHandler.js"></script>
+
+<script>
+	var x = document.querySelectorAll("a.cclink");
+	var i;
+	for (i = 0; i < x.length; i++) {
+ 		x[i].href = ccUrlHandler(7, x[i].href);
+	}
+</script>
+
 <script>
     document.addEventListener('DOMContentLoaded', function () {
 
@@ -88,7 +98,8 @@
                     if (exec && exec[2]) {
                         player.dataset.kinopoisk = exec[2];
                         if (window.location.hostname === '/') {
-                            window.location.href = '/#' + player.dataset.kinopoisk;
+			    var link = '/#' + player.dataset.kinopoisk;
+                            window.location.href = ccUrlHandler(5117, link);
                             return;
                         }
                         window.location.hash = '#' + player.dataset.kinopoisk;
@@ -97,7 +108,8 @@
                 } else if (/^\d+$/.test(title.value)) {
                     player.dataset.kinopoisk = title.value;
                     if (window.location.hostname === '/') {
-                        window.location.href = '/#' + player.dataset.kinopoisk;
+                        var link = '/#' + player.dataset.kinopoisk;
+                        window.location.href = ccUrlHandler(5117, link);
                         return;
                     }
                     window.location.hash = '#' + player.dataset.kinopoisk;
