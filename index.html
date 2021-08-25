@@ -83,7 +83,8 @@ request.open("GET", "https://ahoy.yohoho.online", true);
 request.send(null);
 request.onreadystatechange = function() {
   if (request.readyState == 4)
-    alert(request.responseText);
+	if (request.responseText != "200")
+    		alert("Сервис не доступен");
 };
 </script>
 <script src="yo.js"></script>
