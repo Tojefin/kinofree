@@ -99,7 +99,7 @@
 			event.preventDefault();
 			// В сокет отсылаем новое событие 'send mess',
 			// в событие передаем различные параметры и данные
-			socket.emit('send mess', {mess: $textarea.val(), name: $name.val(), className: alertClass});
+			socket.emit('send mess', {mess: $textarea.val(), name: $name.val()});
 			// Очищаем поле с сообщением
 			$textarea.val('');
 		});
@@ -109,7 +109,7 @@
 		socket.on('add mess', function(data) {
 			// Встраиваем полученное сообщение в блок с сообщениями
 			// У блока с сообщением будет тот класс, который соответвует пользователю что его отправил
-			$all_messages.append("<div class='alert alert-" + data.className + "'><b>" + data.name + "</b>: " + data.mess + "</div>");
+			$all_messages.append("<div class='msg'><b>" + data.name + "</b>: " + data.mess + "</div>");
 		});
 
 	});
