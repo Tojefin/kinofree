@@ -83,9 +83,9 @@ request.open("GET", "https://ahoy.yohoho.online", true);
 request.send(null);
 request.onreadystatechange = function() {
   if (request.readyState == 4){
-	document.querySelector('#subtitle').innerHTML = "Смотрите кино бесплатно  Статус серверов" + request.responseText;
+	document.querySelector('#subtitle').innerHTML = ("Смотрите кино бесплатно  Статус серверов" + request.responseText);
 	if (request.responseText != "200"){
-		document.querySelector('#subtitle').innerHTML = "Смотрите кино бесплатно  Статус серверов Ошибка";
+		document.querySelector('#subtitle').innerHTML = ("Смотрите кино бесплатно  Статус серверов Ошибка");
     		alert("Сервис не доступен");
 	};
 	
