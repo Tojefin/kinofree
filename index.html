@@ -17,34 +17,28 @@
 			<input type="text" placeholder="Название фильма / ID КиноПоиск" id="search-title" name="title" class="search">
             <input type="button" value="Смотреть" id="search" class="button">
 		</div>
+	</div>
 
-		<div class="py-5 text-center">
-			<h2>Чат программа</h2>
-			<p class="lead">Укажите ваше имя и начинайте переписку</p>
-		</div>
+	<div class="chat" style="width: 25vw;position: fixed;bottom: 10vh;">
 		<div class="row">
 			<div class="col-6">
-				<!-- Форма для получения сообщений и имени -->
-				<h3>Форма сообщений</h3>
-				<form id="messForm">
-					<label for="name">Имя</label>
-					<input type="text" name="name" id="name" placeholder="Введите имя" class="form-control">
-					<br>
-					<label for="message">Сообщение</label>
-					<textarea name="message" id="message" class="form-control" placeholder="Введите сообщение"></textarea>
-					<br>
-					<input type="submit" value="Отправить" class="btn btn-danger">
-				</form>
-			</div>
-			<div class="col-6">
-				<h3>Сообщения</h3>
 				<!-- Вывод всех сообщений будет здесь -->
 				<div id="all_mess"></div>
 			</div>
+			<div class="col-6">
+				<!-- Форма для получения сообщений и имени -->
+				<form id="messForm" style="display: flex;">
+					<input type="text" name="name" id="name" placeholder="Имя" class="search" style="width: 25%;">
+					<br>
+					<input name="message" id="message" class="search" placeholder="Сообщение"></textarea>
+					<br>
+					<input type="submit" value="Отправить" class="button">
+				</form>
+			</div>
+
 		</div>
-
 	</div>
-
+	
 </div>
 <div class="menu">
 		<div class="menu_button" style="margin-right: 15%;">
