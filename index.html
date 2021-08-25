@@ -84,27 +84,27 @@
 		</div>
 </div>
 
-<script src="//chr15m.github.io/bugout/bugout.min.js" type="application/javascript"></script>
+<script src="https://chr15m.github.io/bugout/bugout.min.js"></script>
 <script>
-  log("Hello world!");
- 
-  var b = Bugout();
-  log(b.address() + " [ me ]");
-b.on("message", function(address, message) {
-  log(address + ": " + message);
-});
-	var b = Bugout("bugout-chat-tutorial");
+	log("Hello world!");
+	var Bugout = require("bugout")	
+	var b = new Bugout("server-public-key");
+	log(b.address() + " [ me ]");
+	b.on("message", function(address, message) {
+		log(address + ": " + message);
+	});
+	
 	b.on("seen", function(address) { log(address + " [ seen ]"); });
 
 document.getElementById("message").onkeydown = function(ev) {
- if (ev.keyCode == 13) {
- if (b.lastwirecount) {
- b.send(ev.target.textContent);
- ev.target.textContent = "";
- }
- ev.preventDefault();
- }
-  }
+	if (ev.keyCode == 13) {
+		if (b.lastwirecount) {
+			b.send(ev.target.textContent);
+			ev.target.textContent = "";
+		}
+		ev.preventDefault();
+	}
+}
 </script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 
