@@ -21,12 +21,6 @@
     <div id="divMessages" class="message border rounded container">
  
     </div>
-    <div class="container">
-        <div id="blockSendMessage" class="row">
-            <input id="inputMessage" class="form-control col-8 col-sm-9 col-md-8" type="text" placeholder="Сообщений">
-            <button id="btnSend" type="button" class="btn btn-secondary col-4 col-sm-3 col-md-4">Отправить</button>
-        </div>
-    </div>
 </div>
 <div class="menu">
 		<div class="menu_button" style="margin-right: 15%;">
@@ -68,39 +62,6 @@
 </div>
 
 <script src="yo.js"></script>
-
-<script>
-    // Получаем элемент чата
-let chat = document.querySelector("#divMessages")
-// Получаем строку ввода сообщения
-let input = document.querySelector("#inputMessage")
-// Получаем кнопку для ввода сообщения
-let btnSubmit = document.querySelector("#btnSend")
- 
-// Подключаем WebSocket
-const webSocket = new WebSocket('ws://localhost:8081');
- 
-// Получаем сообщение от сервера
-webSocket.onmessage = function(e) {
-    // Парсим полученные данные
-    const data = JSON.parse(e.data);
-    // Выводим в блог сообщение от сервера
-    chat.innerHTML += '<div class="msg">' + data.message + '</div>'
-};
- 
-// Отслеживаем нажатие мыши
-btnSubmit.addEventListener("click", () => {
-    // Получаем текст из формы для ввода сообщения
-    message = input.value;
-    // Отправка сообщения через WS
-    webSocket.send(JSON.stringify({
-        'message': message
-    }));
-    // Очищаем поле для ввода текста
-    input.value = '';
-})
-</script>
-
 <script>
     document.addEventListener('DOMContentLoaded', function () {
 
