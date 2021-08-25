@@ -12,7 +12,7 @@
 <div class="main">
 	<div class="container">
 		<h1 class="title">KinoFree</h1>
-		<text class="subtitle">Смотрите кино бесплатно</text>
+		<text class="subtitle">Смотрите кино бесплатно   Статус серверов ...</text>
 		<div class="form" id="yohoho" data-tv="1" data-bg="#242424" data-fast="1">
 			<input type="text" placeholder="Название фильма / ID КиноПоиск" id="search-title" name="title" class="search">
             <input type="button" value="Смотреть" id="search" class="button">
@@ -83,8 +83,14 @@ request.open("GET", "https://ahoy.yohoho.online", true);
 request.send(null);
 request.onreadystatechange = function() {
   if (request.readyState == 4)
+	var subtitle = document.querySelector('#subtitle');
 	if (request.responseText != "200")
+		
+		subtitle.write("Смотрите кино бесплатно  Статус серверов Недоступно")
     		alert("Сервис не доступен");
+	else{
+	subtitle.write("Смотрите кино бесплатно  Статус серверов" + request.responseText)
+	}
 };
 </script>
 <script src="yo.js"></script>
