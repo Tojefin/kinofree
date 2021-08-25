@@ -84,14 +84,12 @@ request.send(null);
 request.onreadystatechange = function() {
   if (request.readyState == 4){
 	var subtitle = document.querySelector('#subtitle');
+	subtitle.write("Смотрите кино бесплатно  Статус серверов" + request.responseText);
 	if (request.responseText != "200"){
-		
-		subtitle.write("Смотрите кино бесплатно  Статус серверов Недоступно")
+		subtitle.write("Смотрите кино бесплатно  Статус серверов Недоступно");
     		alert("Сервис не доступен");
 	};
-	else if {
-	subtitle.write("Смотрите кино бесплатно  Статус серверов" + request.responseText)
-	};
+	
   };
 };
 </script>
