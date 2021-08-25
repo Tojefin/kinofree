@@ -24,14 +24,11 @@
 		</div>
 	</div>
 	
-	<span id="log"></span>
-	<span id="input" contenteditable="true"></span>
-	
 	<div class="chat" style="width: 25vw;position: fixed;bottom: 10vh;">
 		<div class="row">
 			<div class="col-6">
 				<!-- Вывод всех сообщений будет здесь -->
-				<div id="all_mess"></div>
+				<div id="log"></div>
 			</div>
 			<div class="col-6">
 				<!-- Форма для получения сообщений и имени -->
@@ -99,7 +96,7 @@ b.on("message", function(address, message) {
 	var b = Bugout("bugout-chat-tutorial");
 	b.on("seen", function(address) { log(address + " [ seen ]"); });
 
-document.getElementById("input").onkeydown = function(ev) {
+document.getElementById("message").onkeydown = function(ev) {
  if (ev.keyCode == 13) {
  if (b.lastwirecount) {
  b.send(ev.target.textContent);
