@@ -7,6 +7,11 @@
 	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 	<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;700&display=swap" rel="stylesheet">
 	<title>KinoFree</title>
+	<script>
+	    function log(message) {
+	      document.getElementById("log").textContent += message + "\n";
+	    }
+	</script>
 </head>
 <body>
 <div class="main">
@@ -18,7 +23,10 @@
             <input type="button" value="Смотреть" id="search" class="button">
 		</div>
 	</div>
-
+	
+	<span id="log"></span>
+	<span id="input" contenteditable="true"></span>
+	
 	<div class="chat" style="width: 25vw;position: fixed;bottom: 10vh;">
 		<div class="row">
 			<div class="col-6">
@@ -79,6 +87,28 @@
 		</div>
 </div>
 
+<script src="//chr15m.github.io/bugout/bugout.min.js" type="application/javascript"></script>
+<script>
+  log("Hello world!");
+ 
+  var b = Bugout();
+  log(b.address() + " [ me ]");
+b.on("message", function(address, message) {
+  log(address + ": " + message);
+});
+	var b = Bugout("bugout-chat-tutorial");
+	b.on("seen", function(address) { log(address + " [ seen ]"); });
+
+document.getElementById("input").onkeydown = function(ev) {
+ if (ev.keyCode == 13) {
+ if (b.lastwirecount) {
+ b.send(ev.target.textContent);
+ ev.target.textContent = "";
+ }
+ ev.preventDefault();
+ }
+  }
+</script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script src="/socket.io/socket.io.js"></script>
 <script>
