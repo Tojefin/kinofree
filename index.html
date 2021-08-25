@@ -7,11 +7,6 @@
 	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 	<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;700&display=swap" rel="stylesheet">
 	<title>KinoFree</title>
-	<script>
-	    function log(message) {
-	      document.getElementById("log").textContent += message + "\n";
-	    }
-	</script>
 </head>
 <body>
 <div class="main">
@@ -25,23 +20,6 @@
 	</div>
 	
 	<div class="chat" style="width: 25vw;position: fixed;bottom: 10vh;">
-		<div class="row">
-			<div class="col-6">
-				<!-- Вывод всех сообщений будет здесь -->
-				<div id="log"></div>
-			</div>
-			<div class="col-6">
-				<!-- Форма для получения сообщений и имени -->
-				<form id="messForm" style="display: flex;">
-					<input type="text" name="name" id="name" placeholder="Имя" class="search" style="width: 25%;">
-					<br>
-					<input name="message" id="message" class="search" placeholder="Сообщение"></textarea>
-					<br>
-					<input type="submit" value="Отправить" class="button">
-				</form>
-			</div>
-
-		</div>
 	</div>
 	
 </div>
@@ -84,28 +62,6 @@
 		</div>
 </div>
 
-<script src="https://chr15m.github.io/bugout/bugout.min.js"></script>
-<script>
-	log("Hello world!");
-	var Bugout = require("bugout")	
-	var b = new Bugout("server-public-key");
-	log(b.address() + " [ me ]");
-	b.on("message", function(address, message) {
-		log(address + ": " + message);
-	});
-	
-	b.on("seen", function(address) { log(address + " [ seen ]"); });
-
-document.getElementById("message").onkeydown = function(ev) {
-	if (ev.keyCode == 13) {
-		if (b.lastwirecount) {
-			b.send(ev.target.textContent);
-			ev.target.textContent = "";
-		}
-		ev.preventDefault();
-	}
-}
-</script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 
 <script src="yo.js"></script>
