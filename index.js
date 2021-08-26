@@ -33,7 +33,7 @@ io.sockets.on('connection', function(socket) {
 	socket.on('send mess', function(data) {
 		// Внутри функции мы передаем событие 'add mess',
 		// которое будет вызвано у всех пользователей и у них добавиться новое сообщение
-		io.sockets.emit('add mess', {mess: data.mess, name: data.name, className: data.className});
+		io.sockets.emit('add mess', {mess: data.mess, name: data.name});
 	});
 
 });
