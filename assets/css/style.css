@@ -24,7 +24,7 @@ h1, h2, h3, h4, h5, h6 {margin: 0;}
     display: table;
 }
 .container {
-	padding: 10vh 10%;
+	padding: 15vh 10%;
 	max-width: 1200px;
     width: 70%;
     max-height: 40vh;
