@@ -17,34 +17,11 @@
 			<input type="text" placeholder="Название фильма / ID КиноПоиск" id="search-title" name="title" class="search">
             <input type="button" value="Смотреть" id="search" class="button">
 		</div>
-
-		<div class="py-5 text-center">
-			<h2>Чат программа</h2>
-			<p class="lead">Укажите ваше имя и начинайте переписку</p>
-		</div>
-		<div class="row">
-			<div class="col-6">
-				<!-- Форма для получения сообщений и имени -->
-				<h3>Форма сообщений</h3>
-				<form id="messForm">
-					<label for="name">Имя</label>
-					<input type="text" name="name" id="name" placeholder="Введите имя" class="form-control">
-					<br>
-					<label for="message">Сообщение</label>
-					<textarea name="message" id="message" class="form-control" placeholder="Введите сообщение"></textarea>
-					<br>
-					<input type="submit" value="Отправить" class="btn btn-danger">
-				</form>
-			</div>
-			<div class="col-6">
-				<h3>Сообщения</h3>
-				<!-- Вывод всех сообщений будет здесь -->
-				<div id="all_mess"></div>
-			</div>
-		</div>
-
 	</div>
-
+	
+	<div class="chat" style="width: 25vw;position: fixed;bottom: 10vh;">
+	</div>
+	
 </div>
 <div class="menu">
 		<div class="menu_button" style="margin-right: 15%;">
@@ -86,41 +63,6 @@
 </div>
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-<script src="/socket.io/socket.io.js"></script>
-<script>
-
-	// Функция для работы с данными на сайте
-	$(function() {
-		// Включаем socket.io и отслеживаем все подключения
-		var socket = io.connect();
-		// Делаем переменные на:
-		var $form = $("#messForm"); // Форму сообщений
-		var $name = $("#name"); // Поле с именем
-		var $textarea = $("#message"); // Текстовое поле
-		var $all_messages = $("#all_mess"); // Блок с сообщениями
-
-		// Отслеживаем нажатие на кнопку в форме сообщений
-		$form.submit(function(event) {
-			// Предотвращаем классическое поведение формы
-			event.preventDefault();
-			// В сокет отсылаем новое событие 'send mess',
-			// в событие передаем различные параметры и данные
-			socket.emit('send mess', {mess: $textarea.val(), name: $name.val(), className: alertClass});
-			// Очищаем поле с сообщением
-			$textarea.val('');
-		});
-
-		// Здесь отслеживаем событие 'add mess',
-		// которое должно приходить из сокета в случае добавления нового сообщения
-		socket.on('add mess', function(data) {
-			// Встраиваем полученное сообщение в блок с сообщениями
-			// У блока с сообщением будет тот класс, который соответвует пользователю что его отправил
-			$all_messages.append("<div class='alert alert-" + data.className + "'><b>" + data.name + "</b>: " + data.mess + "</div>");
-		});
-
-	});
-</script>
-
 <script src="yo.js"></script>
 <script>
     document.addEventListener('DOMContentLoaded', function () {
