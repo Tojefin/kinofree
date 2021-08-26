@@ -5,7 +5,7 @@ var server = require('http').createServer(app);
 var io = require('socket.io')(server);
 
 // Отслеживание порта
-server.listen(80, "kinofree.skyedge.xyz");
+server.listen(80);
 
 // Отслеживание url адреса и отображение нужной HTML страницы
 app.get('/', function(request, respons) {
