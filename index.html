@@ -112,7 +112,7 @@
 			socket.on('add mess', function(data) {
 				// Встраиваем полученное сообщение в блок с сообщениями
 				// У блока с сообщением будет тот класс, который соответвует пользователю что его отправил
-				$all_messages.append("<div class='msg""'><b>" + data.name + "</b>: " + data.mess + "</div>");
+				$all_messages.append("<div class='msg'><b>" + data.name + "</b>: " + data.mess + "</div>");
 			});
 
 		});
