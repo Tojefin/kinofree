@@ -15,8 +15,11 @@
 		<h1 class="title">KinoFree</h1>
 		<text class="subtitle">Смотрите кино бесплатно</text>
 		<div class="form" id="yohoho" data-tv="1" data-bg="#242424" data-fast="1">
-			<input type="text" placeholder="Название фильма / ID КиноПоиск" id="search-title" name="title" class="search">
-            <input type="button" value="Смотреть" id="search" class="button">
+			<input type="text" placeholder="Название фильма" id="search-title" name="title" class="search">
+			<input type="button" value="Поиск" id="search" class="button">
+		</div>
+		<div id="search-list" class="search-list">
+
 		</div>
 	</div>
 
@@ -41,14 +44,13 @@
 
 </div>
 <div class="menu">
-		<div class="menu_button" style="margin-right: 15%;">
-			<a href="./">
-				<svg class="u-svg-content" viewBox="0 0 512 512" x="0px" y="0px" id="svg-d182" style="fill: #fff;">
-					<path d="M505.749,475.587l-145.6-145.6c28.203-34.837,45.184-79.104,45.184-127.317c0-111.744-90.923-202.667-202.667-202.667    S0,90.925,0,202.669s90.923,202.667,202.667,202.667c48.213,0,92.48-16.981,127.317-45.184l145.6,145.6    c4.16,4.16,9.621,6.251,15.083,6.251s10.923-2.091,15.083-6.251C514.091,497.411,514.091,483.928,505.749,475.587z     M202.667,362.669c-88.235,0-160-71.765-160-160s71.765-160,160-160s160,71.765,160,160S290.901,362.669,202.667,362.669z"/>
-        </svg>
-			</a>
-
-		</div>
+	<div class="menu_button" style="margin-right: 15%;">
+		<a href="./">
+			<svg class="u-svg-content" viewBox="0 0 512 512" x="0px" y="0px" id="svg-d182" style="fill: #fff;">
+				<path d="M505.749,475.587l-145.6-145.6c28.203-34.837,45.184-79.104,45.184-127.317c0-111.744-90.923-202.667-202.667-202.667    S0,90.925,0,202.669s90.923,202.667,202.667,202.667c48.213,0,92.48-16.981,127.317-45.184l145.6,145.6    c4.16,4.16,9.621,6.251,15.083,6.251s10.923-2.091,15.083-6.251C514.091,497.411,514.091,483.928,505.749,475.587z     M202.667,362.669c-88.235,0-160-71.765-160-160s71.765-160,160-160s160,71.765,160,160S290.901,362.669,202.667,362.669z"/>
+			</svg>
+		</a>
+	</div>
 		<div class="menu_button">
 			<a href="./">
                 <svg class="u-svg-content" viewBox="0 0 512 512" x="0px" y="0px" id="svg-d182" style="fill: #fff;">
@@ -80,8 +82,8 @@
 </div>
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-	<script src="/socket.io/socket.io.js"></script>
-	<script>
+<script src="/socket.io/socket.io.js"></script>
+<script>
 
 		// Функция для работы с данными на сайте
 		$(function() {
@@ -113,7 +115,7 @@
 			});
 
 		});
-	</script>
+</script>
 
 <script src="yo.js"></script>
 <script>
@@ -121,18 +123,13 @@
 
         var search = document.querySelector('#search');
         var title = document.querySelector('#search-title');
+				var watch = document.querySelector('#watch');
 
-        if (window.location.hash) {
-            var hash = window.location.hash.substring(1);
-            if (title && hash) {
-                title.value = decodeURIComponent(hash);
-                parse();
-            }
-        }
-
-        if (search) {
+				if (search) {
             search.addEventListener('click', function () {
-                return parse();
+							$(".listBlock").remove();
+                return kp_parse();
+								console.log(title);
             });
         }
 
@@ -140,47 +137,80 @@
             title.addEventListener('keyup', function (event) {
                 event.preventDefault();
                 if (event.keyCode === 13) {
-                    return parse();
+									$(".listBlock").remove();
+                    return kp_parse();
+										console.log(title);
                 }
             });
         }
 
-        function parse() {
-            var player = document.querySelector('#yohoho');
-            if (title && title.value && player) {
-                if (/kinopoisk\.ru/i.test(title.value)) {
-                    var exec = /(film\/|movie\/).*?([0-9]{3,7})\//gi.exec(title.value);
-                    if (exec && exec[2]) {
-                        player.dataset.kinopoisk = exec[2];
-                        if (window.location.href === '/') {
-                            window.location.href = '#' + player.dataset.kinopoisk;
-                            return;
-                        }
-                        window.location.hash = '#' + player.dataset.kinopoisk;
-                        document.title = 'KinoFree | ' + player.dataset.kinopoisk;
-                    }
-                } else if (/^\d+$/.test(title.value)) {
-                    player.dataset.kinopoisk = title.value;
-                    if (window.location.href === '/') {
-                        window.location.href = '#' + player.dataset.kinopoisk;
-                        return;
-                    }
-                    window.location.hash = '#' + player.dataset.kinopoisk;
-                    document.title = 'KinoFree | ' + player.dataset.kinopoisk;
-                } else {
-                    player.dataset.title = encodeURIComponent(title.value);
-                    if (window.location.href === '/') {
-                        window.location.href = '#' + player.dataset.title;
-                        return;
-                    }
-                    window.location.hash = '#' + player.dataset.title;
-                    document.title = 'KinoFree | ' + title.value;
-                }
-                items = [];
-                return yo();
-            }
+				if (watch) {
+            watch.addEventListener('click', function () {
+							$(".listBlock").remove();
+                return parse(watch.class);
+								console.log(watch.class);
+            });
         }
+
+			 	async function kp_parse() {
+					let url = ('https://kinopoiskapiunofficial.tech/api/v2.1/films/search-by-keyword?keyword=' + title.value + '&page=1');
+					let response = await fetch(url , {
+						method: 'GET',
+						headers: {
+							"Content-Type": "application/json",
+							"X-API-KEY": "4b12f46d-638b-4bac-bf06-33865d3a3524",
+						},
+					});
+					if (response.ok) {
+					  let data = await response.json();
+					  console.log(data);
+						$(data.films).each(function(index, item) {
+						  $('#search-list').append(
+								'<div class="listBlock"><img onclick="javascript:parse('+item.filmId+')" src="'+ item.posterUrl +'" width="20%" height="20%"><text class="listName">' + item.nameRu + '</text><text class="listDesc">' + item.description + '</text><text class="listYear">' + item.year + '</text><text class="listRating">' + item.rating + '</text></div>');
+						});
+					} else {
+					  alert('error', response.status);
+					}
+				}
     });
+</script>
+<script>
+function parse(id) {
+		$(".search-list").remove();
+		var player = document.querySelector('#yohoho');
+		if (id && id && player) {
+				if (/kinopoisk\.ru/i.test(id)) {
+						var exec = /(film\/|movie\/).*?([0-9]{3,7})\//gi.exec(id);
+						if (exec && exec[2]) {
+								player.dataset.kinopoisk = exec[2];
+								if (window.location.href === '/') {
+										window.location.href = '#' + player.dataset.kinopoisk;
+										return;
+								}
+								window.location.hash = '#' + player.dataset.kinopoisk;
+								document.title = 'KinoFree | ' + player.dataset.kinopoisk;
+						}
+				} else if (/^\d+$/.test(id)) {
+						player.dataset.kinopoisk = id;
+						if (window.location.href === '/') {
+								window.location.href = '#' + player.dataset.kinopoisk;
+								return;
+						}
+						window.location.hash = '#' + player.dataset.kinopoisk;
+						document.title = 'KinoFree | ' + player.dataset.kinopoisk;
+				} else {
+						player.dataset.title = encodeURIComponent(id);
+						if (window.location.href === '/') {
+								window.location.href = '#' + player.dataset.title;
+								return;
+						}
+						window.location.hash = '#' + player.dataset.title;
+						document.title = 'KinoFree | ' + id;
+				}
+				items = [];
+				return yo();
+		}
+}
 </script>
 
 </body>
