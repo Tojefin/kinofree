@@ -6,14 +6,25 @@ body{
 	line-height: 1.6;
 	color: #fff;
 }
-
+iframe{
+	border: hidden;
+	border-radius: 10px;
+	width: 100%;
+	height: 45vh;
+	box-shadow: 0px 0px 10px 5px rgba(10, 60, 70, .7);
+	margin: 20px 0px;
+}
+a{
+	color: #FFFFFF;
+	text-decoration: none;
+}
 *,
 *:before,
 *:after{
 	box-sizing: border-box;
 }
 
-h1, h2, h3, h4, h5, h6 {margin: 0;}
+h1, h2, h3, h4, h5, h6, text {margin: 0;}
 
 .main {
 	width: 100%;
@@ -21,24 +32,81 @@ h1, h2, h3, h4, h5, h6 {margin: 0;}
 	background-image: linear-gradient(0deg, rgba(0,0,0,0.45), rgba(0,0,0,0.75)),  url("../img/main.svg");
 	background-size: cover;
 	content: '';
-    display: table;
+  display: table;
+	align-items: center;
+	align-self: center;
 }
 .container {
-	padding: 8vh 10%;
+	padding: 1vh 10%;
 	max-width: 1200px;
-    width: 70%;
-    max-height: 40vh;
-    margin: 5vh auto 0;
-    justify-content: center;
+  width: 100%;
+  max-height: 40vh;
+  margin: 3vh auto 0;
+  justify-content: center;
+	text-align: center;
+}
+
+.title{
+	line-height: 1.1;
+	color: #fff;
+	text-align: center;
+	font-size: 34px;
+	line-height: 41px;
+}
+.subtitle{
+	text-align: center;
+	color: #828282;
+	font-size: 12px;
+}
+.form{
+	margin: 3% auto;
+	display: flex;
+  flex-flow: row;
+  align-items: center;
+  flex-grow: 1;
+	background: #0D0D0D;
+	border-radius: 24px;
+	width: 100%;
+	max-width: 720px;
+	height: 56px;
+
+}
+.search{
+	width: 100%;
+	padding: 2% 1%;
+	border: none;
+	background-color: transparent;
+	font-size: 14px;
+	line-height: 16px;
+	color: #888;
+}
+.button{
+	display: table;
+	font-weight: 500;
+	font-size: 14px;
+	line-height: 16px;
+	border: 0 none transparent;
+	padding: 2% 6%;
+	margin: 0px 1%;
+	background: linear-gradient(254.71deg, #3C39C9 3.34%, #7C2BB7 38.71%, #D3189F 86.65%);
+	color: #F2F2F2;
+	border-radius: 24px;
+}
+.button:hover{
+	color: #000;
+}
+.button:active{
+	color: #000;
+	box-shadow: inset 0 0 10px #000000;
 }
 
 
-
+/* Список фильмов */
 .search-list{
 	-ms-overflow-style: none;
 	scrollbar-width: none;
 	overflow-y: scroll;
-	height: 55vh;
+	height: 69vh;
 	padding: 0px 10px
 }
 .search-list::-webkit-scrollbar{
@@ -63,6 +131,7 @@ h1, h2, h3, h4, h5, h6 {margin: 0;}
 	overflow-y: scroll;
 	height: 20vh;
 	color: #888;
+	text-align: left
 }
 .listDesc::-webkit-scrollbar{
 	display: none;
@@ -76,61 +145,8 @@ h1, h2, h3, h4, h5, h6 {margin: 0;}
 	font-size: 14px;
 }
 
-.title{
-	font-weight: 700;
-    line-height: 1.1;
-    font-size: 6rem;
-color: #fff;
-	width: 30%;
-}
-.subtitle{
-	padding: 2%;
-}
-.form{
-	margin: 3% auto;
-	display: flex;
-    flex-flow: row;
-    align-items: center;
-    flex-grow: 1;
-}
-.search{
-	display: block;
-    width: 50%;
-    padding: 2% 1%;
-    background-image: none;
-    background-clip: padding-box;
-    border: none;
-    border-radius: 3px;
-    transition: border-color ease-in-out 0.15s, box-shadow ease-in-out 0.15s;
-    background-color: transparent;
-    color: inherit;
-    height: 3%;
-}
-.button{
-    display: table;
-    cursor: pointer;
-    font-size: inherit;
-    font-family: inherit;
-    line-height: inherit;
-    letter-spacing: inherit;
-    text-transform: inherit;
-    font-weight: inherit;
-    text-decoration: none;
-    border: 0 none transparent;
-    outline-width: 0;
-    margin: 0;
-    font-style: initial;
-    white-space: nowrap;
-    user-select: none;
-    vertical-align: middle;
-    text-align: center;
-    padding: 1% 2%;
-    align-self: flex-start;
-    background-color: #9ce4fb;
-    color: #111111;
-    border-radius: 8px;
-}
 
+/* Футер */
 .footer {
 	width: 100%;
 	height: min-content;
