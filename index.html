@@ -14,9 +14,11 @@
 	<div class="container">
 		<h1 class="title">KinoFree</h1>
 		<text class="subtitle">Смотрите кино бесплатно</text>
-		<div class="form" id="yohoho" data-tv="1" data-bg="#242424">
+		<div class="form" id="search-form">
 			<input type="text" placeholder="Название фильма" id="search-title" name="title" class="search">
 			<input type="button" value="Поиск" id="search" class="button">
+		</div>
+		<div id="player">
 		</div>
 		<div id="search-list" class="search-list">
 
@@ -114,6 +116,9 @@
 <script>
 function parse(id) {
 		$(".search-list").remove();
+		$("#search-form").remove();
+		$('#player').append('<iframe src="https://apilordfilms-s.tobaco.ws/embed/kp/'+id+'" allow="autoplay *" width="500" height="300" allowfullscreen="" webkitallowfullscreen="" mozallowfullscreen="" oallowfullscreen="" msallowfullscreen=""></iframe>');
+/*
 		var player = document.querySelector('#yohoho');
 		if (id && id && player) {
 				if (/kinopoisk\.ru/i.test(id)) {
@@ -147,6 +152,7 @@ function parse(id) {
 				items = [];
 				return yo();
 		}
+*/
 }
 </script>
 
