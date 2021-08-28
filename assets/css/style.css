@@ -106,7 +106,7 @@ h1, h2, h3, h4, h5, h6, text {margin: 0;}
 	-ms-overflow-style: none;
 	scrollbar-width: none;
 	overflow-y: scroll;
-	height: 69vh;
+	height: 78vh;
 	padding: 0px 10px
 }
 .search-list::-webkit-scrollbar{
