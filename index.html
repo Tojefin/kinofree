@@ -12,7 +12,7 @@
 <body>
 <div class="main">
 	<div class="container">
-			
+
 		<a href="/"><h1 class="title">KinoFree</h1></a>
 		<text class="subtitle">Смотрите кино бесплатно</text>
 
@@ -74,7 +74,7 @@
 					  console.log(data);
 						$(data.films).each(function(index, item) {
 						  $('#search-list').append(
-								'<div class="listBlock"><img onclick="parse('+item.filmId+')" src="'+ item.posterUrl +'" width="20%" height="20%"><text class="listName">' + item.nameRu + '</text><text class="listDesc">' + item.description + '</text><text class="listYear">' + item.year + '</text><text class="listRating">' + item.rating + '</text></div>');
+								'<div class="listBlock"><img onclick="watch('+item.filmId+')" src="'+ item.posterUrl +'" width="20%" height="20%"><text class="listName">' + item.nameRu + '</text><text class="listDesc">' + item.description + '</text><text class="listYear">' + item.year + '</text><text class="listRating">' + item.rating + '</text></div>');
 						});
 					} else {
 					  alert('error', response.status);
@@ -83,10 +83,20 @@
     });
 </script>
 <script>
-function parse(id) {
+function watch(id) {
+	var url = new URL("http://kinofree.skyedge.xyz/");
+	url.searchParams.append('watch', id);
+	window.location.href = url
+}
+
+window.onload = function() {
+	const urlParams = new URLSearchParams(window.location.search);
+	if (urlParams.has('watch')){
+		var id = urlParams.get('watch')
 		$(".search-list").remove();
 		$("#search-form").remove();
 		$('#player').append('<iframe src="https://apilordfilms-s.tobaco.ws/embed/kp/'+id+'" allow="autoplay *" width="500" height="300" allowfullscreen="" webkitallowfullscreen="" mozallowfullscreen="" oallowfullscreen="" msallowfullscreen=""></iframe>');
+	}
 }
 </script>
 
