@@ -119,6 +119,7 @@
 
 				if (search) {
             search.addEventListener('click', function () {
+							$(".listBlock").remove();
               return kp_parse();
 							console.log(title);
             });
@@ -128,6 +129,7 @@
             title.addEventListener('keyup', function (event) {
                 event.preventDefault();
                 if (event.keyCode === 13) {
+									$(".listBlock").remove();
                   return kp_parse();
 									console.log(title);
                 }
@@ -148,7 +150,6 @@
 						},
 					});
 					if (response.ok) {
-						$("#loading").remove();
 					  let data = await response.json();
 					  console.log(data);
 						$(".listBlock").remove();
