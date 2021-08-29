@@ -25,7 +25,9 @@
 		</div>
 
 		<div id="player"></div>
-		<div id="search-list" class="search-list"></div>
+		<div id="search-list" class="search-list">
+
+		</div>
 
 	</div>
 
@@ -35,17 +37,90 @@
 </div>
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script id="hidden-template" type="text/x-custom-template">
+	<div class="listBlock" id="loading">
+	<svg
+	  role="img"
+	  width="700"
+	  height="230"
+	  aria-labelledby="loading-aria"
+	  viewBox="0 0 700 230"
+	  preserveAspectRatio="none"
+	>
+	  <title id="loading-aria">Loading...</title>
+	  <rect
+	    x="0"
+	    y="0"
+	    width="100%"
+	    height="100%"
+	    clip-path="url(#clip-path)"
+	    style='fill: url("#fill");'
+	  ></rect>
+	  <defs>
+	    <clipPath id="clip-path">
+	        <rect x="8" y="2" rx="3" ry="3" width="110" height="220" />
+	        <rect x="126" y="3" rx="3" ry="3" width="113" height="39" />
+	        <rect x="248" y="4" rx="3" ry="3" width="262" height="155" />
+	        <rect x="519" y="4" rx="3" ry="3" width="50" height="18" />
+	        <rect x="581" y="1" rx="3" ry="3" width="20" height="20" />
+	    </clipPath>
+	    <linearGradient id="fill">
+	      <stop
+	        offset="0.599964"
+	        stop-color="#6b6b6b"
+	        stop-opacity="1"
+	      >
+	        <animate
+	          attributeName="offset"
+	          values="-2; -2; 1"
+	          keyTimes="0; 0.25; 1"
+	          dur="2s"
+	          repeatCount="indefinite"
+	        ></animate>
+	      </stop>
+	      <stop
+	        offset="1.59996"
+	        stop-color="#292929"
+	        stop-opacity="1"
+	      >
+	        <animate
+	          attributeName="offset"
+	          values="-1; -1; 2"
+	          keyTimes="0; 0.25; 1"
+	          dur="2s"
+	          repeatCount="indefinite"
+	        ></animate>
+	      </stop>
+	      <stop
+	        offset="2.59996"
+	        stop-color="#6b6b6b"
+	        stop-opacity="1"
+	      >
+	        <animate
+	          attributeName="offset"
+	          values="0; 0; 3"
+	          keyTimes="0; 0.25; 1"
+	          dur="2s"
+	          repeatCount="indefinite"
+	        ></animate>
+	      </stop>
+	    </linearGradient>
+	  </defs>
+	</svg>
+	</div>
+</script>
 <script>
     document.addEventListener('DOMContentLoaded', function () {
 
         var search = document.querySelector('#search');
         var title = document.querySelector('#search-title');
 
+				var template = $('#hidden-template').html();
+
 				if (search) {
             search.addEventListener('click', function () {
-							$(".listBlock").remove();
-                return kp_parse();
-								console.log(title);
+              return kp_parse();
+							console.log(title);
             });
         }
 
@@ -53,14 +128,17 @@
             title.addEventListener('keyup', function (event) {
                 event.preventDefault();
                 if (event.keyCode === 13) {
-									$(".listBlock").remove();
-                    return kp_parse();
-										console.log(title);
+                  return kp_parse();
+									console.log(title);
                 }
             });
         }
 
 			 	async function kp_parse() {
+					for (let i = 0; i <= 6; i++) {
+						$('#search-list').append(template);
+					}
+
 					let url = ('https://kinopoiskapiunofficial.tech/api/v2.1/films/search-by-keyword?keyword=' + title.value + '&page=1');
 					let response = await fetch(url , {
 						method: 'GET',
@@ -70,8 +148,10 @@
 						},
 					});
 					if (response.ok) {
+						$("#loading").remove();
 					  let data = await response.json();
 					  console.log(data);
+						$(".listBlock").remove();
 						$(data.films).each(function(index, item) {
 						  $('#search-list').append(
 								'<div class="listBlock"><img onclick="watch('+item.filmId+')" src="'+ item.posterUrl +'" width="20%" height="20%"><text class="listName">' + item.nameRu + '</text><text class="listDesc">' + item.description + '</text><text class="listYear">' + item.year + '</text><text class="listRating">' + item.rating + '</text></div>');
@@ -83,6 +163,7 @@
     });
 </script>
 <script>
+
 function watch(id) {
 	var url = new URL("http://kinofree.skyedge.xyz/");
 	url.searchParams.append('watch', id);
