@@ -41,10 +41,10 @@
 	<div class="listBlock" id="loading">
 	<svg
 	  role="img"
-	  width="700"
-	  height="230"
+	  width="800"
+	  height="250"
 	  aria-labelledby="loading-aria"
-	  viewBox="0 0 700 230"
+	  viewBox="0 0 800 250"
 	  preserveAspectRatio="none"
 	>
 	  <title id="loading-aria">Loading...</title>
@@ -58,11 +58,11 @@
 	  ></rect>
 	  <defs>
 	    <clipPath id="clip-path">
-	        <rect x="8" y="2" rx="3" ry="3" width="110" height="220" />
-	        <rect x="126" y="3" rx="3" ry="3" width="113" height="39" />
-	        <rect x="248" y="4" rx="3" ry="3" width="262" height="155" />
-	        <rect x="519" y="4" rx="3" ry="3" width="50" height="18" />
-	        <rect x="581" y="м1" rx="3" ry="3" width="20" height="20" />
+	        <rect x="12" y="9" rx="3" ry="3" width="182" height="230" />
+	        <rect x="220" y="77" rx="3" ry="3" width="377" height="163" />
+	        <rect x="221" y="44" rx="3" ry="3" width="69" height="18" />
+	        <rect x="302" y="45" rx="3" ry="3" width="21" height="18" />
+	        <rect x="220" y="10" rx="3" ry="3" width="378" height="22" />
 	    </clipPath>
 	    <linearGradient id="fill">
 	      <stop
@@ -153,8 +153,7 @@
 					  console.log(data);
 						$(".listBlock").remove();
 						$(data.films).each(function(index, item) {
-						  $('#search-list').append(
-								'<div class="listBlock"><img onclick="watch('+item.filmId+')" src="'+ item.posterUrl +'" width="20%" height="20%"><text class="listName">' + item.nameRu + '</text><text class="listDesc">' + item.description + '</text><text class="listYear">' + item.year + '</text><text class="listRating">' + item.rating + '</text></div>');
+						  $('#search-list').append('<div class="listBlock"><img onclick="watch('+item.filmId+')" src="'+ item.posterUrl +'" width="20%" height="20%"><div style="display: grid;grid-template-columns: repeat(3, 1fr);gap: 10px;height: 20vh;"><text class="listName">' + item.nameRu + '</text><text class="listYear">' + item.year + '</text><text class="listRating">' + item.rating + '</text><text class="listDesc">' + item.description + '</text></div></div>');
 						});
 					} else {
 					  alert('error', response.status);

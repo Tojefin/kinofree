@@ -133,6 +133,8 @@ h1, h2, h3, h4, h5, h6, text {margin: 0;}
 .listName{
 	margin: 0px 10px;
 	font-size: 20px;
+	grid-column: 1/4;
+ 	grid-row: 1;
 }
 .listDesc{
 	-ms-overflow-style: none;
@@ -140,18 +142,29 @@ h1, h2, h3, h4, h5, h6, text {margin: 0;}
 	overflow-y: scroll;
 	height: 20vh;
 	color: #888;
-	text-align: left
+	text-align: left;
+	grid-column: 1/4;
+ 	grid-row: 3;
+	margin: 0 30px;
+	max-height: 53%;
 }
 .listDesc::-webkit-scrollbar{
 	display: none;
 }
 .listYear{
 	position: relative;
-	margin: 0px 10px;
+	grid-column: 1;
+	grid-row: 2;
+	left: 30px;
+	text-align: left;
 }
 .listRating{
+	position: relative;
 	color: #aea;
-	font-size: 14px;
+	grid-column: 1;
+	grid-row: 2;
+	left: 90px;
+	text-align: left;
 }
 
 
