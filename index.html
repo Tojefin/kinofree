@@ -25,6 +25,7 @@
 		</div>
 
 		<div id="player"></div>
+		<div id="film-info" style="text-align: left;margin: 0 60px;position: relative;"></div>
 		<div id="search-list" class="search-list">
 
 		</div>
@@ -120,7 +121,7 @@
 				if (search) {
             search.addEventListener('click', function () {
 							$(".listBlock").remove();
-              return kp_parse();
+              return search_parse();
 							console.log(title);
             });
         }
@@ -130,13 +131,13 @@
                 event.preventDefault();
                 if (event.keyCode === 13) {
 									$(".listBlock").remove();
-                  return kp_parse();
+                  return search_parse();
 									console.log(title);
                 }
             });
         }
 
-			 	async function kp_parse() {
+			 	async function search_parse() {
 					for (let i = 0; i <= 6; i++) {
 						$('#search-list').append(template);
 					}
@@ -177,6 +178,25 @@ window.onload = function() {
 		$(".search-list").remove();
 		$("#search-form").remove();
 		$('#player').append('<iframe src="https://apilordfilms-s.tobaco.ws/embed/kp/'+id+'" allow="autoplay *" width="500" height="300" allowfullscreen="" webkitallowfullscreen="" mozallowfullscreen="" oallowfullscreen="" msallowfullscreen=""></iframe>');
+		return getInfo(id);
+	}
+}
+
+async function getInfo(id) {
+	let url = ('https://kinopoiskapiunofficial.tech/api/v2.2/films/' + id +'');
+	let response = await fetch(url , {
+		method: 'GET',
+		headers: {
+			"Content-Type": "application/json",
+			"X-API-KEY": "4b12f46d-638b-4bac-bf06-33865d3a3524",
+		},
+	});
+	if (response.ok) {
+		let data = await response.json();
+		console.log(data);
+		$('#film-info').append('<text style="bottom: 10px;position: relative;">' + data.nameRu + '</text><br><text style="margin-right: 10px;">' + data.year + '</text><text style="color: #aea">' + data.ratingKinopoisk + '</text><br><text style="top: 10px;position: relative;">' + data.description + '</text>');
+	} else {
+		alert('error', response.status);
 	}
 }
 </script>
