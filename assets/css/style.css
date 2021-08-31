@@ -26,7 +26,7 @@ a{
 
 h1, h2, h3, h4, h5, h6, text {margin: 0;}
 
-.main {
+.main{
 	width: 100%;
 	height: 100vh;
 	background-image: linear-gradient(0deg, rgba(0,0,0,0.45), rgba(0,0,0,0.75)),  url("../img/main.svg");
@@ -36,7 +36,7 @@ h1, h2, h3, h4, h5, h6, text {margin: 0;}
 	align-items: center;
 	align-self: center;
 }
-.container {
+.container{
 	padding: 1vh 10%;
 	max-width: 1200px;
   width: 100%;
@@ -112,7 +112,7 @@ h1, h2, h3, h4, h5, h6, text {margin: 0;}
 .search-list::-webkit-scrollbar{
 	display: none;
 }
-.listBlock {
+.listBlock{
     display: flex;
     border-radius: 10px;
     background: rgba(10,10,10,0.3);
@@ -120,7 +120,7 @@ h1, h2, h3, h4, h5, h6, text {margin: 0;}
 		padding: 10px;
     margin: 20px 0px;
 }
-.listBlock-loading {
+.listBlock-loading{
     display: flex;
     border-radius: 10px;
     background: rgba(10,10,10,0.3);
@@ -129,13 +129,25 @@ h1, h2, h3, h4, h5, h6, text {margin: 0;}
     margin: 20px 0px;
 }
 
+.listImg{
+	transition: all 0.5s ease;
+	transform: translateX(0)
+}
 
+.listImg:hover{
+	cursor: pointer;
+	transform: translate(0px, -10px);
+	transition: all 0.5s ease;
+}
 .listName{
 	text-align: left;
  	margin: 0 30px;
 	font-size: 20px;
 	grid-column: 1/4;
  	grid-row: 1;
+}
+.listName:hover{
+	cursor: pointer;
 }
 .listDesc{
 	-ms-overflow-style: none;
@@ -170,7 +182,7 @@ h1, h2, h3, h4, h5, h6, text {margin: 0;}
 
 
 /* Футер */
-.footer {
+.footer{
 	width: 100%;
 	height: min-content;
 	background-color: #242424;

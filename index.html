@@ -155,7 +155,7 @@
 					  console.log(data);
 						$(".listBlock").remove();
 						$(data.films).each(function(index, item) {
-						  $('#search-list').append('<div class="listBlock"><img onclick="watch('+item.filmId+')" src="'+ item.posterUrl +'" width="20%" height="20%"><div style="display: grid;grid-template-columns: repeat(3, 1fr);gap: 10px;height: 20vh;"><text class="listName">' + item.nameRu + '</text><text class="listYear">' + item.year + '</text><text class="listRating">' + item.rating + '</text><text class="listDesc">' + item.description + '</text></div></div>');
+						  $('#search-list').append('<div class="listBlock"><img class="listImg" onclick="watch('+item.filmId+')" src="'+ item.posterUrl +'" width="20%" height="20%"><div style="display: grid;grid-template-columns: repeat(3, 1fr);gap: 10px;height: 20vh;"><text class="listName" onclick="watch('+item.filmId+')">' + item.nameRu + '</text><text class="listYear">' + item.year + '</text><text class="listRating">' + item.rating + '</text><text class="listDesc">' + item.description + '</text></div></div>');
 						});
 					} else {
 					  alert('error', response.status);
@@ -169,6 +169,15 @@ function watch(id) {
 	var url = new URL("http://kinofree.skyedge.xyz/");
 	url.searchParams.append('watch', id);
 	window.location.href = url
+}
+
+function linkcopy() {
+	url = window.location.href
+	navigator.clipboard.writeText(url).then(function() {
+    console.log('URL copy successful');
+  }, function(err) {
+    console.error('URL copy error', err);
+  });
 }
 
 window.onload = function() {
@@ -194,7 +203,7 @@ async function getInfo(id) {
 	if (response.ok) {
 		let data = await response.json();
 		console.log(data);
-		$('#film-info').append('<text style="bottom: 10px;position: relative;">' + data.nameRu + '</text><br><text style="margin-right: 10px;">' + data.year + '</text><text style="color: #aea">' + data.ratingKinopoisk + '</text><br><text style="top: 10px;position: relative;">' + data.description + '</text>');
+		$('#film-info').append('<input title="Скопировать ссылку" type="button" value="Ссылка &#128279;" class="button" onclick="linkcopy()" style="padding: 4px;margin: -20px 0 30px 0;"> <text style="bottom: 10px;position: relative;">' + data.nameRu + '</text><br><text style="margin-right: 10px;">' + data.year + '</text><text style="color: #aea">' + data.ratingKinopoisk + '</text><br><text style="top: 10px;position: relative;">' + data.description + '</text>');
 	} else {
 		alert('error', response.status);
 	}
