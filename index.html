@@ -203,7 +203,7 @@ async function getInfo(id) {
 	if (response.ok) {
 		let data = await response.json();
 		console.log(data);
-		$('#film-info').append('<input title="Скопировать ссылку" type="button" value="Ссылка &#128279;" class="button" onclick="linkcopy()" style="padding: 4px;margin: -20px 0 30px 0;"> <text style="bottom: 10px;position: relative;">' + data.nameRu + '</text><br><text style="margin-right: 10px;">' + data.year + '</text><text style="color: #aea">' + data.ratingKinopoisk + '</text><br><text style="top: 10px;position: relative;">' + data.description + '</text>');
+		$('#film-info').append('<input title="Скопировать ссылку" type="button" value="Ссылка &#128279;" class="button" onclick="linkcopy()" style="padding: 4px;margin: -20px 0 30px 0;"> <text style="bottom: 10px;position: relative;font-size: 24px;">' + data.nameRu + '</text><br><text style="margin-right: 10px;">' + data.year + '</text><text style="color: #aea">' + data.ratingKinopoisk + '</text><br><text style="top: 10px;position: relative;">' + data.description + '</text>');
 	} else {
 		alert('error', response.status);
 	}
