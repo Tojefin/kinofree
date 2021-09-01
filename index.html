@@ -12,7 +12,6 @@
 <body>
 <div class="main">
 	<div class="container">
-
 		<a href="/"><h1 class="title">KinoFree</h1></a>
 		<text class="subtitle">Смотрите кино бесплатно</text>
 
@@ -26,15 +25,12 @@
 
 		<div id="player"></div>
 		<div id="film-info" style="text-align: left;margin: 0 60px;position: relative;"></div>
-		<div id="search-list" class="search-list">
-
-		</div>
-
+		<div id="search-list" class="search-list"></div>
 	</div>
-
 </div>
-<div class="menu">
 
+<div class="menu">
+	<a href="https://www.donationalerts.com/r/tojefin" target="_blank"><text style="margin: 0 30px;color: #888;">Donate</text></a>
 </div>
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
@@ -164,51 +160,49 @@
     });
 </script>
 <script>
-
-function watch(id) {
-	var url = new URL("http://kinofree.skyedge.xyz/");
-	url.searchParams.append('watch', id);
-	window.location.href = url
-}
-
-function linkcopy() {
-	url = window.location.href
-	navigator.clipboard.writeText(url).then(function() {
-    console.log('URL copy successful');
-  }, function(err) {
-    console.error('URL copy error', err);
-  });
-}
-
-window.onload = function() {
-	const urlParams = new URLSearchParams(window.location.search);
-	if (urlParams.has('watch')){
-		var id = urlParams.get('watch')
-		$(".search-list").remove();
-		$("#search-form").remove();
-		$('#player').append('<iframe src="https://apilordfilms-s.tobaco.ws/embed/kp/'+id+'" allow="autoplay *" width="500" height="300" allowfullscreen="" webkitallowfullscreen="" mozallowfullscreen="" oallowfullscreen="" msallowfullscreen=""></iframe>');
-		return getInfo(id);
+	function watch(id) {
+		var url = new URL("http://kinofree.skyedge.xyz/");
+		url.searchParams.append('watch', id);
+		window.location.href = url
 	}
-}
 
-async function getInfo(id) {
-	let url = ('https://kinopoiskapiunofficial.tech/api/v2.2/films/' + id +'');
-	let response = await fetch(url , {
-		method: 'GET',
-		headers: {
-			"Content-Type": "application/json",
-			"X-API-KEY": "4b12f46d-638b-4bac-bf06-33865d3a3524",
-		},
-	});
-	if (response.ok) {
-		let data = await response.json();
-		console.log(data);
-		$('#film-info').append('<input title="Скопировать ссылку" type="button" value="Ссылка &#128279;" class="button" onclick="linkcopy()" style="padding: 4px;margin: -20px 0 30px 0;"> <text style="bottom: 10px;position: relative;font-size: 24px;">' + data.nameRu + '</text><br><text style="margin-right: 10px;">' + data.year + '</text><text style="color: #aea">' + data.ratingKinopoisk + '</text><br><text style="top: 10px;position: relative;">' + data.description + '</text>');
-	} else {
-		alert('error', response.status);
+	function linkcopy() {
+		url = window.location.href
+		navigator.clipboard.writeText(url).then(function() {
+	    console.log('URL copy successful');
+	  }, function(err) {
+	    console.error('URL copy error', err);
+	  });
 	}
-}
+
+	window.onload = function() {
+		const urlParams = new URLSearchParams(window.location.search);
+		if (urlParams.has('watch')){
+			var id = urlParams.get('watch')
+			$(".search-list").remove();
+			$("#search-form").remove();
+			$('#player').append('<iframe src="https://apilordfilms-s.tobaco.ws/embed/kp/'+id+'" allow="autoplay *" width="500" height="300" allowfullscreen="" webkitallowfullscreen="" mozallowfullscreen="" oallowfullscreen="" msallowfullscreen=""></iframe>');
+			return getInfo(id);
+		}
+	}
+
+	async function getInfo(id) {
+		let url = ('https://kinopoiskapiunofficial.tech/api/v2.2/films/' + id +'');
+		let response = await fetch(url , {
+			method: 'GET',
+			headers: {
+				"Content-Type": "application/json",
+				"X-API-KEY": "4b12f46d-638b-4bac-bf06-33865d3a3524",
+			},
+		});
+		if (response.ok) {
+			let data = await response.json();
+			console.log(data);
+			$('#film-info').append('<input title="Скопировать ссылку" type="button" value="Ссылка &#128279;" class="button" onclick="linkcopy()" style="padding: 4px;margin: -20px 0 30px 0;"> <text style="bottom: 10px;position: relative;font-size: 24px;">' + data.nameRu + '</text><br><text style="margin-right: 10px;">' + data.year + '</text><text style="color: #aea">' + data.ratingKinopoisk + '</text><br><text style="top: 10px;position: relative;display: block;margin: 0;" class="listDesc">' + data.description + '</text>');
+		} else {
+			alert('error', response.status);
+		}
+	}
 </script>
-
 </body>
 </html>
