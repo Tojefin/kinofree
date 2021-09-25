@@ -30,7 +30,7 @@
 <div class="main">
 	<div class="container">
 		<a href="/"><h1 class="title">KinoFree</h1></a>
-		<text class="subtitle">Смотрите кино бесплатно</text>
+		<text class="subtitle">Смотрите бесплатное кино</text>
 
 		<div class="form" id="search-form">
 			<svg class="u-svg-content" viewBox="0 0 512 512" x="0px" y="0px" id="svg-d182" style="width: 33px;height: 32px;margin-left: 10px;fill: #777;">
@@ -42,8 +42,20 @@
 
 		<div id="player"></div>
 		<div id="film-info" style="text-align: left;margin: 0 8%;position: relative;"></div>
-		<div id="about" class="about"><h2>Поисковик фильмов из различных видео-хостингов</h2><text style="font-size: 14px;text-align: justify;color: #777;">Если Вы владелец авторских прав, просим Вас учесть, что все плееры на сайте из сторонних API источников. Пишите напрямую по контактным данным этих видео-хостингов, для соблюдения DMCA. В 99% случаев они удаляют спорный контент в течении 24 часов. 
-По вопросам рекламы в плеерах, ошибок, авторского права и всего остального, пишите на контактные данные видео-хостингов!</text></div>
+		<div id="about" class="about">
+			<h2 style="padding: 0 0 5% 0;">Поисковик фильмов из различных видео-хостингов</h2>
+			<div style="display: flex;gap: 20px;">
+				<div style="max-width: 40%;">
+					<h4>Поддержать сайт</h4>
+					<text style="font-size: 14px;text-align: justify;color: #777;">На нашем сайте нету рекламы и, если вы хотите поддержать проект, вы можете активировать кнопку слева внизу или перейти по <a href="https://www.donationalerts.com/r/tojefin">ссылке</a></text>
+				</div>
+				<div style="max-width: 60%;">
+					<h4>DMCA</h4>
+					<text style="font-size: 14px;text-align: justify;color: #777;">Если Вы владелец авторских прав, просим Вас учесть, что все плееры на сайте из сторонних API источников. Пишите напрямую по контактным данным этих видео-хостингов, для соблюдения DMCA. В 99% случаев они удаляют спорный контент в течении 24 часов.
+						По вопросам рекламы в плеерах, ошибок, авторского права и всего остального, пишите на контактные данные видео-хостингов!</text>
+				</div>
+			</div>
+		</div>
 		<div id="search-list" class="search-list"></div>
 	</div>
 
@@ -198,6 +210,7 @@
 		const urlParams = new URLSearchParams(window.location.search);
 		if (urlParams.has('watch')){
 			var id = urlParams.get('watch')
+			$("#about").remove();
 			$(".search-list").remove();
 			$("#search-form").remove();
 			$('#player').append('<iframe src="https://apilordfilms-s.tobaco.ws/embed/kp/'+id+'" allow="autoplay *" width="500" height="300" allowfullscreen="" webkitallowfullscreen="" mozallowfullscreen="" oallowfullscreen="" msallowfullscreen=""></iframe>');
