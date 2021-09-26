@@ -128,6 +128,36 @@ h1, h2, h3, h4, h5, h6, text {margin: 0;}
 	box-shadow: inset 0 0 10px #000000;
 }
 
+.about{
+	margin: 5% 0 0 0;
+	display: flex;
+	gap: 20px;
+}
+.about .collom-1{
+	max-width: 40%;
+}
+.about .collom-2{
+	max-width: 60%;
+}
+.about .row-1{
+	margin-bottom: 10px;
+}
+@media (max-width: 565px) {
+	.about{
+		flex-direction: column;
+		align-items: center;
+		gap: 0px;
+	}
+	.about .collom-1{
+		max-width: 95%;
+		margin-bottom: 10px;
+	}
+	.about .collom-2{
+		max-width: 95%;
+		margin-bottom: 0px;
+	}
+}
+
 /* Список фильмов */
 .search-list{
 	-ms-overflow-style: none;
