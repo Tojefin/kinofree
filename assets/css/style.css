@@ -7,7 +7,9 @@ body{
 	color: #fff;
 	overflow: overlay;
 }
-
+:focus-visible {
+    outline: 0px;
+}
 ::-webkit-scrollbar-track {
   background-color: transparent;
 }
@@ -86,10 +88,6 @@ h1, h2, h3, h4, h5, h6, text {margin: 0;}
 }
 .form{
 	margin: 2% auto;
-	display: flex;
-  flex-flow: row;
-  align-items: center;
-  flex-grow: 1;
 	background: #0D0D0D;
 	border-radius: 24px;
 	width: 100%;
@@ -98,7 +96,91 @@ h1, h2, h3, h4, h5, h6, text {margin: 0;}
 	position: sticky;
 	top: 10px;
 	z-index: 1;
+	transition: all 0.5s ease;
 }
+.adv_button{
+	cursor: pointer;
+	width: 34px;
+	height: 34px;
+	margin: 0 5px;
+	fill: #777;
+}
+.form .common{
+	display: flex;
+  flex-flow: row;
+  align-items: center;
+  flex-grow: 1;
+	padding: 5px 0;
+}
+.form .advancet{
+	display: grid;
+	align-items: baseline;
+	opacity: 0;
+	transition: all 0.5s ease;
+}
+@media (max-width: 565px) {
+	.form{
+		max-height: 56px;
+	}
+	.adv_button{
+		display: none;
+	}
+	.form .advancet{
+		display: none;
+	}
+}
+.form .advancet .genr{
+	grid-column: 1;
+	grid-row: 1;
+	overflow-y: scroll;
+	height: 190px;
+	max-width: auto;
+	color: #888;
+	text-align: left;
+	margin: 0 30px;
+}
+select{
+	width: 80%;
+	font-size: 17px;
+	border-radius: 5px;
+	background: linear-gradient(254.71deg, #3C39C9 3.34%, #7C2BB7 38.71%, #D3189F 86.65%);
+	color: #fff;
+  border-color: #0d0d0d;
+}
+select option {
+	overflow-y: auto;
+  background: #0d0d0d;
+	height: auto;
+  color: #fff;
+	padding: 5px;
+}
+select option:checked {
+  background: #777777;
+}
+
+input[type=checkbox]:focus{
+    outline: 1px solid rgba(0, 0, 0, 0.2);
+}
+
+input[type=checkbox]{
+    background-color: #DDD;
+    border-radius: 2px;
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    width: 17px;
+    height: 17px;
+    cursor: pointer;
+    position: relative;
+    top: 5px;
+}
+
+input[type=checkbox]:checked{
+    background-color: rgb(163 34 172);
+    background: rgb(211 24 159) url("data:image/gif;base64,R0lGODlhCwAKAIABAP////3cnSH5BAEKAAEALAAAAAALAAoAAAIUjH+AC73WHIsw0UCjglraO20PNhYAOw==") 3px 3px no-repeat;
+}
+
+
 .search{
 	width: 100%;
 	padding: 2% 1%;
@@ -109,6 +191,7 @@ h1, h2, h3, h4, h5, h6, text {margin: 0;}
 	color: #888;
 }
 .button{
+	cursor: pointer;
 	display: table;
 	font-weight: 500;
 	font-size: 14px;
