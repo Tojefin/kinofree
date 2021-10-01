@@ -382,7 +382,7 @@ async function search_parse(page) {
 			var id = urlParams.get('watch')
 			$("#about").remove();
 			$(".search-list").remove();
-			$("#search-form").remove();
+			$("#form").remove();
 			$('#player').append('<iframe src="https://apilordfilms-s.tobaco.ws/embed/kp/'+id+'" allow="autoplay *" width="500" height="300" allowfullscreen="" webkitallowfullscreen="" mozallowfullscreen="" oallowfullscreen="" msallowfullscreen=""></iframe>');
 			return getInfo(id);
 		}
