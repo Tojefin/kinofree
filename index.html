@@ -311,14 +311,12 @@ async function search_parse(page) {
 		var form = document.getElementById("form");
 		var advancet = document.querySelector(".advancet");
 
-		if (form.style.height == '256px'){
+		if (advancet.style.maxHeight == '256px'){
 			form.style.height = "56px";
-			advancet.style.opacity = "0";
-			advancet.style.display = "none";
+			advancet.style.maxHeight = "0px";
 		} else{
 			form.style.height = "256px";
-			advancet.style.opacity = "1";
-			advancet.style.display = "grid";
+			advancet.style.maxHeight = "256px";
 		}
 	}
 
