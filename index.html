@@ -314,9 +314,11 @@ async function search_parse(page) {
 		if (form.style.height == '256px'){
 			form.style.height = "56px";
 			advancet.style.opacity = "0";
+			advancet.style.display = "none";
 		} else{
 			form.style.height = "256px";
 			advancet.style.opacity = "1";
+			advancet.style.display = "grid";
 		}
 	}
 
