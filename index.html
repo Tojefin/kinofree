@@ -267,17 +267,18 @@ async function search_parse(page) {
 					console.log(data);
 					$('#search-list').empty();
 					$(data.films).each(function(index, item) {
-						$('#search-list').append('<div class="listBlock"><img class="listImg" onclick="watch('+item.filmId+')" src="'+ item.posterUrl +'" width="20%" height="20%"><div style="display: grid;grid-template-columns: repeat(3, 1fr);gap: 2%;"><text class="listName" onclick="watch('+item.filmId+')">' + item.nameRu + '</text><text class="listYear">' + item.year + '</text><text class="listRating">' + item.rating + '</text><text class="listDesc">' + item.description + '</text></div></div>');
+						let genr = '';
+						$(item.genres).each(function(index, list){
+							if (genr == ''){genr = list.genre;} else{genr = genr+", "+list.genre;}
+						});
+						$('#search-list').append('<div class="listBlock"><img class="listImg" onclick="watch('+item.filmId+')" src="'+ item.posterUrlPreview +'" width="20%" height="20%"><div style="display: grid;grid-template-columns: repeat(5, 1fr);grid-template-rows: repeat(5, 1fr);height: 0px;margin: 10px 10px;width: -webkit-fill-available;"><text class="listName" onclick="watch('+item.filmId+')">' + item.nameRu + '</text><text class="listYear">' + item.year + '</text><text class="listRating">' + item.rating + '</text><text class="listDesc">' + genr + '</text></div></div>');
 					});
 					var prew = page-1;
 					var next = page+1;
 					console.log(next);
-					if (page == 1){$('#search-list').append('<input type="button" value="Страница '+next+'" onclick="search_parse(2)" class="button" style="padding: 5px;border-radius: 12px;height: 40px;">')
-				} else{$('#search-list').append('<div style="display: flex;"><input type="button" value="Страница '+prew+'" onclick="search_parse('+prew+')" class="button" style="padding: 5px;border-radius: 12px;height: 40px;"> <input type="button" value="Страница '+next+'" onclick="search_parse('+next+')" class="button" style="padding: 5px;border-radius: 12px;height: 40px;"></div>')};
-
-				} else {
-					alert('error', response.status);
-				}
+				 	if (page == 1){$('#search-list').append('<input type="button" value="Страница '+next+'" onclick="search_parse(2)" class="button" style="padding: 5px;border-radius: 12px;height: 40px;">')
+					} else{$('#search-list').append('<div style="display: flex;"><input type="button" value="Страница '+prew+'" onclick="search_parse('+prew+')" class="button" style="padding: 5px;border-radius: 12px;height: 40px;"> <input type="button" value="Страница '+next+'" onclick="search_parse('+next+')" class="button" style="padding: 5px;border-radius: 12px;height: 40px;"></div>')};
+				} else {alert('error', response.status);}
 
 			} else{
 				let url = ('https://kinopoiskapiunofficial.tech/api/v2.1/films/search-by-keyword?keyword=' + title.value + '&page=1');
@@ -293,7 +294,7 @@ async function search_parse(page) {
 					console.log(data);
 					$('#search-list').empty();
 					$(data.films).each(function(index, item) {
-						$('#search-list').append('<div class="listBlock"><img class="listImg" onclick="watch('+item.filmId+')" src="'+ item.posterUrl +'" width="20%" height="20%"><div style="display: grid;grid-template-columns: repeat(3, 1fr);gap: 2%;"><text class="listName" onclick="watch('+item.filmId+')">' + item.nameRu + '</text><text class="listYear">' + item.year + '</text><text class="listRating">' + item.rating + '</text><text class="listDesc">' + item.description + '</text></div></div>');
+						$('#search-list').append('<div class="listBlock"><img class="listImg" onclick="watch('+item.filmId+')" src="'+ item.posterUrlPreview +'" width="20%" height="20%"><div style="display: grid;grid-template-columns: repeat(5, 1fr);grid-template-rows: repeat(5, 1fr);height: 0px;margin: 10px 10px;width: -webkit-fill-available;"><text class="listName" onclick="watch('+item.filmId+')">' + item.nameRu + '</text><text class="listYear">' + item.year + '</text><text class="listRating">' + item.rating + '</text><text class="listDesc">' + item.description + '</text></div></div>');
 					});
 				} else {
 					alert('error', response.status);
@@ -329,7 +330,18 @@ async function search_parse(page) {
 	  });
 	}
 
-	window.onload = function() {
+	window.onload = async function() {
+		const urlParams = new URLSearchParams(window.location.search);
+		if (urlParams.has('watch')){
+			var id = urlParams.get('watch')
+			$("#about").remove();
+			$(".search-list").remove();
+			$("#form").remove();
+			$('#player').append('<iframe src="https://apilordfilms-s.tobaco.ws/embed/kp/'+id+'" allow="autoplay *" width="500" height="300" allowfullscreen="" webkitallowfullscreen="" mozallowfullscreen="" oallowfullscreen="" msallowfullscreen=""></iframe>');
+			let data = await getInfo(id);
+			$('#film-info').append('<input title="Скопировать ссылку" type="button" value="Ссылка &#128279;" class="button" onclick="linkcopy()" style="padding: 4px;margin: -20px 0 10px 0;"> <text style="font-size: 24px;">' + data.nameRu + '</text><br><text style="margin-right: 10px;">' + data.year + '</text><text style="color: #aea">' + data.ratingKinopoisk + '</text><br><text style="bottom: 10px;position: relative;display: block;margin: 10px 0;" class="listDesc">' + data.description + '</text>');
+		}
+
 		var yearsSlider = document.getElementById('years-slider');
 		noUiSlider.create(yearsSlider, {
 		    start: [1950, 2022],
@@ -359,8 +371,8 @@ async function search_parse(page) {
 				tooltips: [true, true],
 				connect: true,
 		    range: {
-		        min: [0, 0.5],
-		        max: [10, 0.5]
+		        min: [0, 1],
+		        max: [10, 1]
 		    },
 				format: {
         to: function (value) {
@@ -376,16 +388,6 @@ async function search_parse(page) {
 						density: 5
 		    },
 		});
-
-		const urlParams = new URLSearchParams(window.location.search);
-		if (urlParams.has('watch')){
-			var id = urlParams.get('watch')
-			$("#about").remove();
-			$(".search-list").remove();
-			$("#form").remove();
-			$('#player').append('<iframe src="https://apilordfilms-s.tobaco.ws/embed/kp/'+id+'" allow="autoplay *" width="500" height="300" allowfullscreen="" webkitallowfullscreen="" mozallowfullscreen="" oallowfullscreen="" msallowfullscreen=""></iframe>');
-			return getInfo(id);
-		}
 	}
 
 	async function getInfo(id) {
@@ -398,11 +400,10 @@ async function search_parse(page) {
 			},
 		});
 		if (response.ok) {
-			let data = await response.json();
-			console.log(data);
-			$('#film-info').append('<input title="Скопировать ссылку" type="button" value="Ссылка &#128279;" class="button" onclick="linkcopy()" style="padding: 4px;margin: -20px 0 10px 0;"> <text style="font-size: 24px;">' + data.nameRu + '</text><br><text style="margin-right: 10px;">' + data.year + '</text><text style="color: #aea">' + data.ratingKinopoisk + '</text><br><text style="bottom: 10px;position: relative;display: block;margin: 10px 0;" class="listDesc">' + data.description + '</text>');
+			//console.log(await response.json());
+			return await response.json();
 		} else {
-			alert('error', response.status);
+			return alert('error', response.status);
 		}
 	}
 </script>
