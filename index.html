@@ -33,103 +33,105 @@
 	<div class="container">
 		<a href="/" style="display: table;margin: 0 auto;"><h1 class="title">KinoFree</h1></a>
 		<text class="subtitle">Смотрите бесплатное кино</text>
-
-		<div class="form" id="form">
-			<div class="common">
-				<svg class="u-svg-content" viewBox="0 0 512 512" x="0px" y="0px" id="svg-d182" style="width: 33px;height: 32px;margin-left: 10px;fill: #777;">
-					<path d="M505.749,475.587l-145.6-145.6c28.203-34.837,45.184-79.104,45.184-127.317c0-111.744-90.923-202.667-202.667-202.667    S0,90.925,0,202.669s90.923,202.667,202.667,202.667c48.213,0,92.48-16.981,127.317-45.184l145.6,145.6    c4.16,4.16,9.621,6.251,15.083,6.251s10.923-2.091,15.083-6.251C514.091,497.411,514.091,483.928,505.749,475.587z     M202.667,362.669c-88.235,0-160-71.765-160-160s71.765-160,160-160s160,71.765,160,160S290.901,362.669,202.667,362.669z"/>
-				</svg>
-				<input type="text" placeholder="Название фильма" id="search-title" name="title" class="search">
-				<svg xmlns="http://www.w3.org/2000/svg" onclick="advancetform()" width="18" height="18" viewBox="0 0 18 18" class="adv_button"><path fill="#777" fill-rule="evenodd" d="M5.995 10.3A2.7 2.7 0 0 1 8.504 12H17v2H8.504a2.7 2.7 0 0 1-5.018 0H1v-2h2.486a2.7 2.7 0 0 1 2.509-1.7zm0 1.7a1 1 0 1 0 0 2 1 1 0 0 0 0-2zm5.997-8.7A2.7 2.7 0 0 1 14.5 5H17v2h-2.5a2.7 2.7 0 0 1-5.017 0H1V5h8.483a2.7 2.7 0 0 1 2.509-1.7zm0 1.7a1 1 0 1 0 0 2 1 1 0 0 0 0-2z"></path></svg>
-				<input type="button" value="Найти" id="search" class="button">
-			</div>
-			<div class="advancet">
-				<div class="genr">
-					<input type=checkbox value="1750"> <span>Аниме</span><br>
-					<input type=checkbox value="22"> <span>Биография</span><br>
-					<input type=checkbox value="3"> <span>Боевик</span><br>
-					<input type=checkbox value="13"> <span>Вестерн</span><br>
-					<input type=checkbox value="19"> <span>Военный</span><br>
-					<input type=checkbox value="17"> <span>Детектив</span><br>
-					<input type=checkbox value="456"> <span>Детский</span><br>
-					<input type=checkbox value="20"> <span>Для взрослых</span><br>
-					<input type=checkbox value="12"> <span>Документальный</span><br>
-					<input type=checkbox value="8"> <span>Драма</span><br>
-					<input type=checkbox value="27"> <span>Игра</span><br>
-					<input type=checkbox value="23"> <span>История</span><br>
-					<input type=checkbox value="6"> <span>Комедия</span><br>
-					<input type=checkbox value="1747"> <span>Концерт</span><br>
-					<input type=checkbox value="15"> <span>Короткометражка</span><br>
-					<input type=checkbox value="16"> <span>Криминал</span><br>
-					<input type=checkbox value="7"> <span>Мелодрама</span><br>
-					<input type=checkbox value="21"> <span>Музыка</span><br>
-					<input type=checkbox value="14"> <span>Мультфильм</span><br>
-					<input type=checkbox value="9"> <span>Мюзикл</span><br>
-					<input type=checkbox value="28"> <span>Новости</span><br>
-					<input type=checkbox value="10"> <span>Приключения</span><br>
-					<input type=checkbox value="25"> <span>Реальное ТВ</span><br>
-					<input type=checkbox value="11"> <span>Семейный</span><br>
-					<input type=checkbox value="24"> <span>Спорт</span><br>
-					<input type=checkbox value="26"> <span>Ток-шоу</span><br>
-					<input type=checkbox value="4"> <span>Триллер</span><br>
-					<input type=checkbox value="1"> <span>Ужасы</span><br>
-					<input type=checkbox value="2"> <span>Фантастика</span><br>
-					<input type=checkbox value="18"> <span>Фильм-нуар</span><br>
-					<input type=checkbox value="5"> <span>Фэнтези</span><br>
-					<input type=checkbox value="1751"> <span>Церемония</span><br>
-
-
-				</div>
-				<div id="years-slider" style="width: 300px; grid-column: 2; grid-row: 1;"></div>
-				<div id="rating-slider" style="width: 300px; grid-column: 2; grid-row: 1; top: 90px"></div>
-				<div style="grid-column: 3; grid-row: 1;">
-					<br>
-					<text>Тип<text><br>
-					<select id="kinotype">
-						<option value="ALL">Любое</option>
-						<option value="FILM">Фильм</option>
-						<option value="TV_SHOW">Сериал</option>
-					</select>
-					<br>
-					<br>
-					<text>Сортировка<text><br>
-					<select id="sorting">
-						<option value="RATING">Рейтинг</option>
-						<option value="YEAR">Год выпуска</option>
-					</select>
-				</div>
-
-			</div>
-		</div>
-
 		<div id="player"></div>
 		<div id="film-info" style="text-align: left;margin: 0 8%;position: relative;"></div>
-		<div id="about" class="about">
-				<div class="collom-1">
-					<div class="row-1">
-					<h4>Поддержать сайт</h4>
-					<text style="font-size: 14px;text-align: justify;color: #777;">Вы можете бесплатно подключить сеть доставки контента и ускорить сайт кнопкой внизу слева или отправить мне монетку по <a href="https://www.donationalerts.com/r/tojefin">ссылке</a></text>
-					</div>
-					<div class="row-2">
-					<h4>Совместный просмотр</h4>
-					<text style="font-size: 14px;text-align: justify;color: #777;">Если вы хотите смотреть кино вместе со своими друзьями, вы можете установить расширение <a href="https://chrome.google.com/webstore/detail/sync-watch/ggiafipgeeaaahnjamgpjcgkdpanhddg?hl=ru" title="Сайт расширения">SyncWatch</a></text>
-					</div>
+		<div id="hiddeonplayer">
+			<div class="form" id="form">
+				<div class="common">
+					<svg class="u-svg-content" viewBox="0 0 512 512" x="0px" y="0px" id="svg-d182" style="width: 33px;height: 32px;margin-left: 10px;fill: #777;">
+						<path d="M505.749,475.587l-145.6-145.6c28.203-34.837,45.184-79.104,45.184-127.317c0-111.744-90.923-202.667-202.667-202.667    S0,90.925,0,202.669s90.923,202.667,202.667,202.667c48.213,0,92.48-16.981,127.317-45.184l145.6,145.6    c4.16,4.16,9.621,6.251,15.083,6.251s10.923-2.091,15.083-6.251C514.091,497.411,514.091,483.928,505.749,475.587z     M202.667,362.669c-88.235,0-160-71.765-160-160s71.765-160,160-160s160,71.765,160,160S290.901,362.669,202.667,362.669z"/>
+					</svg>
+					<input type="text" placeholder="Название фильма" id="search-title" name="title" class="search">
+					<svg xmlns="http://www.w3.org/2000/svg" onclick="advancetform()" width="18" height="18" viewBox="0 0 18 18" class="adv_button"><path fill="#777" fill-rule="evenodd" d="M5.995 10.3A2.7 2.7 0 0 1 8.504 12H17v2H8.504a2.7 2.7 0 0 1-5.018 0H1v-2h2.486a2.7 2.7 0 0 1 2.509-1.7zm0 1.7a1 1 0 1 0 0 2 1 1 0 0 0 0-2zm5.997-8.7A2.7 2.7 0 0 1 14.5 5H17v2h-2.5a2.7 2.7 0 0 1-5.017 0H1V5h8.483a2.7 2.7 0 0 1 2.509-1.7zm0 1.7a1 1 0 1 0 0 2 1 1 0 0 0 0-2z"></path></svg>
+					<input type="button" value="Найти" id="search" class="button">
 				</div>
-				<div class="collom-2">
-					<div class="row-1">
-					<h4>DMCA</h4>
-					<text style="font-size: 14px;text-align: justify;color: #777;">Если Вы владелец авторских прав, просим Вас учесть, что этот сайт является поисковиком и все видео из сторонних API источников. Пишите напрямую по контактным данным этих видео-хостингов, для соблюдения DMCA. В 99% случаев они удаляют спорный контент в течении 24 часов.
-						По вопросам рекламы в плеерах, ошибок, авторского права и всего остального, пишите на контактные данные видео-хостингов!</text>
+				<div class="advancet">
+					<div class="genr">
+						<input type=checkbox value="1750"> <span>Аниме</span><br>
+						<input type=checkbox value="22"> <span>Биография</span><br>
+						<input type=checkbox value="3"> <span>Боевик</span><br>
+						<input type=checkbox value="13"> <span>Вестерн</span><br>
+						<input type=checkbox value="19"> <span>Военный</span><br>
+						<input type=checkbox value="17"> <span>Детектив</span><br>
+						<input type=checkbox value="456"> <span>Детский</span><br>
+						<input type=checkbox value="20"> <span>Для взрослых</span><br>
+						<input type=checkbox value="12"> <span>Документальный</span><br>
+						<input type=checkbox value="8"> <span>Драма</span><br>
+						<input type=checkbox value="27"> <span>Игра</span><br>
+						<input type=checkbox value="23"> <span>История</span><br>
+						<input type=checkbox value="6"> <span>Комедия</span><br>
+						<input type=checkbox value="1747"> <span>Концерт</span><br>
+						<input type=checkbox value="15"> <span>Короткометражка</span><br>
+						<input type=checkbox value="16"> <span>Криминал</span><br>
+						<input type=checkbox value="7"> <span>Мелодрама</span><br>
+						<input type=checkbox value="21"> <span>Музыка</span><br>
+						<input type=checkbox value="14"> <span>Мультфильм</span><br>
+						<input type=checkbox value="9"> <span>Мюзикл</span><br>
+						<input type=checkbox value="28"> <span>Новости</span><br>
+						<input type=checkbox value="10"> <span>Приключения</span><br>
+						<input type=checkbox value="25"> <span>Реальное ТВ</span><br>
+						<input type=checkbox value="11"> <span>Семейный</span><br>
+						<input type=checkbox value="24"> <span>Спорт</span><br>
+						<input type=checkbox value="26"> <span>Ток-шоу</span><br>
+						<input type=checkbox value="4"> <span>Триллер</span><br>
+						<input type=checkbox value="1"> <span>Ужасы</span><br>
+						<input type=checkbox value="2"> <span>Фантастика</span><br>
+						<input type=checkbox value="18"> <span>Фильм-нуар</span><br>
+						<input type=checkbox value="5"> <span>Фэнтези</span><br>
+						<input type=checkbox value="1751"> <span>Церемония</span><br>
 					</div>
+					<div id="years-slider" style="width: 300px; grid-column: 2; grid-row: 1;"></div>
+					<div id="rating-slider" style="width: 300px; grid-column: 2; grid-row: 1; top: 90px"></div>
+					<div style="grid-column: 3; grid-row: 1;">
+						<br>
+						<text>Тип<text><br>
+						<select id="kinotype">
+							<option value="ALL">Любое</option>
+							<option value="FILM">Фильм</option>
+							<option value="TV_SHOW">Сериал</option>
+						</select>
+						<br>
+						<br>
+						<text>Сортировка<text><br>
+						<select id="sorting">
+							<option value="RATING">Рейтинг</option>
+							<option value="YEAR">Год выпуска</option>
+						</select>
+					</div>
+
 				</div>
+			</div>
+
+			<div class="subform" id="subform">
+				<input type="button" value="Популярное" id="popular" class="subbutton" onclick="search_parse('populars', 1)">
+				<input type="button" value="Премьеры" id="premiers" class="subbutton" onclick="search_parse('premiers', 1)">
+			</div>
+
+			<div id="about" class="about">
+					<div class="collom-1">
+						<div class="row-1">
+						<h4>Поддержать сайт</h4>
+						<text style="font-size: 14px;text-align: justify;color: #777;">Вы можете бесплатно подключить сеть доставки контента и ускорить сайт кнопкой внизу слева или отправить мне монетку по <a href="https://www.donationalerts.com/r/tojefin">ссылке</a></text>
+						</div>
+						<div class="row-2">
+						<h4>Совместный просмотр</h4>
+						<text style="font-size: 14px;text-align: justify;color: #777;">Если вы хотите смотреть кино вместе со своими друзьями, вы можете установить расширение <a href="https://chrome.google.com/webstore/detail/sync-watch/ggiafipgeeaaahnjamgpjcgkdpanhddg?hl=ru" title="Сайт расширения">SyncWatch</a></text>
+						</div>
+					</div>
+					<div class="collom-2">
+						<div class="row-1">
+						<h4>DMCA</h4>
+						<text style="font-size: 14px;text-align: justify;color: #777;">Если Вы владелец авторских прав, просим Вас учесть, что этот сайт является поисковиком и все видео из сторонних API источников. Пишите напрямую по контактным данным этих видео-хостингов, для соблюдения DMCA. В 99% случаев они удаляют спорный контент в течении 24 часов.
+							По вопросам рекламы в плеерах, ошибок, авторского права и всего остального, пишите на контактные данные видео-хостингов!</text>
+						</div>
+					</div>
+			</div>
 		</div>
 		<div id="search-list" class="search-list"></div>
 	</div>
 </div>
 
 <!-- Scripts -->
-<script src="https://refreshless.com/nouislider/dist/nouislider.js?v=1540"></script>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script id="hidden-template" type="text/x-custom-template">
 	<div class="listBlock" id="loading">
 	<svg
@@ -202,211 +204,9 @@
 	</svg>
 	</div>
 </script>
-<script>
-    document.addEventListener('DOMContentLoaded', function () {
-
-        var search = document.querySelector('#search');
-        var title = document.querySelector('#search-title');
-
-				var template = $('#hidden-template').html();
-
-				if (search) {
-            search.addEventListener('click', function () {
-							$(".listBlock").remove();
-              return search_parse();
-							console.log(title);
-            });
-        }
-
-        if (title) {
-            title.addEventListener('keyup', function (event) {
-                event.preventDefault();
-                if (event.keyCode === 13) {
-									$(".listBlock").remove();
-                  return search_parse();
-									console.log(title);
-                }
-            });
-        }
-    });
-
-var template = $('#hidden-template').html();
-var title = document.querySelector('#search-title');
-
-async function search_parse(page) {
-	$('#search-list').empty();
-	for (let i = 0; i <= 6; i++) {
-		$('#search-list').append(template);
-	}
-			$("#about").remove();
-
-			if (document.getElementById("form").style.height == '256px' || page !== undefined){
-				window.scrollTo(0, 0);
-				let genr = '';
-				$('input[type=checkbox]:checked').each(function(index){
-					if (genr == ''){genr = $(this).val();} else{genr = genr+", "+$(this).val();}
-				});
-
-				var order = document.getElementById("sorting").value;
-				var type = document.getElementById("kinotype").value;
-				var years = document.getElementById('years-slider').noUiSlider.get(true);
-				var rating = document.getElementById('rating-slider').noUiSlider.get(true);
-				if (page === undefined){page=1};
-				//console.log(genr+" "+order+" "+type+" "+years[0]+" "+years[1]+" "+rating[0]+" "+rating[1]);
-
-				let url = ('https://kinopoiskapiunofficial.tech/api/v2.1/films/search-by-filters?genre='+genr+'&order='+order+'&type='+type+'&ratingFrom='+rating[0]+'&ratingTo='+rating[1]+'&yearFrom='+years[0]+'&yearTo='+years[1]+'&page='+page);
-				let response = await fetch(url , {
-					method: 'GET',
-					headers: {
-						"Content-Type": "application/json",
-						"X-API-KEY": "4b12f46d-638b-4bac-bf06-33865d3a3524",
-					},
-				});
-				if (response.ok) {
-					let data = await response.json();
-					console.log(data);
-					$('#search-list').empty();
-					$(data.films).each(function(index, item) {
-						let genr = '';
-						$(item.genres).each(function(index, list){
-							if (genr == ''){genr = list.genre;} else{genr = genr+", "+list.genre;}
-						});
-						$('#search-list').append('<div class="listBlock"><img class="listImg" onclick="watch('+item.filmId+')" src="'+ item.posterUrlPreview +'" width="20%" height="20%"><div style="display: grid;grid-template-columns: repeat(5, 1fr);grid-template-rows: repeat(5, 1fr);height: 0px;margin: 10px 10px;width: -webkit-fill-available;"><text class="listName" onclick="watch('+item.filmId+')">' + item.nameRu + '</text><text class="listYear">' + item.year + '</text><text class="listRating">' + item.rating + '</text><text class="listDesc">' + genr + '</text></div></div>');
-					});
-					var prew = page-1;
-					var next = page+1;
-					console.log(next);
-				 	if (page == 1){$('#search-list').append('<input type="button" value="Страница '+next+'" onclick="search_parse(2)" class="button" style="padding: 5px;border-radius: 12px;height: 40px;">')
-					} else{$('#search-list').append('<div style="display: flex;"><input type="button" value="Страница '+prew+'" onclick="search_parse('+prew+')" class="button" style="padding: 5px;border-radius: 12px;height: 40px;"> <input type="button" value="Страница '+next+'" onclick="search_parse('+next+')" class="button" style="padding: 5px;border-radius: 12px;height: 40px;"></div>')};
-				} else {alert('error', response.status);}
-
-			} else{
-				let url = ('https://kinopoiskapiunofficial.tech/api/v2.1/films/search-by-keyword?keyword=' + title.value + '&page=1');
-				let response = await fetch(url , {
-					method: 'GET',
-					headers: {
-						"Content-Type": "application/json",
-						"X-API-KEY": "4b12f46d-638b-4bac-bf06-33865d3a3524",
-					},
-				});
-				if (response.ok) {
-					let data = await response.json();
-					console.log(data);
-					$('#search-list').empty();
-					$(data.films).each(function(index, item) {
-						$('#search-list').append('<div class="listBlock"><img class="listImg" onclick="watch('+item.filmId+')" src="'+ item.posterUrlPreview +'" width="20%" height="20%"><div style="display: grid;grid-template-columns: repeat(5, 1fr);grid-template-rows: repeat(5, 1fr);height: 0px;margin: 10px 10px;width: -webkit-fill-available;"><text class="listName" onclick="watch('+item.filmId+')">' + item.nameRu + '</text><text class="listYear">' + item.year + '</text><text class="listRating">' + item.rating + '</text><text class="listDesc">' + item.description + '</text></div></div>');
-					});
-				} else {
-					alert('error', response.status);
-				}
-			}
-		}
-</script>
-<script>
-	function watch(id) {
-		var url = new URL("http://kinofree.skyedge.xyz/");
-		url.searchParams.append('watch', id);
-		window.location.href = url
-	}
-  function advancetform() {
-		var form = document.getElementById("form");
-		var advancet = document.querySelector(".advancet");
-
-		if (advancet.style.maxHeight == '256px'){
-			form.style.height = "56px";
-			advancet.style.maxHeight = "0px";
-		} else{
-			form.style.height = "256px";
-			advancet.style.maxHeight = "256px";
-		}
-	}
-
-	function linkcopy() {
-		url = window.location.href
-		navigator.clipboard.writeText(url).then(function() {
-	    console.log('URL copy successful');
-	  }, function(err) {
-	    console.error('URL copy error', err);
-	  });
-	}
-
-	window.onload = async function() {
-		const urlParams = new URLSearchParams(window.location.search);
-		if (urlParams.has('watch')){
-			var id = urlParams.get('watch')
-			$("#about").remove();
-			$(".search-list").remove();
-			$("#form").remove();
-			$('#player').append('<iframe src="https://apilordfilms-s.tobaco.ws/embed/kp/'+id+'" allow="autoplay *" width="500" height="300" allowfullscreen="" webkitallowfullscreen="" mozallowfullscreen="" oallowfullscreen="" msallowfullscreen=""></iframe>');
-			let data = await getInfo(id);
-			$('#film-info').append('<input title="Скопировать ссылку" type="button" value="Ссылка &#128279;" class="button" onclick="linkcopy()" style="padding: 4px;margin: -20px 0 10px 0;"> <text style="font-size: 24px;">' + data.nameRu + '</text><br><text style="margin-right: 10px;">' + data.year + '</text><text style="color: #aea">' + data.ratingKinopoisk + '</text><br><text style="bottom: 10px;position: relative;display: block;margin: 10px 0;" class="listDesc">' + data.description + '</text>');
-		}
-
-		var yearsSlider = document.getElementById('years-slider');
-		noUiSlider.create(yearsSlider, {
-		    start: [1950, 2022],
-				tooltips: [true, true],
-				connect: true,
-		    range: {
-		        min: [1950, 1],
-		        max: [2022, 1]
-		    },
-				format: {
-        to: function (value) {
-            return "Год " + value;
-        },
-        from: function (value) {
-            return value;
-        }
-    		},
-		    pips: {
-		        mode: 'count',
-		        values: 5,
-						density: 2
-		    },
-		});
-		var ratingSlider = document.getElementById('rating-slider');
-		noUiSlider.create(ratingSlider, {
-		    start: [0, 10],
-				tooltips: [true, true],
-				connect: true,
-		    range: {
-		        min: [0, 1],
-		        max: [10, 1]
-		    },
-				format: {
-        to: function (value) {
-            return "Рейтинг " + value;
-        },
-        from: function (value) {
-            return value;
-        }
-    		},
-		    pips: {
-		        mode: 'count',
-		        values: 11,
-						density: 5
-		    },
-		});
-	}
-
-	async function getInfo(id) {
-		let url = ('https://kinopoiskapiunofficial.tech/api/v2.2/films/' + id +'');
-		let response = await fetch(url , {
-			method: 'GET',
-			headers: {
-				"Content-Type": "application/json",
-				"X-API-KEY": "4b12f46d-638b-4bac-bf06-33865d3a3524",
-			},
-		});
-		if (response.ok) {
-			//console.log(await response.json());
-			return await response.json();
-		} else {
-			return alert('error', response.status);
-		}
-	}
-</script>
+<script src="https://refreshless.com/nouislider/dist/nouislider.js?v=1540"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="scripts.js"></script>
 <!-- Scripts -->
 </body>
 </html>
