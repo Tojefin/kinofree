@@ -269,6 +269,7 @@ input[type=checkbox]:checked{
 	    background: #181818;
 	    margin: 20px 0px;
 	    max-width: 90vw;
+			min-height: 30vh;
 }
 .listBlock-loading{
     display: flex;
@@ -283,7 +284,7 @@ input[type=checkbox]:checked{
 	transition: all 0.5s ease;
 	transform: translateX(0);
 	border-radius: 10px;
-	height: 30%;
+	height: 30vh;
 	width: 24%;
 }
 
@@ -291,6 +292,14 @@ input[type=checkbox]:checked{
 	cursor: pointer;
 	transform: translate(0px, -10px);
 	transition: all 0.5s ease;
+}
+@media (max-width: 768px) {
+	.listBlock{
+		min-height: 30vw;
+	}
+	.listImg{
+		height: 30vw;
+	}
 }
 .listName{
 	text-align: left;
