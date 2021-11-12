@@ -56,7 +56,7 @@
           console.log(data);
           $('#search-list').empty();
           $(data.films).each(function(index, item) {
-            $('#search-list').append('<div class="listBlock"><img class="listImg" onclick="watch('+item.filmId+')" src="'+ item.posterUrlPreview +'" width="20%" height="20%"><div style="display: grid;grid-template-columns: repeat(5, 1fr);grid-template-rows: repeat(5, 1fr);height: 0px;margin: 10px 10px;width: -webkit-fill-available;"><text class="listName" onclick="watch('+item.filmId+')">' + item.nameRu + '</text><text class="listYear">' + item.year + '</text><text class="listRating">' + item.rating + '</text><text class="listDesc">' + item.description + '</text></div></div>');
+            $('#search-list').append('<div class="listBlock"><img class="listImg" onclick="watch('+item.filmId+')" src="'+ item.posterUrlPreview +'" width="20%" height="20%"><div style="display: grid;grid-template-columns: repeat(5, 1fr);grid-template-rows: repeat(5, 1fr);height: 0px;margin: 10px 10px;width: -webkit-fill-available;"><text class="listName"><a href="https://kinofree.skyedge.xyz/?watch='+item.filmId+'">' + item.nameRu + '</a></text><text class="listYear">' + item.year + '</text><text class="listRating">' + item.rating + '</text><text class="listDesc">' + item.description + '</text></div></div>');
           });
         } else {
           alert('error', response.status);
@@ -93,7 +93,7 @@
             $(item.genres).each(function(index, list){
               if (genr == ''){genr = list.genre;} else{genr = genr+", "+list.genre;}
             });
-            $('#search-list').append('<div class="listBlock"><img class="listImg" onclick="watch('+item.filmId+')" src="'+ item.posterUrlPreview +'" width="20%" height="20%"><div style="display: grid;grid-template-columns: repeat(5, 1fr);grid-template-rows: repeat(5, 1fr);height: 0px;margin: 10px 10px;width: -webkit-fill-available;"><text class="listName" onclick="watch('+item.filmId+')">' + item.nameRu + '</text><text class="listYear">' + item.year + '</text><text class="listRating">' + item.rating + '</text><text class="listDesc">' + genr + '</text></div></div>');
+            $('#search-list').append('<div class="listBlock"><img class="listImg" onclick="watch('+item.filmId+')" src="'+ item.posterUrlPreview +'" width="20%" height="20%"><div style="display: grid;grid-template-columns: repeat(5, 1fr);grid-template-rows: repeat(5, 1fr);height: 0px;margin: 10px 10px;width: -webkit-fill-available;"><text class="listName"><a href="https://kinofree.skyedge.xyz/?watch='+item.filmId+'">' + item.nameRu + '</a></text><text class="listYear">' + item.year + '</text><text class="listRating">' + item.rating + '</text><text class="listDesc">' + genr + '</text></div></div>');
           });
           var prew = page-1;
           var next = page+1;
@@ -121,7 +121,7 @@
             $(item.genres).each(function(index, list){
               if (genr == ''){genr = list.genre;} else{genr = genr+", "+list.genre;}
             });
-            $('#search-list').append('<div class="listBlock"><img class="listImg" onclick="watch('+item.filmId+')" src="'+ item.posterUrlPreview +'" width="20%" height="20%"><div style="display: grid;grid-template-columns: repeat(5, 1fr);grid-template-rows: repeat(5, 1fr);height: 0px;margin: 10px 10px;width: -webkit-fill-available;"><text class="listName" onclick="watch('+item.filmId+')">' + item.nameRu + '</text><text class="listYear">' + item.year + '</text><text class="listRating">' + item.rating + '</text><text class="listDesc">' + genr + '</text></div></div>');
+            $('#search-list').append('<div class="listBlock"><img class="listImg" onclick="watch('+item.filmId+')" src="'+ item.posterUrlPreview +'" width="20%" height="20%"><div style="display: grid;grid-template-columns: repeat(5, 1fr);grid-template-rows: repeat(5, 1fr);height: 0px;margin: 10px 10px;width: -webkit-fill-available;"><text class="listName"><a href="https://kinofree.skyedge.xyz/?watch='+item.filmId+'">' + item.nameRu + '</a></text><text class="listYear">' + item.year + '</text><text class="listRating">' + item.rating + '</text><text class="listDesc">' + genr + '</text></div></div>');
           });
           var prew = page-1;
           var next = page+1;
@@ -164,7 +164,7 @@
             $(item.genres).each(function(index, list){
               if (genr == ''){genr = list.genre;} else{genr = genr+", "+list.genre;}
             });
-            $('#search-list').append('<div class="listBlock"><img class="listImg" onclick="watch('+item.filmId+')" src="'+ item.posterUrlPreview +'" width="20%" height="20%"><div style="display: grid;grid-template-columns: repeat(5, 1fr);grid-template-rows: repeat(5, 1fr);height: 0px;margin: 10px 10px;width: -webkit-fill-available;"><text class="listName" onclick="watch('+item.filmId+')">' + item.nameRu + '</text><text class="listYear">' + item.premiereRu + '</text><text class="listRating" style="color: #d018a0">' + item.duration + ' минут</text><text class="listDesc">' + genr + '</text></div></div>');
+            $('#search-list').append('<div class="listBlock"><img class="listImg" onclick="watch('+item.filmId+')" src="'+ item.posterUrlPreview +'" width="20%" height="20%"><div style="display: grid;grid-template-columns: repeat(5, 1fr);grid-template-rows: repeat(5, 1fr);height: 0px;margin: 10px 10px;width: -webkit-fill-available;"><text class="listName"><a href="https://kinofree.skyedge.xyz/?watch='+item.filmId+'">' + item.nameRu + '</a></text><text class="listYear">' + item.premiereRu + '</text><text class="listRating" style="color: #d018a0">' + item.duration + ' минут</text><text class="listDesc">' + genr + '</text></div></div>');
           });
         } else {alert('error', response.status);}
 
@@ -183,7 +183,7 @@
           console.log(data);
           $('#search-list').empty();
           $(data.items).each(function(index, item) {
-            $('#search-list').append('<div class="listBlock"><img class="listImg" onclick="watch('+item.filmId+')" src="'+ item.posterUrlPreview +'" width="20%" height="20%"><div style="display: grid;grid-template-columns: repeat(5, 1fr);grid-template-rows: repeat(5, 1fr);height: 0px;margin: 10px 10px;width: -webkit-fill-available;"><text class="listName" onclick="watch('+item.filmId+')">' + item.nameRu + '</text><text class="listYear"></text><text class="listRating"></text><text class="listDesc"></text></div></div>');
+            $('#search-list').append('<div class="listBlock"><img class="listImg" onclick="watch('+item.filmId+')" src="'+ item.posterUrlPreview +'" width="20%" height="20%"><div style="display: grid;grid-template-columns: repeat(5, 1fr);grid-template-rows: repeat(5, 1fr);height: 0px;margin: 10px 10px;width: -webkit-fill-available;"><text class="listName"><a href="https://kinofree.skyedge.xyz/?watch='+item.filmId+'">' + item.nameRu + '</a></text><text class="listYear"></text><text class="listRating"></text><text class="listDesc"></text></div></div>');
           });
         } else {
           alert('error', response.status);
@@ -203,7 +203,7 @@
           console.log(data);
           $('#search-list').empty();
           $(data).each(function(index, item) {
-            $('#search-list').append('<div class="listBlock"><img class="listImg" onclick="watch('+item.filmId+')" src="'+ item.posterUrlPreview +'" width="20%" height="20%"><div style="display: grid;grid-template-columns: repeat(5, 1fr);grid-template-rows: repeat(5, 1fr);height: 0px;margin: 10px 10px;width: -webkit-fill-available;"><text class="listName" onclick="watch('+item.filmId+')">' + item.nameRu + '</text><text class="listYear"></text><text class="listRating"></text><text class="listDesc"></text></div></div>');
+            $('#search-list').append('<div class="listBlock"><img class="listImg" onclick="watch('+item.filmId+')" src="'+ item.posterUrlPreview +'" width="20%" height="20%"><div style="display: grid;grid-template-columns: repeat(5, 1fr);grid-template-rows: repeat(5, 1fr);height: 0px;margin: 10px 10px;width: -webkit-fill-available;"><text class="listName"><a href="https://kinofree.skyedge.xyz/?watch='+item.filmId+'">' + item.nameRu + '</a></text><text class="listYear"></text><text class="listRating"></text><text class="listDesc"></text></div></div>');
           });
         } else {
           alert('error', response.status);
@@ -244,6 +244,7 @@
 			$("#hiddeonplayer").remove();
 			$('#player').append('<iframe src="https://apilordfilms-s.tobaco.ws/embed/kp/'+id+'" allow="autoplay *" width="500" height="300" allowfullscreen="" webkitallowfullscreen="" mozallowfullscreen="" oallowfullscreen="" msallowfullscreen="" style="border: hidden;border-radius: 10px;width: 90%;min-height: 50vh;box-shadow: 0px 0px 4px 0px rgb(80 80 80 / 70%);margin: 20px 0px;"></iframe>');
 			let data = await getInfo(id);
+      document.title = data.nameRu + " — KinoFree"
 			$('#film-info').append('<div style="display:flex;"><input title="Скопировать ссылку" type="button" value="Ссылка &#128279;" class="subbutton" onclick="linkcopy()" style="margin: 0 5px 0 0;"> <input title="Найти фильмы похожие на этот" type="button" value="Похожее" class="subbutton" onclick="search_parse(`similars`, '+id+')" style="margin: 0 5px 0 0;"> <input title="Показать фильмы связанные с этим" type="button" value="Связанное" class="subbutton" onclick="search_parse(`sequels`, '+id+')" style="margin: 0 5px 0 0;"></div><text style="font-size: 24px;">' + data.nameRu + '</text><br><text style="margin-right: 10px;">' + data.year + '</text><text style="color: #aea">' + data.ratingKinopoisk + '</text><br><text style="bottom: 10px;position: relative;display: block;margin: 10px 0;" class="listDesc">' + data.description + '</text>');
 		}
     var yearsSlider = document.getElementById('years-slider');
