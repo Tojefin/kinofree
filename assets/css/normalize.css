@@ -1,0 +1,47 @@
+
+::-webkit-scrollbar-track {
+  background-color: transparent;
+}
+::-webkit-scrollbar-thumb {
+	background: #222;
+	border-radius: 10px;
+}
+::-webkit-scrollbar-corner {
+  background-color: transparent;
+}
+::-webkit-scrollbar-button {
+  width: 0;
+  height: 0;
+  display: none;
+}
+::-webkit-scrollbar {
+  width: 8px;
+  background-color: transparent;
+}
+
+input:focus-visible, select:focus-visible{
+	outline: none;
+}
+a{
+	color: #FFFFFF;
+	text-decoration: none;
+}
+*,
+*:before,
+*:after{
+	box-sizing: border-box;
+}
+
+ul, li {
+	list-style: none;
+	margin: 0;
+	padding: 0;
+}
+
+input, button, iframe {
+  border: none;
+  padding: 0;
+  margin: 0;
+}
+
+h1, h2, h3, h4, h5, h6, p, text {margin: 0;}

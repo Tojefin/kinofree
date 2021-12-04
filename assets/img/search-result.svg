@@ -1,0 +1,69 @@
+<svg
+  xmlns="http://www.w3.org/2000/svg"
+  role="img"
+  width="785"
+  height="255"
+  aria-labelledby="loading-aria"
+  viewBox="0 0 785 255"
+  preserveAspectRatio="none"
+>
+  <title id="loading-aria">Loading...</title>
+  <rect
+    x="0"
+    y="0"
+    width="100%"
+    height="100%"
+    clip-path="url(#clip-path)"
+    style='fill: url("#fill");'
+  ></rect>
+  <defs>
+    <clipPath id="clip-path">
+        <rect x="221" y="110" rx="10" ry="10" width="513" height="135" />
+        <rect x="338" y="65" rx="10" ry="10" width="36" height="20" />
+        <rect x="222" y="65" rx="10" ry="10" width="96" height="20" />
+        <rect x="222" y="20" rx="10" ry="10" width="335" height="30" />
+        <rect x="0" y="0" rx="20" ry="20" width="182" height="255" />
+    </clipPath>
+    <linearGradient id="fill">
+      <stop
+        offset="0.599964"
+        stop-color="#bababa"
+        stop-opacity="1"
+      >
+        <animate
+          attributeName="offset"
+          values="-2; -2; 1"
+          keyTimes="0; 0.25; 1"
+          dur="2s"
+          repeatCount="indefinite"
+        ></animate>
+      </stop>
+      <stop
+        offset="1.59996"
+        stop-color="#999999"
+        stop-opacity="1"
+      >
+        <animate
+          attributeName="offset"
+          values="-1; -1; 2"
+          keyTimes="0; 0.25; 1"
+          dur="2s"
+          repeatCount="indefinite"
+        ></animate>
+      </stop>
+      <stop
+        offset="2.59996"
+        stop-color="#bababa"
+        stop-opacity="1"
+      >
+        <animate
+          attributeName="offset"
+          values="0; 0; 3"
+          keyTimes="0; 0.25; 1"
+          dur="2s"
+          repeatCount="indefinite"
+        ></animate>
+      </stop>
+    </linearGradient>
+  </defs>
+</svg>

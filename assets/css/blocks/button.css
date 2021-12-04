@@ -1,0 +1,82 @@
+.button {
+  min-width: 87px;
+  max-width: 87px;
+  height: 30px;
+  background: linear-gradient(94.35deg, #484848 0%, #121212 100%);
+  border-radius: 5px;
+  padding: 0 5px;
+	transition: all 0.25s ease;
+  color: #fff;
+  margin-right: 20px;
+}
+
+.button:hover {
+  transform: scale(1.1);
+}
+.button:active {
+  transform: scale(1.1);
+  color: #888;
+}
+
+.button--advancet {
+  display: none;
+  width: 25px;
+  height: 25px;
+  position: relative;
+  margin-right: 8px;
+}
+.button--advancet::after {
+  content: '';
+  position: absolute;
+  width: 25px;
+  height: 25px;
+  top: 0px;
+  left: 0px;
+  background: url(../../img/filters.svg);
+  background-repeat: no-repeat;
+  background-size: contain;
+}
+@media (min-width: 535px) {
+  .button--advancet {
+    min-width: 25px;
+    display: block;
+  }
+}
+
+.button--search {
+  min-width: 87px;
+  max-width: 145px;
+  height: 100%;
+  border-radius: 50px;
+  font-family: 'Roboto', sans-serif;
+  font-style: normal;
+  font-weight: 300;
+  font-size: calc(12px + 0.1vw);
+  line-height: 14px;
+  color: #FFFFFF;
+  text-transform: uppercase;
+  padding: 0;
+  margin: 0;
+}
+
+@media (min-width: 1024px) {
+  .button--search {
+    width: 100%;
+    font-size: 100%;
+  }
+}
+
+.button--menu {
+  font-family: 'Roboto', sans-serif;
+  font-style: normal;
+  font-weight: 300;
+  font-size: calc(10px + 0.1vw);
+  line-height: 14px;
+  color: #FFFFFF;
+  text-transform: uppercase;
+  max-width: 145px;
+  margin: 0;
+}
+.button--menu:not(:last-child) {
+  margin-right: 10px;
+}

@@ -1,217 +1,207 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-	<title>KinoFree | Смотрите кино онлайн</title>
-	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-	<meta name="description" content="KinoFree - поисковик бесплатных фильмов, кино и сериалов. " />
-	<meta name="keywords" content="Онлайн, бесплатно, фильм, сериал, смотреть, kinofree.tv, кинофри" />
-	<meta name="author" content="Tojefin" />
-	<meta name="publisher-email" content="skyedge.xyz" />
-	<meta name="robots" content="index, follow" />
-	<meta charset="UTF-8" />
-	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
-	<meta http-equiv="X-UA-Compatible" content="ie=edge" />
-	<link rel="shortcut icon" href="assets/img/favicon.ico" type="image/x-icon">
-	<link rel="stylesheet" href="assets/css/style.css">
-	<link rel="preconnect" href="https://fonts.googleapis.com">
-	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-	<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;700&display=swap">
-	<script async src="https://arc.io/widget.min.js#VZhW564T"></script>
-	<script defer src="https://refreshless.com/nouislider/dist/nouislider.js?v=1540"></script>
-	<script defer src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-	<script defer src="assets/js/scripts.min.js"></script>
-</head>
-<body>
-	<!-- Yandex.Metrika counter -->
-	<script async type="text/javascript" >
-	   (function(m,e,t,r,i,k,a){m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
-	   m[i].l=1*new Date();k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)})
-	   (window, document, "script", "https://mc.yandex.ru/metrika/tag.js", "ym");
+	<head>
+		<title>KinoFree | Смотрите кино онлайн</title>
+		<!-- Мета теги -->
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+		<meta name="description" content="KinoFree - поисковик бесплатных фильмов, кино и сериалов. ">
+		<meta name="keywords" content="Онлайн, бесплатно, фильм, сериал, смотреть, kinofree.tv, кинофри">
+		<meta name="author" content="Tojefin">
+		<meta name="publisher-email" content="skyedge.xyz">
+		<meta name="robots" content="index, follow">
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+		<meta http-equiv="X-UA-Compatible" content="ie=edge">
+		<!-- Стили и визуал -->
+		<link rel="shortcut icon" href="assets/img/favicon.ico" type="image/x-icon">
+		<link rel="stylesheet" href="assets/css/style.min.css">
+		<link rel="preconnect" href="https://fonts.googleapis.com">
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+		<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;700&display=swap">
+		<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400&display=swap" rel="stylesheet">
+		<!-- Скрипты -->
+		<script async src="https://arc.io/widget.min.js#VZhW564T"></script>
+		<script defer src="https://refreshless.com/nouislider/dist/nouislider.js?v=1540"></script>
+		<script defer src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+		<!--<script defer src="assets/js/sliders.js"></script>
+		<script defer src="assets/js/select.js"></script>
+		<script defer src="assets/js/togglers.js"></script>
+		<script defer src="assets/js/search.js"></script>
+		<script defer src="assets/js/watch.js"></script>
+		<script defer src="assets/js/template-loader.js"></script>-->
+		<script defer src="assets/js/scripts.min.js"></script>
+	</head>
+	<body>
+		<!-- Yandex.Metrika counter -->
+		<script async type="text/javascript" >
+			(function(m,e,t,r,i,k,a){m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
+			m[i].l=1*new Date();k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)})
+			(window, document, "script", "https://mc.yandex.ru/metrika/tag.js", "ym");
+			ym(85563634, "init", {clickmap:true, trackLinks:true, accurateTrackBounce:true, webvisor:true});</script>
+		<noscript><div><img src="https://mc.yandex.ru/watch/85563634" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
+		<!-- /Yandex.Metrika counter -->
+		<div class="content">
 
-	   ym(85563634, "init", {
-	        clickmap:true,
-	        trackLinks:true,
-	        accurateTrackBounce:true,
-	        webvisor:true
-	   });
-	</script>
-	<noscript><div><img src="https://mc.yandex.ru/watch/85563634" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
-	<!-- /Yandex.Metrika counter -->
-<div class="main">
-	<div class="container">
-		<a href="/" style="display: table;margin: 0 auto;"><h1 class="title">KinoFree</h1></a>
-		<text class="subtitle">Смотрите бесплатное кино</text>
-		<div id="player"></div>
-		<div id="film-info" style="text-align: left;margin: 0 8%;position: relative;"></div>
-		<div id="hiddeonplayer">
-			<div class="form" id="form">
-				<div class="common">
-					<svg class="u-svg-content" viewBox="0 0 512 512" x="0px" y="0px" id="svg-d182" style="width: 33px;height: 32px;margin-left: 10px;fill: #777;">
-						<path d="M505.749,475.587l-145.6-145.6c28.203-34.837,45.184-79.104,45.184-127.317c0-111.744-90.923-202.667-202.667-202.667    S0,90.925,0,202.669s90.923,202.667,202.667,202.667c48.213,0,92.48-16.981,127.317-45.184l145.6,145.6    c4.16,4.16,9.621,6.251,15.083,6.251s10.923-2.091,15.083-6.251C514.091,497.411,514.091,483.928,505.749,475.587z     M202.667,362.669c-88.235,0-160-71.765-160-160s71.765-160,160-160s160,71.765,160,160S290.901,362.669,202.667,362.669z"/>
-					</svg>
-					<input type="text" placeholder="Название фильма" id="search-title" name="title" class="search">
-					<svg xmlns="http://www.w3.org/2000/svg" onclick="advancetform()" width="18" height="18" viewBox="0 0 18 18" class="adv_button"><path fill="#777" fill-rule="evenodd" d="M5.995 10.3A2.7 2.7 0 0 1 8.504 12H17v2H8.504a2.7 2.7 0 0 1-5.018 0H1v-2h2.486a2.7 2.7 0 0 1 2.509-1.7zm0 1.7a1 1 0 1 0 0 2 1 1 0 0 0 0-2zm5.997-8.7A2.7 2.7 0 0 1 14.5 5H17v2h-2.5a2.7 2.7 0 0 1-5.017 0H1V5h8.483a2.7 2.7 0 0 1 2.509-1.7zm0 1.7a1 1 0 1 0 0 2 1 1 0 0 0 0-2z"></path></svg>
-					<input type="button" value="Найти" id="search" class="button">
+			<header class="header hide">
+				<h1 class="header__title"><a href="./index.html">KinoFree</a></h1>
+				<p class="header__subtitle">Смотрите бесплатное кино</p>
+			</header>
+
+			<section class="search hide">
+				<h2 class="hide">Строка поиска</h2>
+				<div class="box">
+					<div class="search__common">
+						<input class="search__field" type="text" placeholder="Название фильма" id="search-title" name="title">
+						<button class="button button--advancet" type="button" id="advancet-button" onclick="toggleFilters()"></button>
+						<input class="button button--search" type="button" value="Поиск" id="search-button">
+					</div>
+
+					<div class="search__advanced">
+						<ul class="search__category-list">
+							<li class="search__category-item"><input type=checkbox value="1750"> <span>Аниме</span></li>
+							<li class="search__category-item"><input type=checkbox value="22"> <span>Биография</span></li>
+							<li class="search__category-item"><input type=checkbox value="3"> <span>Боевик</span></li>
+							<li class="search__category-item"><input type=checkbox value="13"> <span>Вестерн</span></li>
+							<li class="search__category-item"><input type=checkbox value="19"> <span>Военный</span></li>
+							<li class="search__category-item"><input type=checkbox value="17"> <span>Детектив</span></li>
+							<li class="search__category-item"><input type=checkbox value="456"> <span>Детский</span></li>
+							<li class="search__category-item"><input type=checkbox value="20"> <span>Для взрослых</span></li>
+							<li class="search__category-item"><input type=checkbox value="12"> <span>Документальный</span></li>
+							<li class="search__category-item"><input type=checkbox value="8"> <span>Драма</span></li>
+							<li class="search__category-item"><input type=checkbox value="27"> <span>Игра</span></li>
+							<li class="search__category-item"><input type=checkbox value="23"> <span>История</span></li>
+							<li class="search__category-item"><input type=checkbox value="6"> <span>Комедия</span></li>
+							<li class="search__category-item"><input type=checkbox value="1747"> <span>Концерт</span></li>
+							<li class="search__category-item"><input type=checkbox value="15"> <span>Короткометражка</span></li>
+							<li class="search__category-item"><input type=checkbox value="16"> <span>Криминал</span></li>
+							<li class="search__category-item"><input type=checkbox value="7"> <span>Мелодрама</span></li>
+							<li class="search__category-item"><input type=checkbox value="21"> <span>Музыка</span></li>
+							<li class="search__category-item"><input type=checkbox value="14"> <span>Мультфильм</span></li>
+							<li class="search__category-item"><input type=checkbox value="9"> <span>Мюзикл</span></li>
+							<li class="search__category-item"><input type=checkbox value="28"> <span>Новости</span></li>
+							<li class="search__category-item"><input type=checkbox value="10"> <span>Приключения</span></li>
+							<li class="search__category-item"><input type=checkbox value="25"> <span>Реальное ТВ</span></li>
+							<li class="search__category-item"><input type=checkbox value="11"> <span>Семейный</span></li>
+							<li class="search__category-item"><input type=checkbox value="24"> <span>Спорт</span></li>
+							<li class="search__category-item"><input type=checkbox value="26"> <span>Ток-шоу</span></li>
+							<li class="search__category-item"><input type=checkbox value="4"> <span>Триллер</span></li>
+							<li class="search__category-item"><input type=checkbox value="1"> <span>Ужасы</span></li>
+							<li class="search__category-item"><input type=checkbox value="2"> <span>Фантастика</span></li>
+							<li class="search__category-item"><input type=checkbox value="18"> <span>Фильм-нуар</span></li>
+							<li class="search__category-item"><input type=checkbox value="5"> <span>Фэнтези</span></li>
+							<li class="search__category-item"><input type=checkbox value="1751"> <span>Церемония</span></li>
+						</ul>
+
+						<div class="search__sliders">
+							<div class="search__slider search__slider--years" id="years-slider"></div>
+							<div class="search__slider search__slider--rating" id="rating-slider"></div>
+						</div>
+
+						<div class="search__selects">
+							<label class="search__select-label" for="film-type">Тип</label>
+							<select class="select select--search" id="film-type">
+								<option value="ALL">Любое</option>
+								<option value="FILM">Фильм</option>
+								<option value="TV_SHOW">Сериал</option>
+							</select>
+							<label class="search__select-label" for="sorting">Сортировка</label>
+							<select class="select select--search" id="sorting">
+								<option value="RATING">Рейтинг</option>
+								<option value="YEAR">Год выпуска</option>
+							</select>
+						</div>
+					</div>
 				</div>
-				<div class="advancet">
-					<div class="genr">
-						<input type=checkbox value="1750"> <span>Аниме</span><br>
-						<input type=checkbox value="22"> <span>Биография</span><br>
-						<input type=checkbox value="3"> <span>Боевик</span><br>
-						<input type=checkbox value="13"> <span>Вестерн</span><br>
-						<input type=checkbox value="19"> <span>Военный</span><br>
-						<input type=checkbox value="17"> <span>Детектив</span><br>
-						<input type=checkbox value="456"> <span>Детский</span><br>
-						<input type=checkbox value="20"> <span>Для взрослых</span><br>
-						<input type=checkbox value="12"> <span>Документальный</span><br>
-						<input type=checkbox value="8"> <span>Драма</span><br>
-						<input type=checkbox value="27"> <span>Игра</span><br>
-						<input type=checkbox value="23"> <span>История</span><br>
-						<input type=checkbox value="6"> <span>Комедия</span><br>
-						<input type=checkbox value="1747"> <span>Концерт</span><br>
-						<input type=checkbox value="15"> <span>Короткометражка</span><br>
-						<input type=checkbox value="16"> <span>Криминал</span><br>
-						<input type=checkbox value="7"> <span>Мелодрама</span><br>
-						<input type=checkbox value="21"> <span>Музыка</span><br>
-						<input type=checkbox value="14"> <span>Мультфильм</span><br>
-						<input type=checkbox value="9"> <span>Мюзикл</span><br>
-						<input type=checkbox value="28"> <span>Новости</span><br>
-						<input type=checkbox value="10"> <span>Приключения</span><br>
-						<input type=checkbox value="25"> <span>Реальное ТВ</span><br>
-						<input type=checkbox value="11"> <span>Семейный</span><br>
-						<input type=checkbox value="24"> <span>Спорт</span><br>
-						<input type=checkbox value="26"> <span>Ток-шоу</span><br>
-						<input type=checkbox value="4"> <span>Триллер</span><br>
-						<input type=checkbox value="1"> <span>Ужасы</span><br>
-						<input type=checkbox value="2"> <span>Фантастика</span><br>
-						<input type=checkbox value="18"> <span>Фильм-нуар</span><br>
-						<input type=checkbox value="5"> <span>Фэнтези</span><br>
-						<input type=checkbox value="1751"> <span>Церемония</span><br>
-					</div>
-					<div id="years-slider" style="width: 300px; grid-column: 2; grid-row: 1;"></div>
-					<div id="rating-slider" style="width: 300px; grid-column: 2; grid-row: 1; top: 90px"></div>
-					<div style="grid-column: 3; grid-row: 1;">
-						<br>
-						<text>Тип<text><br>
-						<select id="kinotype">
-							<option value="ALL">Любое</option>
-							<option value="FILM">Фильм</option>
-							<option value="TV_SHOW">Сериал</option>
-						</select>
-						<br>
-						<br>
-						<text>Сортировка<text><br>
-						<select id="sorting">
-							<option value="RATING">Рейтинг</option>
-							<option value="YEAR">Год выпуска</option>
-						</select>
-					</div>
+				<small class="search__help">Поверните для фильтров</small>
+			</section>
 
+			<nav class="menu menu--main hide">
+				<h2 class="hide">Меню навигации</h2>
+				<input class="button button--menu" value="Популярное" type="button" name="populars" id="populars" onclick="search('populars', 1)">
+				<input class="button button--menu" value="Премьеры" type="button" name="relises" id="relises" onclick="search('premiers', 1)">
+				<input class="button button--menu" value="Обновления" type="button" name="updates" id="updates" onclick="toggleInfo()">
+			</nav>
+
+			<section class="main-info hide">
+				<h2 class="hide">Блок информации</h2>
+				<div class="box">
+					<div class="main-info__general">
+						<div class="main-info__block-side">
+							<div class="main-info__block main-info__block--column">
+								<h3>Поддержать сайт</h3>
+								<p>Вы можете бесплатно подключить сеть доставки контента и ускорить сайт кнопкой внизу слева или отправить мне монетку по <a href="https://www.donationalerts.com/r/tojefin">ссылке</a></p>
+							</div>
+							<div class="main-info__block main-info__block--column">
+								<h3>Совместный просмотр</h3>
+								<p>Если вы хотите смотреть кино вместе со своими друзьями, вы можете установить расширение <a href="https://chrome.google.com/webstore/detail/sync-watch/ggiafipgeeaaahnjamgpjcgkdpanhddg?hl=ru" title="Сайт расширения">SyncWatch</a></p>
+							</div>
+						</div>
+						<div class="main-info__block main-info__block--row">
+							<h3>DMCA</h3>
+							<p>Если Вы владелец авторских прав, просим Вас учесть, что этот сайт является поисковиком и все видео из сторонних API источников. Пишите напрямую по контактным данным этих видео-хостингов, для соблюдения DMCA. В 99% случаев они удаляют спорный контент в течении 24 часов.
+								По вопросам рекламы в плеерах, ошибок, авторского права и всего остального, пишите на контактные данные видео-хостингов!</p>
+						</div>
+					</div>
+					<div class="main-info__updates hide">
+						<ul>
+							<li>
+								<h3>04.12.2021</h3>
+								<p>- Изменение всего на БЭМ <br>- Обновлён дизайн <br>- Добавлено ещё 2 плеера <br>- Оптимизация кода</p>
+							</li>
+						</ul>
+					</div>
 				</div>
-			</div>
+			</section>
 
-			<div class="subform" id="subform">
-				<input type="button" value="Популярное" id="popular" class="subbutton" onclick="search_parse('populars', 1)">
-				<input type="button" value="Премьеры" id="premiers" class="subbutton" onclick="search_parse('premiers', 1)">
-			</div>
+			<section class="vert hide">
+		    <h2 class="hide">Блокировка вертикального просмотра</h2>
+		    <div class="vert__info">
+		    </div>
+		    <div class="vert__card">
+		      <h3 class="vert__card-title">Поверните телефон</h3>
+		      <p class="vert__card-text">Для отображениея плеера <br> переверните телефон <br> в горизонтальное состаяние</p>
+		    </div>
+		  </section>
 
-			<div id="about" class="about">
-					<div class="collom-1">
-						<div class="row-1">
-						<h4>Поддержать сайт</h4>
-						<text style="font-size: 14px;text-align: justify;color: #777;">Вы можете бесплатно подключить сеть доставки контента и ускорить сайт кнопкой внизу слева или отправить мне монетку по <a href="https://www.donationalerts.com/r/tojefin">ссылке</a></text>
-						</div>
-						<div class="row-2">
-						<h4>Совместный просмотр</h4>
-						<text style="font-size: 14px;text-align: justify;color: #777;">Если вы хотите смотреть кино вместе со своими друзьями, вы можете установить расширение <a href="https://chrome.google.com/webstore/detail/sync-watch/ggiafipgeeaaahnjamgpjcgkdpanhddg?hl=ru" title="Сайт расширения">SyncWatch</a></text>
+		  <section class="view hide">
+		    <div class="view__player" id="player">
+
+		    </div>
+
+		    <div class="menu menu--view">
+		      <input class="button" value="Ссылка" type="button" name="url" id="url" onclick="linkcopy()">
+		      <input class="button" value="Похожее" type="button" name="sim" id="sim">
+		      <input class="button" value="Связанное" type="button" name="linked" id="linked">
+					<div class="select">
+						<button class="select__header" value="Alpha" type="button" name="select" id="player-select" onclick="selectToggle('player-select-list')">Alpha</button>
+						<div class="select__list" id="player-select-list">
+							<span class="select__item" onclick="select('player-select', 'Alpha'), loadPlayer()">Alpha</span>
+							<span class="select__item" onclick="select('player-select', 'Beta'), loadPlayer()">Beta</span>
+							<span class="select__item" onclick="select('player-select', 'Gamma'), loadPlayer()">Gamma</span>
 						</div>
 					</div>
-					<div class="collom-2">
-						<div class="row-1">
-						<h4>DMCA</h4>
-						<text style="font-size: 14px;text-align: justify;color: #777;">Если Вы владелец авторских прав, просим Вас учесть, что этот сайт является поисковиком и все видео из сторонних API источников. Пишите напрямую по контактным данным этих видео-хостингов, для соблюдения DMCA. В 99% случаев они удаляют спорный контент в течении 24 часов.
-							По вопросам рекламы в плеерах, ошибок, авторского права и всего остального, пишите на контактные данные видео-хостингов!</text>
-						</div>
-					</div>
-			</div>
+		    </div>
+
+		    <div class="view__info">
+
+		    </div>
+		  </section>
+
+			<section class="result hide">
+		    <ul class="result_list">
+		      <li class="card">
+		        <a href="#"><img class="card__img" src="#"></a>
+		        <div class="card__info">
+		          <a href="#"><h3 class="card__title">Название</h3></a>
+		          <data class="card__year">2021</data>
+		          <p class="card__rating">9.7</p>
+		          <p class="card__descript">Описание...</p>
+		          <small class="card__help">Переверните для описания</small>
+		        </div>
+		      </li>
+		    </ul>
+		  </section>
+
 		</div>
-		<div id="search-list" class="search-list"></div>
-	</div>
-</div>
-
-<!-- Template -->
-<script id="hidden-template" type="text/x-custom-template">
-	<div class="listBlock" id="loading">
-	<svg
-	  role="img"
-	  width="100%"
-	  height="250"
-	  aria-labelledby="loading-aria"
-	  viewBox="0 0 800 250"
-	  preserveAspectRatio="none"
-	>
-	  <title id="loading-aria">Loading...</title>
-	  <rect
-	    x="0"
-	    y="0"
-	    width="100%"
-	    height="100%"
-	    clip-path="url(#clip-path)"
-	    style='fill: url("#fill");'
-	  ></rect>
-	  <defs>
-	    <clipPath id="clip-path">
-	        <rect x="12" y="9" rx="3" ry="3" width="130" height="93%" />
-	        <rect x="170" y="77" rx="3" ry="3" width="76%" height="163" />
-	        <rect x="170" y="45" rx="3" ry="3" width="69" height="18" />
-	        <rect x="260" y="45" rx="3" ry="3" width="21" height="18" />
-	        <rect x="170" y="10" rx="3" ry="3" width="378" height="22" />
-	    </clipPath>
-	    <linearGradient id="fill">
-	      <stop
-	        offset="0.599964"
-	        stop-color="#111"
-	        stop-opacity="1"
-	      >
-	        <animate
-	          attributeName="offset"
-	          values="-2; -2; 1"
-	          keyTimes="0; 0.25; 1"
-	          dur="1s"
-	          repeatCount="indefinite"
-	        ></animate>
-	      </stop>
-	      <stop
-	        offset="1.59996"
-	        stop-color="#222"
-	        stop-opacity="1"
-	      >
-	        <animate
-	          attributeName="offset"
-	          values="-1; -1; 2"
-	          keyTimes="0; 0.25; 1"
-	          dur="1s"
-	          repeatCount="indefinite"
-	        ></animate>
-	      </stop>
-	      <stop
-	        offset="2.59996"
-	        stop-color="#111"
-	        stop-opacity="1"
-	      >
-	        <animate
-	          attributeName="offset"
-	          values="0; 0; 3"
-	          keyTimes="0; 0.25; 1"
-	          dur="1s"
-	          repeatCount="indefinite"
-	        ></animate>
-	      </stop>
-	    </linearGradient>
-	  </defs>
-	</svg>
-	</div>
-</script>
-<!-- Template -->
-</body>
+	</body>
 </html>

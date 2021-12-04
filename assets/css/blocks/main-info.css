@@ -1,0 +1,37 @@
+.main-info {
+  max-width: 830px;
+  margin: 0 auto;
+}
+
+
+.main-info__general {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.main-info__block {
+  text-align: center;
+  margin-bottom: 20px;
+  margin-right: 20px;
+}
+.main-info__block p {
+  color: #777;
+}
+
+@media (min-width: 570px) {
+  .main-info__general {
+    display: flex;
+    flex-wrap: nowrap;
+  }
+  .main-info__block--column {
+    flex-direction: row;
+  }
+  .main-info__block--row {
+    max-width: 60%;
+    flex-direction: column;
+  }
+}
+
+.main-info__updates p {
+  color: #777;
+}
