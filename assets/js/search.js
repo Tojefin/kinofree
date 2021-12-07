@@ -36,7 +36,7 @@ function getType() {
 }
 
 function getCard(id, img, title, year, rating, desc) {
-  let link = "./index.html?watch="+id;
+  let link = "?watch="+id;
   return '<li class="card"><a href="'+link+'"><img class="card__img" src="'+img+'"></a><div class="card__info"><a href="'+link+'"><h3 class="card__title">'+title+'</h3></a><data class="card__year">'+year+'</data><p class="card__rating">'+rating+'</p><p class="card__descript">'+desc+'</p><small class="card__help">Поверните для описания</small></div></li>';
 }
 
