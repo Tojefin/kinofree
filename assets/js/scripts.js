@@ -187,7 +187,7 @@ async function search(type, page) {
       var tmonth = month[date.getMonth()];
 
       window.scrollTo(0, 0);
-      let url = ('https://kinopoiskapiunofficial.tech/api/v2.2/films/premieres?year=2021&month=' + tmonth);
+      let url = ('https://kinopoiskapiunofficial.tech/api/v2.2/films/premieres?year=2022&month=' + tmonth);
       let response = await fetch(url, {
         method: 'GET',
         headers: {
@@ -249,7 +249,7 @@ async function search(type, page) {
         console.log(data);
         $('.result_list').empty();
         $(data).each(function(index, item) {
-          $('.result_list').append(getCard(item.filmId, item.posterUrlPreview, item.nameRu));
+          $('.result_list').append(getCard(item.filmId, item.posterUrlPreview, item.nameRu, item.relationType));
         });
       } else {
         alert('error', response.status);
