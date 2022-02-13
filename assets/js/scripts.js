@@ -361,16 +361,16 @@ async function search(type, page) {
     var player = document.querySelector('#player-select').value;
     switch (player) {
       case 'Alpha':
-        $('#player').html('<iframe sandbox="allow-forms allow-pointer-lock allow-same-origin allow-scripts allow-top-navigation" src="https://api1629919197.tobaco.ws/embed/kp/' + id + '" allow="autoplay *"></iframe>')
+        $('#player').html('<iframe allowfullscreen sandbox="allow-forms allow-pointer-lock allow-same-origin allow-scripts allow-top-navigation" src="https://api1629919197.tobaco.ws/embed/kp/' + id + '" allow="autoplay *"></iframe>')
         break;
       case 'Beta':
-        $('#player').html('<iframe sandbox="allow-forms allow-pointer-lock allow-same-origin allow-scripts allow-top-navigation" src="https://patriot.allohastream.com/?token=70f3e30270ec1a18376655a55e8646&amp;kp=' + id + '" allow="autoplay *"></iframe>')
+        $('#player').html('<iframe allowfullscreen sandbox="allow-forms allow-pointer-lock allow-same-origin allow-scripts allow-top-navigation" src="https://patriot.allohastream.com/?token=70f3e30270ec1a18376655a55e8646&amp;kp=' + id + '" allow="autoplay *"></iframe>')
         break;
       case 'Gamma':
-        $('#player').html('<iframe sandbox="allow-forms allow-pointer-lock allow-same-origin allow-scripts allow-top-navigation" src="https://vcdn.kinoapi.club/D89KbjxSAELP?kp_id=' + id + '" allow="autoplay *"></iframe>')
+        $('#player').html('<iframe allowfullscreen sandbox="allow-forms allow-pointer-lock allow-same-origin allow-scripts allow-top-navigation" src="https://vcdn.kinoapi.club/D89KbjxSAELP?kp_id=' + id + '" allow="autoplay *"></iframe>')
         break;
       default:
-        $('#player').html('<iframe sandbox="allow-forms allow-pointer-lock allow-same-origin allow-scripts allow-top-navigation" src="https://api1629919197.tobaco.ws/embed/kp/' + id + '" allow="autoplay *"></iframe>')
+        $('#player').html('<iframe allowfullscreen sandbox="allow-forms allow-pointer-lock allow-same-origin allow-scripts allow-top-navigation" src="https://api1629919197.tobaco.ws/embed/kp/' + id + '" allow="autoplay *"></iframe>')
     }
   }
 
