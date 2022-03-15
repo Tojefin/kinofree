@@ -1,0 +1,12 @@
+.link {
+  padding-bottom: 8px;
+  border-bottom: 1px solid #6A6A6A;
+  transition: all 0.5s ease;
+  font-family: 'Montserrat';
+  color: #FFFFFF;
+
+  &:hover {
+    padding-bottom: 2px;
+    margin-bottom: 6px;
+  }
+}

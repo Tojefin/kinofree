@@ -1,0 +1,3 @@
+@function rel($base, $value) {
+  @return (100vw / $base) * $value;
+}

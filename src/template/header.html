@@ -1,0 +1,77 @@
+<header class="header">
+  <div class="header__title">
+    <h1>KinoFree</h1>
+    <small>skyedge.xyz</small>
+  </div>
+  <section class="search">
+    <div class="search__form">
+      <div class="search__simple">
+  			<input class="search__input" type="text" placeholder="Название фильма" id="search-title" name="title">
+  			<button class="search__open-adv" id="open-adv" onclick="toggleFilters()"></button>
+  			<button class="button search__button" id="search-button">Поиск</button>
+  		</div>
+  		<div class="search__advanced">
+  			<ul class="search__category-list">
+  				<li class="search__category-item"><input type=checkbox value="1750"> <span>Аниме</span></li>
+  				<li class="search__category-item"><input type=checkbox value="22"> <span>Биография</span></li>
+  				<li class="search__category-item"><input type=checkbox value="3"> <span>Боевик</span></li>
+  				<li class="search__category-item"><input type=checkbox value="13"> <span>Вестерн</span></li>
+  				<li class="search__category-item"><input type=checkbox value="19"> <span>Военный</span></li>
+  				<li class="search__category-item"><input type=checkbox value="17"> <span>Детектив</span></li>
+  				<li class="search__category-item"><input type=checkbox value="456"> <span>Детский</span></li>
+  				<li class="search__category-item"><input type=checkbox value="20"> <span>Для взрослых</span></li>
+  				<li class="search__category-item"><input type=checkbox value="12"> <span>Документальный</span></li>
+  				<li class="search__category-item"><input type=checkbox value="8"> <span>Драма</span></li>
+  				<li class="search__category-item"><input type=checkbox value="27"> <span>Игра</span></li>
+  				<li class="search__category-item"><input type=checkbox value="23"> <span>История</span></li>
+  				<li class="search__category-item"><input type=checkbox value="6"> <span>Комедия</span></li>
+  				<li class="search__category-item"><input type=checkbox value="1747"> <span>Концерт</span></li>
+  				<li class="search__category-item"><input type=checkbox value="15"> <span>Короткометражка</span></li>
+  				<li class="search__category-item"><input type=checkbox value="16"> <span>Криминал</span></li>
+  				<li class="search__category-item"><input type=checkbox value="7"> <span>Мелодрама</span></li>
+  				<li class="search__category-item"><input type=checkbox value="21"> <span>Музыка</span></li>
+  				<li class="search__category-item"><input type=checkbox value="14"> <span>Мультфильм</span></li>
+  				<li class="search__category-item"><input type=checkbox value="9"> <span>Мюзикл</span></li>
+  				<li class="search__category-item"><input type=checkbox value="28"> <span>Новости</span></li>
+  				<li class="search__category-item"><input type=checkbox value="10"> <span>Приключения</span></li>
+  				<li class="search__category-item"><input type=checkbox value="25"> <span>Реальное ТВ</span></li>
+  				<li class="search__category-item"><input type=checkbox value="11"> <span>Семейный</span></li>
+  				<li class="search__category-item"><input type=checkbox value="24"> <span>Спорт</span></li>
+  				<li class="search__category-item"><input type=checkbox value="26"> <span>Ток-шоу</span></li>
+  				<li class="search__category-item"><input type=checkbox value="4"> <span>Триллер</span></li>
+  				<li class="search__category-item"><input type=checkbox value="1"> <span>Ужасы</span></li>
+  				<li class="search__category-item"><input type=checkbox value="2"> <span>Фантастика</span></li>
+  				<li class="search__category-item"><input type=checkbox value="18"> <span>Фильм-нуар</span></li>
+  				<li class="search__category-item"><input type=checkbox value="5"> <span>Фэнтези</span></li>
+  				<li class="search__category-item"><input type=checkbox value="1751"> <span>Церемония</span></li>
+  			</ul>
+
+  			<div class="search__sliders">
+  				<div class="search__slider search__slider--years" id="years-slider"></div>
+  				<div class="search__slider search__slider--rating" id="rating-slider"></div>
+  			</div>
+
+  			<div class="search__selects">
+  				<label class="search__select-label" for="film-type">Тип</label>
+  				<select class="select select--search" id="film-type">
+  					<option value="ALL">Любое</option>
+  					<option value="FILM">Фильм</option>
+  					<option value="TV_SHOW">Сериал</option>
+  				</select>
+  				<label class="search__select-label" for="sorting">Сортировка</label>
+  				<select class="select select--search" id="sorting">
+  					<option value="RATING">Рейтинг</option>
+  					<option value="YEAR">Год выпуска</option>
+  				</select>
+  			</div>
+  		</div>
+    </div>
+		<small class="search__help">Поверните для фильтров</small>
+    <nav class="search__nav">
+      <a class="link" href="#">ПОПУЛЯРНОЕ</a>
+      <a class="link" href="#">ПРЕМЬЕРЫ</a>
+      <a class="link" href="#">ПОДБОРКИ</a>
+    </nav>
+  </section>
+  <a class="link header__link" href="/profile">Профиль</a>
+</header>

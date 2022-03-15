@@ -46,3 +46,10 @@ function createSliders() {
     },
   });
 }
+try {
+  createSliders();
+} catch (e) {
+
+} finally {
+
+}

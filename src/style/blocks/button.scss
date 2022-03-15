@@ -1,0 +1,32 @@
+.button {
+  text-transform: uppercase;
+  padding: 14px 37px 16px;
+  background: linear-gradient(94.35deg, rgba(72, 72, 72, 0.2) 0%, rgba(18, 18, 18, 0.2) 100%);
+  border: 1.5px solid #262626;
+  box-sizing: border-box;
+  border-radius: 50px;
+
+  font-family: 'Montserrat';
+  font-style: normal;
+  font-weight: 400;
+  font-size: rel(1920, 18);
+  line-height: rel(1920, 22);
+  display: flex;
+  align-items: center;
+  text-align: center;
+  color: #FFFFFF;
+
+  transition: all 0.3s ease;
+
+  &:hover {
+    border: 1.5px solid #6A6A6A;
+  }
+
+  &:active {
+    opacity: 0.5;
+  }
+
+  @media (max-width: 567px) {
+    padding: 12px 21px 13px;
+  }
+}
