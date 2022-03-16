@@ -1,0 +1,48 @@
+.info-popup {
+  background: linear-gradient(108.51deg, rgba(23, 23, 23, 0.8) 0%, rgba(17, 17, 17, 0.8) 100%);
+  border-radius: 15px;
+  padding: 40px 45px;
+  width: 50%;
+  height: 60%;
+  overflow-y: scroll;
+
+  &::-webkit-scrollbar {
+    width: 0px;
+  }
+
+  h2 {
+    font-family: 'Roboto';
+    font-style: normal;
+    font-weight: 500;
+    font-size: rel(1920, 24);
+    line-height: rel(1920, 28);
+    color: #FFFFFF;
+    margin-bottom: 5%;
+    text-transform: uppercase;
+  }
+
+  p {
+    font-family: 'Montserrat';
+    font-style: normal;
+    font-weight: 400;
+    font-size: rel(1920, 20);
+    line-height: rel(1920, 24);
+    color: #BFBFBF;
+  }
+
+  @media (max-width: 768px) {
+    min-width: 100%;
+    min-height: 100%;
+    border-radius: 0;
+
+    h2 {
+      font-size: 24px;
+      line-height: 28px;
+    }
+
+    p {
+      font-size: 20px;
+      line-height: 24px;
+    }
+  }
+}

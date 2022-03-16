@@ -2,6 +2,7 @@
 @import "normalize";
 @import "global";
 @import "noui";
+@import "popup";
 
 @import "blocks/button";
 @import "blocks/link";
@@ -9,3 +10,5 @@
 @import "blocks/header";
 @import "blocks/search";
 @import "blocks/info";
+
+@import "popups/info-popup";
