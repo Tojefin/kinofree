@@ -45,8 +45,9 @@ var path = {
 /* настройки сервера */
 var config = {
     server: {
-        baseDir: './build'
+        baseDir: './build',
     },
+    port: 80,
     notify: false,
     version: {
         value: '%MDS%',

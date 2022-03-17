@@ -6,7 +6,7 @@
   align-items: center;
   height: 123px;
 
-  @media (max-width: 1023px) {
+  @media (max-width: 1024px) {
     padding: 13px 20px 0 20px;
     flex-wrap: wrap;
   }
@@ -14,7 +14,7 @@
 
 .header__title {
   & h1 {
-    font-family: 'Montserrat';
+    font-family: 'Montserrat', sans-serif;
     font-style: normal;
     font-weight: 700;
     font-size: rel(1920, 64);
@@ -24,7 +24,7 @@
   }
 
   & small {
-    font-family: 'Montserrat';
+    font-family: 'Montserrat', sans-serif;
     font-style: normal;
     font-weight: 400;
     font-size: rel(1920, 20);
@@ -36,7 +36,7 @@
     top: -5px;
   }
 
-  @media (max-width: 1023px) {
+  @media (max-width: 1024px) {
     & h1 {
       font-size: 34px;
       line-height: 41px;
@@ -59,7 +59,7 @@
   text-align: center;
   top: -5px;
 
-  @media (max-width: 1023px) {
+  @media (max-width: 1024px) {
     font-size: 18px;
     line-height: 21px;
   }

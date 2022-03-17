@@ -2,3 +2,4 @@
 //= toggler.js
 //= restyle.js
 //= popup.js
+//= search.js

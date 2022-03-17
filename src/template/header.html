@@ -1,14 +1,14 @@
 <header class="header">
   <div class="header__title">
-    <h1>KinoFree</h1>
+    <a href="./"><h1>KinoFree</h1></a>
     <small>skyedge.xyz</small>
   </div>
   <section class="search">
     <div class="search__form">
       <div class="search__simple">
-  			<input class="search__input" type="text" placeholder="Название фильма" id="search-title" name="title">
+  			<input class="search__input" type="text" placeholder="Название фильма" id="search-title" name="title" onKeydown="javascript:if(event.keyCode==13)preSearch()">
   			<button class="search__open-adv" id="open-adv" onclick="toggleFilters()"></button>
-  			<button class="button search__button" id="search-button">Поиск</button>
+  			<button class="button search__button" onclick="preSearch()">Поиск</button>
   		</div>
   		<div class="search__advanced">
   			<ul class="search__category-list">

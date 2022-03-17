@@ -2,7 +2,7 @@
   align-self: baseline;
   top: 5px;
 
-  @media (max-width: 1023px) {
+  @media (max-width: 1024px) {
     order: 1;
     width: 100vw;
   }
@@ -30,7 +30,7 @@
     }
   }
 
-  @media (max-width: 1023px) {
+  @media (max-width: 1024px) {
     width: 100%;
     min-width: 0;
   	max-width: inherit;
@@ -56,7 +56,7 @@
   flex-grow: 1;
   border: none;
   height: 100%;
-  font-family: 'Montserrat';
+  font-family: 'Montserrat', sans-serif;
   font-style: normal;
   font-weight: 400;
   font-size: rel(1920, 18);
@@ -67,8 +67,8 @@
     outline: none;
   }
 
-  @media (max-width: 1023px) {
-    font-family: 'Roboto';
+  @media (max-width: 1024px) {
+    font-family: 'Roboto', sans-serif;
     font-style: normal;
     font-weight: 300;
     font-size: 12px;
@@ -96,7 +96,7 @@
     height: 39px;
   }
 
-  @media (max-width: 1023px) {
+  @media (max-width: 1024px) {
     font-size: 12px;
     line-height: 14px;
     padding: 12px 23px;
@@ -118,7 +118,7 @@
     top: 70px;
   }
 
-  @media (max-width: 1023px) {
+  @media (max-width: 1024px) {
     font-size: 11px;
     line-height: 13px;
   }
@@ -134,7 +134,7 @@
 
 .search__help {
   width: 100%;
-  font-family: 'Roboto';
+  font-family: 'Roboto', sans-serif;
   font-style: normal;
   font-weight: 300;
   font-size: 10px;
@@ -155,7 +155,7 @@
   max-height: 0;
   padding: 10px;
   overflow: hidden;
-  font-family: 'Roboto';
+  font-family: 'Roboto', sans-serif;
 
   @media (min-width: 535px) {
     display: flex;
@@ -173,7 +173,7 @@
 	text-align: left;
   font-size: rel(1920, 18);
 
-  @media (max-width: 1023px) {
+  @media (max-width: 1024px) {
     font-size: 18px;
   }
 }
@@ -187,7 +187,7 @@
   max-width: 300px;
   width: 15vw;
 
-  @media (max-width: 1023px) {
+  @media (max-width: 1024px) {
     width: 35vw;
   }
 }
