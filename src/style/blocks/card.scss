@@ -196,3 +196,22 @@
     }
   }
 }
+
+.card__other {
+  font-family: 'Montserrat', sans-serif;
+  font-style: normal;
+  font-weight: 300;
+  font-size: rel(1920, 20);
+  line-height: rel(1920, 24);
+  color: #9C9C9C;
+
+  @media (max-width: 1024px) {
+    font-size: 18px;
+    line-height: 21px;
+  }
+
+  @media (max-width: 567px) {
+    font-size: 10px;
+    line-height: 12px;
+  }
+}

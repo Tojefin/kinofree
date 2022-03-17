@@ -104,7 +104,7 @@ window.onload = async function() {
       container.innerHTML += `
         <div>
           <h2 class="card__title">Ничего не найдено</h2>
-          <p class="card__desc">Попробуйте изменить запрос</p>
+          <p class="card__other">Попробуйте изменить запрос</p>
         </div>
       `
       return
