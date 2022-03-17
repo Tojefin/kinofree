@@ -2,7 +2,6 @@ function preSearch(){
   if (document.querySelector('.search__form').classList.contains("search__form--open")) {
     let genr = [];
     document.querySelectorAll('input[type=checkbox]:checked').forEach((item) => {
-      console.log(item.value);
       if (genr == '') {
         genr = item.value;
       } else {
@@ -44,10 +43,16 @@ async function apiReq(url) {
   });
   if (response.ok) {
     let data = await response.json();
-    return data
+    if (data.searchFilmsCountResult != 0) {
+      return data
+    } else {
+      console.log("Ошибка запроса");
+      return 'Error'
+    }
+
   } else {
+    console.log("Ошибка сервера "+response.status);
     return 'Error'
-    alert('Поиск не дал результата ', response.status);
   }
 }
 
@@ -58,7 +63,6 @@ window.onload = async function() {
     if (!urlvars.page) {
       urlvars.page = 1;
     }
-    console.log(urlvars);
     switch (urlvars[0]) {
       case 'keyword':
         var url = ('https://kinopoiskapiunofficial.tech/api/v2.1/films/search-by-keyword?keyword=' + urlvars.keyword + '&page=' + urlvars.page);
@@ -68,6 +72,28 @@ window.onload = async function() {
         urlvars.rating = urlvars.rating.split(',')
         urlvars.years = urlvars.years.split(',')
         var url = ('https://kinopoiskapiunofficial.tech/api/v2.1/films/search-by-filters?genre=' + urlvars.genr + '&order=' + urlvars.sort + '&type=' + urlvars.type + '&ratingFrom=' + urlvars.rating[0] + '&ratingTo=' + urlvars.rating[1] + '&yearFrom=' + urlvars.years[0] + '&yearTo=' + urlvars.years[1] + '&page=' + urlvars.page);
+        break;
+      case 'popular':
+        var url = ('https://kinopoiskapiunofficial.tech/api/v2.2/films/top?type=TOP_100_POPULAR_FILMS&page=' + urlvars.page);
+        break;
+      case 'premiers':
+        let date = new Date();
+        let month = new Array();
+        month[0] = "JANUARY";
+        month[1] = "FEBRUARY";
+        month[2] = "MARCH";
+        month[3] = "APRIL";
+        month[4] = "MAY";
+        month[5] = "JUNE";
+        month[6] = "JULY";
+        month[7] = "AUGUST";
+        month[8] = "SEPTEMBER";
+        month[9] = "OCTOBER";
+        month[10] = "NOVEMBER";
+        month[11] = "DECEMBER";
+        let tmonth = month[date.getMonth()];
+        let year = date.getYear()
+        var url = ('https://kinopoiskapiunofficial.tech/api/v2.2/films/premieres?year=20'+year.toString().substring(1)+'&month=' + tmonth);
         break;
     }
 
@@ -81,14 +107,37 @@ window.onload = async function() {
           <p class="card__desc">Попробуйте изменить запрос</p>
         </div>
       `
+      return
     }
 
-    res.films.forEach((item) => {
+    if (res.films) {
+      var li = 'films';
+    } else {
+      var li = 'items';
+    }
+
+    res[li].forEach((item) => {
       var head = `
         <a href="/watch?id=${item.filmId}"><h2 class="card__title" title="${item.nameRu}">${item.nameRu}</h2></a>
-        <small class="card__year">${item.year.replace('null', '-')}</small>
-        <small class="card__rating">${item.rating.replace('null', '-')}</small>
       `
+      if (item.premiereRu) {
+        var year = `
+          <small class="card__year">${item.premiereRu.replace('null', '-')}</small>
+        `
+      } else {
+        var year = `
+          <small class="card__year">${item.year.replace('null', '-')}</small>
+        `
+      }
+      if (item.rating) {
+        var rating = `
+          <small class="card__rating">${item.rating.replace('null', '-')}</small>
+        `
+      } else {
+        var rating = `
+          <small class="card__rating">-</small>
+        `
+      }
       if (item.description) {
         var text = `
           <p class="card__desc">${item.description.replace('null', '-')}</p>
@@ -109,6 +158,8 @@ window.onload = async function() {
           <a href="/watch?id=${item.filmId}"><img class="card__img" loading="lazy" src="${item.posterUrl}"></a>
           <div class="card__info">
             ${head}
+            ${year}
+            ${rating}
             ${text}
           </div>
         </div>
@@ -118,7 +169,13 @@ window.onload = async function() {
     var prew = +urlvars.page - 1;
     var next = +urlvars.page + 1;
     if (urlvars.page == 1) {
-      container.innerHTML += `<input class="button result__button" type="button" value="Страница ${next}" onclick="location.href='${location.href.replace("&page="+urlvars.page, "&page="+next)}'">`
+      let vars = getUrlVars()
+      if (vars.page) {
+        container.innerHTML += `<input class="button result__button" type="button" value="Страница ${next}" onclick="location.href='${location.href.replace("&page="+urlvars.page, "&page="+next)}'">`
+      } else {
+        container.innerHTML += `<input class="button result__button" type="button" value="Страница ${next}" onclick="location.href='${location.href}&page=2'">`
+      }
+
     } else {
       container.innerHTML +=`<div style="display: flex;"><input class="button result__button" type="button" value="Страница ${prew}" onclick="location.href='${location.href.replace("&page="+urlvars.page, "&page="+prew)}'"> <input class="button result__button" type="button" value="Страница ${next}" onclick="location.href='${location.href.replace("&page="+urlvars.page, "&page="+next)}'"></div>`
     };
