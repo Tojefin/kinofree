@@ -2,22 +2,20 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  padding-top: 100vh;
   opacity: 0;
   position: fixed;
   height: 100vh;
   width: 100vw;
   left: 0;
   top: 0;
-  background-color: rgba(0, 0, 0, 0);
-  transition: all ease 0.4s;
-  z-index: -1000;
+  background-color: rgba(0, 0, 0, 0.3);
+  transition: all linear 0.3s;
+  backdrop-filter: blur(0px);
+  z-index: -1;
 
   &--active {
     opacity: 1;
-    padding-top: 0;
-    background-color: rgba(0, 0, 0, 0.3);
     backdrop-filter: blur(7px);
-    z-index: 1000;
+    z-index: 10;
   }
 }

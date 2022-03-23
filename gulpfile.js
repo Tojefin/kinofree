@@ -46,6 +46,9 @@ var path = {
 var config = {
     server: {
         baseDir: './build',
+        serveStaticOptions: {
+            extensions: ['html']
+        }
     },
     port: 80,
     notify: false,
@@ -132,6 +135,12 @@ gulp.task('fonts:build', function () {
         .pipe(gulp.dest(path.build.fonts));
 });
 
+// перенос остальных файлов
+gulp.task('copy:build', function () {
+    return gulp.src(['src/.htaccess', 'src/site.webmanifest', 'src/CNAME', 'src/arc-sw.js'])
+        .pipe(gulp.dest(path.build.html));
+});
+
 // обработка картинок
 gulp.task('image:build', function () {
     return gulp.src(path.src.img)                       // путь с исходниками картинок
@@ -177,6 +186,7 @@ gulp.task('build',
         gulp.parallel(
             'html:build',
             'css:build',
+            'copy:build',
             'js:build',
             'fonts:build',
             'image:build',
