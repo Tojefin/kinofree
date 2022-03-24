@@ -1,8 +1,8 @@
-window.onload = function() {
+window.addEventListener('load', (event) => {
   if (location.pathname == '/search') {
     search()
   }
-}
+});
 
 function preSearch(){
   let newhref
@@ -29,7 +29,7 @@ function preSearch(){
 
   if (location.pathname == '/search') {
     let url = new URL(newhref, window.location.origin)
-    window.history.pushState({}, '', url)
+    window.history.replaceState({}, '', url)
     search()
   } else {
     location.href = newhref

@@ -3,3 +3,5 @@
 //= restyle.js
 //= popup.js
 //= search.js
+//= selector.js
+//= watch.js

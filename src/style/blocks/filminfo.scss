@@ -1,0 +1,52 @@
+.filminfo {
+
+}
+
+.filminfo__title {
+  font-family: 'Montserrat';
+  font-style: normal;
+  font-weight: 600;
+  font-size: rel(1920, 26);
+  line-height: rel(1920, 32);
+  color: #FFFFFF;
+  margin-bottom: 5%;
+}
+
+.filminfo__num {
+  font-family: 'Montserrat';
+  font-style: normal;
+  font-weight: 400;
+  font-size: rel(1920, 20);
+  line-height: rel(1920, 24);
+  display: inline-block;
+  color: #FFFFFF;
+  margin-bottom: 5%;
+
+  &--rating {
+    color: #5AFF91;
+  }
+}
+
+.filminfo__desc {
+  font-family: 'Montserrat';
+  font-style: normal;
+  font-weight: 300;
+  font-size: rel(1920, 20);
+  line-height: rel(1920, 24);
+  display: flex;
+  align-items: center;
+  color: #9C9C9C;
+  margin-bottom: 5%;
+}
+
+.filminfo__other {
+  font-family: 'Montserrat';
+  font-style: normal;
+  font-weight: 400;
+  font-size: rel(1920, 18);
+  line-height: rel(1920, 22);
+  color: #FFFFFF;
+  display: inline-block;
+  margin-bottom: 2%;
+  margin-right: 32px;
+}

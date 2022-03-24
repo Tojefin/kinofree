@@ -1,0 +1,24 @@
+.watch {
+  margin-top: 80px;
+  margin-left: 86px;
+  display: flex;
+  gap: 5%;
+
+  @media (max-width: 1024px) {
+    margin-left: 20px;
+  }
+
+  @media (max-width: 768px) {
+    margin-right: 20px;
+    margin-top: 70px;
+  }
+}
+
+.watch__player {
+  width: rel(1920, 980);
+  aspect-ratio: 16 / 9;
+  border-radius: 20px;
+  animation-duration: 3s;
+  animation-name: gradientRoll;
+  animation-iteration-count: infinite;
+}
