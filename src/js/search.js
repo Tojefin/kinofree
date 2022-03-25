@@ -26,51 +26,24 @@ function preSearch(){
     let keyword = document.querySelector('#search-title').value
     newhref = `search?keyword=${keyword}`
   }
+  searchStart(newhref)
+}
 
+function searchStart(newhref){
   if (location.pathname == '/search') {
     let url = new URL(newhref, window.location.origin)
     window.history.replaceState({}, '', url)
+    window.scrollTo(0, 0);
     search()
   } else {
     location.href = newhref
   }
 }
 
-function getUrlVars() {
-  var vars = [], hash;
-  var hashes = window.location.href.slice(window.location.href.indexOf('?') + 1).split('&');
-  for(var i = 0; i < hashes.length; i++){
-    hash = hashes[i].split('=');
-    vars.push(hash[0]);
-    vars[hash[0]] = hash[1];
-  }
-  return vars;
-}
-
-async function apiReq(url) {
-  let response = await fetch(url, {
-    method: 'GET',
-    headers: {
-      "Content-Type": "application/json",
-      "X-API-KEY": "4b12f46d-638b-4bac-bf06-33865d3a3524",
-    },
-  });
-  if (response.ok) {
-    let data = await response.json();
-    if (data.searchFilmsCountResult != 0) {
-      return data
-    } else {
-      console.log("Ошибка запроса");
-      return 'Error'
-    }
-  } else {
-    console.log("Ошибка сервера "+response.status);
-    return 'Error'
-  }
-}
-
 async function search() {
-  container = document.querySelector('.result')
+  section = document.querySelector('.result')
+  nav = section.querySelector('.result__nav')
+  container = section.querySelector('.result__list')
   container.innerHTML = `
     <div class="card__loading"></div>
     <div class="card__loading"></div>
@@ -83,14 +56,14 @@ async function search() {
 
   switch (urlvars[0]) {
     case 'keyword':
-      var url = ('https://kinopoiskapiunofficial.tech/api/v2.1/films/search-by-keyword?keyword=' + urlvars.keyword + '&page=' + urlvars.page);
+      var url = ('https://kinopoiskapiunofficial.tech/api/v2.2/films?keyword=' + urlvars.keyword + '&page=' + urlvars.page);
       document.querySelector('#search-title').value = decodeURI(urlvars.keyword)
       break;
     case 'genr':
       urlvars.genr = urlvars.genr.split(',')
       urlvars.rating = urlvars.rating.split(',')
       urlvars.years = urlvars.years.split(',')
-      var url = ('https://kinopoiskapiunofficial.tech/api/v2.1/films/search-by-filters?genre=' + urlvars.genr + '&order=' + urlvars.sort + '&type=' + urlvars.type + '&ratingFrom=' + urlvars.rating[0] + '&ratingTo=' + urlvars.rating[1] + '&yearFrom=' + urlvars.years[0] + '&yearTo=' + urlvars.years[1] + '&page=' + urlvars.page);
+      var url = ('https://kinopoiskapiunofficial.tech/api/v2.2/films?genres=' + urlvars.genr + '&order=' + urlvars.sort + '&type=' + urlvars.type + '&ratingFrom=' + urlvars.rating[0] + '&ratingTo=' + urlvars.rating[1] + '&yearFrom=' + urlvars.years[0] + '&yearTo=' + urlvars.years[1] + '&page=' + urlvars.page);
       break;
     case 'popular':
       var url = ('https://kinopoiskapiunofficial.tech/api/v2.2/films/top?type=TOP_100_POPULAR_FILMS&page=' + urlvars.page);
@@ -101,6 +74,12 @@ async function search() {
       let tmonth = month[date.getMonth()];
       let year = date.getYear()
       var url = ('https://kinopoiskapiunofficial.tech/api/v2.2/films/premieres?year=20'+year.toString().substring(1)+'&month=' + tmonth);
+      break;
+    case 'id':
+      if (urlvars.type == 'similars') {
+        var version = "2"
+      } else {var version = "1"}
+      var url = (`https://kinopoiskapiunofficial.tech/api/v2.${version}/films/${urlvars.id}/${urlvars.type}`);
       break;
   }
 
@@ -114,58 +93,43 @@ async function search() {
         <p class="card__other">Попробуйте изменить запрос</p>
       </div>
     `
+    nav.innerHTML = ''
     return
   }
 
-  if (res.films) {
-    var li = 'films';
-  } else {
-    var li = 'items';
-  }
-
-  res[li].forEach((item) => {
-    var head = `
-      <a href="/watch?id=${item.filmId}"><h2 class="card__title" title="${item.nameRu}">${item.nameRu}</h2></a>
-    `
-    if (item.premiereRu) {
-      var year = `
-        <small class="card__year">${item.premiereRu.replace('null', '-')}</small>
-      `
-    } else {
-      var year = `
-        <small class="card__year">${item.year.replace('null', '-')}</small>
-      `
-    }
-
-    if (item.rating) {
-      var rating = `
-        <small class="card__rating">${item.rating.replace('null', '-')}</small>
-      `
-    } else {
-      var rating = `
-        <small class="card__rating">-</small>
-      `
-    }
-
-    if (item.description) {
-      var text = `
-        <p class="card__desc">${item.description.replace('null', '-')}</p>
-      `
-    }
-
+  res = res.films ?? res.items
+  res.forEach((item) => {
     if (item.genres) {
-      var genr = ''
-      item.genres.forEach((i) => {
-        genr = `${genr}${i.genre} `
-      });
-      var text = `
-        <p class="card__desc">${genr}</p>
-      `
+      var genr = '';
+      item.genres.forEach((i) => {genr = `${genr}${i.genre} `});
     }
+    if (item.relationType) {
+      if (item.relationType == "SEQUEL") {
+        var linkType = 'Продолжение';
+      } else {var linkType = 'Предыстория';}
+    }
+    var id = item.kinopoiskId ?? item.filmId;
+    var name = item.nameRu ?? item.nameOriginal ?? "-";
+    var year = item.premiereRu ?? item.year ?? "-";
+    var rating = item.ratingKinopoisk ?? item.rating ?? item.ratingImdb ?? "-";
+    var desc = item.description ?? genr ?? linkType ?? "-";
+
+    var head = `
+      <a href="/watch?id=${id}"><h2 class="card__title" title="${name}">${name}</h2></a>
+    `;
+    var year = `
+      <small class="card__year">${year}</small>
+    `;
+    var rating =`
+      <small class="card__rating">${rating}</small>
+    `;
+    var text = `
+      <p class="card__desc">${desc}</p>
+    `;
 
     container.innerHTML += `
       <div class="card">
-        <a href="/watch?id=${item.filmId}"><img class="card__img" loading="lazy" src="${item.posterUrl}"></a>
+        <a href="/watch?id=${id}"><img class="card__img" loading="lazy" src="${item.posterUrlPreview}"></a>
         <div class="card__info">
           ${head}
           ${year}
@@ -173,7 +137,7 @@ async function search() {
           ${text}
         </div>
       </div>
-    `
+    `;
   });
 
   var prew = +urlvars.page - 1;
@@ -181,12 +145,12 @@ async function search() {
   if (urlvars.page == 1) {
     let vars = getUrlVars()
     if (vars.page) {
-      container.innerHTML += `<input class="button result__button" type="button" value="Страница ${next}" onclick="location.href='${location.href.replace("&page="+urlvars.page, "&page="+next)}'">`
+      nav.innerHTML = `<p>Страница ${urlvars.page}</p> <input class="button result__button" type="button" value=">" onclick="searchStart('search${location.search.replace("&page="+urlvars.page, "&page="+next)}')">`
     } else {
-      container.innerHTML += `<input class="button result__button" type="button" value="Страница ${next}" onclick="location.href='${location.href}&page=2'">`
+      nav.innerHTML = `<p>Страница ${urlvars.page}</p> <input class="button result__button" type="button" value=">" onclick="searchStart('search${location.search}&page=2')">`
     }
 
   } else {
-    container.innerHTML +=`<div style="display: flex;"><input class="button result__button" type="button" value="Страница ${prew}" onclick="location.href='${location.href.replace("&page="+urlvars.page, "&page="+prew)}'"> <input class="button result__button" type="button" value="Страница ${next}" onclick="location.href='${location.href.replace("&page="+urlvars.page, "&page="+next)}'"></div>`
+    nav.innerHTML =`<input class="button result__button" type="button" value="<" onclick="searchStart('search${location.search.replace("&page="+urlvars.page, "&page="+prew)}')"> <p>Страница ${urlvars.page}</p> <input class="button result__button" type="button" value=">" onclick="searchStart('search${location.search.replace("&page="+urlvars.page, "&page="+next)}')">`
   };
 }

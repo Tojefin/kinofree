@@ -43,17 +43,19 @@
 .card__img {
   animation-duration: 3s;
   animation-name: gradientRoll;
-  animation-iteration-count: infinite;
+  animation-iteration-count: 3;
   border-radius: 20px;
+  aspect-ratio: 4 / 5;
   height: 100%;
-  min-width: rel(1920, 182);
+  max-width: rel(1920, 182);
 
   @media (max-width: 1024px) {
-    width: rel(568, 123);
+    max-width: rel(568, 123);
   }
 
   @media (max-width: 567px) {
-    width: rel(320, 78);
+    aspect-ratio: 4 / 6;
+    max-width: rel(320, 78);
   }
 }
 

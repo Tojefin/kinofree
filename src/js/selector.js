@@ -14,6 +14,9 @@ function selectOnChange(origin, value, oldvalue) {
       selectChangeValue(origin, 0, true)
       alert('Эта функция пока не работает')
     }
+    if (origin.id == 'playerUsed') {
+      loadPlayer()
+    }
   }
 }
 
@@ -72,8 +75,8 @@ if (selectors) {
       element.classList = `${item.classList[0]}__container`
       element.innerHTML = select
       item.parentNode.insertBefore(element, item);
-      item.style.position = 'absolute';
-      item.style.top = '100vh';
+      item.style.position = 'fixed';
+      item.style.top = '-100vh';
     });
   } else {
     selectors.forEach((item) => {

@@ -16,7 +16,6 @@ function popupShow(id) {
 
   if (container.classList.contains('popup-container--active')) {
     history.replaceState("", document.title, window.location.pathname + window.location.search);
-    history.back();
   }
   return container.classList.toggle('popup-container--active');
 }

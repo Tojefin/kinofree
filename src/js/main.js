@@ -5,3 +5,4 @@
 //= search.js
 //= selector.js
 //= watch.js
+//= tools.js
