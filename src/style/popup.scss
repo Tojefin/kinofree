@@ -1,0 +1,21 @@
+.popup-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  position: fixed;
+  height: 100vh;
+  width: 100vw;
+  left: 0;
+  top: 0;
+  background-color: rgba(0, 0, 0, 0.3);
+  transition: all linear 0.3s;
+  backdrop-filter: blur(0px);
+  z-index: -1;
+
+  &--active {
+    opacity: 1;
+    backdrop-filter: blur(7px);
+    z-index: 10;
+  }
+}

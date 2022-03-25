@@ -1,0 +1,118 @@
+.filminfo {
+  @media (max-width: 1023px) {
+    max-width: 660px;
+    width: rel(568, 528);
+    display: flex;
+    flex-direction: column;
+  }
+
+  @media (max-width: 567px) {
+    max-width: 528px;
+    width: rel(320, 280);
+  }
+}
+
+.filminfo__texts{
+  @media (max-width: 1023px) {
+    order: 2
+  }
+}
+
+.filminfo__nav{
+  @media (max-width: 1023px) {
+    order: 1
+  }
+}
+
+.filminfo__title {
+  font-family: 'Montserrat';
+  font-style: normal;
+  font-weight: 600;
+  font-size: rel(1920, 26);
+  line-height: rel(1920, 32);
+  color: #FFFFFF;
+  margin-bottom: 5%;
+
+  @media (max-width: 1023px) {
+    font-size: 26px;
+    line-height: 32px;
+  }
+
+  @media (max-width: 567px) {
+    font-size: 18px;
+    line-height: 22px;
+  }
+}
+
+.filminfo__num {
+  font-family: 'Montserrat';
+  font-style: normal;
+  font-weight: 400;
+  font-size: rel(1920, 20);
+  line-height: rel(1920, 24);
+  display: inline-block;
+  color: #FFFFFF;
+  margin-bottom: 5%;
+  margin-right: 45px;
+
+  &--rating {
+    color: #5AFF91;
+  }
+
+  @media (max-width: 1023px) {
+    font-size: 20px;
+    line-height: 24px;
+    margin-right: 25px;
+  }
+
+  @media (max-width: 567px) {
+    font-size: 16px;
+    line-height: 20px;
+  }
+}
+
+.filminfo__desc {
+  font-family: 'Montserrat';
+  font-style: normal;
+  font-weight: 300;
+  font-size: rel(1920, 20);
+  line-height: rel(1920, 24);
+  color: #9C9C9C;
+  margin-bottom: 5%;
+  padding-right: 10%;
+
+  @media (max-width: 1023px) {
+    font-size: 20px;
+    line-height: 24px;
+    max-height: 200px;
+    overflow-y: scroll;
+  }
+
+  @media (max-width: 567px) {
+    font-size: 16px;
+    line-height: 20px;
+  }
+}
+
+.filminfo__other {
+  font-family: 'Montserrat';
+  font-style: normal;
+  font-weight: 400;
+  font-size: rel(1920, 18);
+  line-height: rel(1920, 22);
+  color: #FFFFFF;
+  display: inline-block;
+  margin-bottom: 2%;
+  margin-right: 32px;
+
+  @media (max-width: 1023px) {
+    font-size: 18px;
+    line-height: 22px;
+    margin-right: 15px;
+  }
+
+  @media (max-width: 567px) {
+    font-size: 16px;
+    line-height: 20px;
+  }
+}
