@@ -1,9 +1,0 @@
-.result {
-  max-width: 720px;
-  margin: 0 auto;
-}
-
-.result_list {
-  display: flex;
-  flex-direction: column;
-}
