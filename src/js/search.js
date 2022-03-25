@@ -106,7 +106,9 @@ async function search() {
     if (item.relationType) {
       if (item.relationType == "SEQUEL") {
         var linkType = 'Продолжение';
-      } else {var linkType = 'Предыстория';}
+      } else if (item.relationType == "PREQUEL") {
+        var linkType = 'Предыстория';
+      }
     }
     var id = item.kinopoiskId ?? item.filmId;
     var name = item.nameRu ?? item.nameOriginal ?? "-";

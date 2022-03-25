@@ -12,7 +12,6 @@ function selectOnChange(origin, value, oldvalue) {
   if (value != oldvalue) {
     if (origin.id == 'filmState') {
       selectChangeValue(origin, 0, true)
-      alert('Эта функция пока не работает')
     }
     if (origin.id == 'playerUsed') {
       loadPlayer()
