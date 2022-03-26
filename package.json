@@ -11,6 +11,7 @@
   },
   "dependencies": {
     "gift": "^0.10.2",
+    "gulp-uglify-es": "^3.0.0",
     "popper.js": "^1.14.6"
   },
   "scripts": {
@@ -32,7 +33,6 @@
     "gulp-rigger": "^0.5.8",
     "gulp-rimraf": "^0.2.2",
     "gulp-sass": "^4.0.2",
-    "gulp-uglify-es": "^1.0.4",
     "gulp-version-number": "^0.2.3",
     "gulp-webp": "^4.0.1",
     "imagemin-jpeg-recompress": "^6.0.0",

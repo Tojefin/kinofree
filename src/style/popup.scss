@@ -9,13 +9,12 @@
   left: 0;
   top: 0;
   background-color: rgba(0, 0, 0, 0.3);
-  transition: all linear 0.3s;
-  backdrop-filter: blur(0px);
+  transition: all ease 0.3s;
+  backdrop-filter: blur(7px);
   z-index: -1;
 
   &--active {
     opacity: 1;
-    backdrop-filter: blur(7px);
     z-index: 10;
   }
 }
