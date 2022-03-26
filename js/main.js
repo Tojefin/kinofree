@@ -375,7 +375,7 @@ function watchSearch(type) {
     `
     document.querySelector('.container').appendChild(element);
   }
-  
+
   let urlvars = getUrlVars();
   let newhref = `watch?id=${urlvars.id}&type=${type}`;
   let url = new URL(newhref, window.location.origin);
@@ -393,7 +393,7 @@ function loadPlayer() {
       iframe.src = `https://api1629919197.tobaco.ws/embed/kp/${urlvars.id}`
       break;
     case '1':
-      iframe.src = `https://patriot.allohastream.com/?token=70f3e30270ec1a18376655a55e8646&amp;kp=${urlvars.id}`
+      iframe.src = `https://patriot.allohastream.com/?token=70f3e30270ec1a18376655a55e8646&kp=${urlvars.id}`
       break;
     case '2':
       iframe.src = `https://vcdn.kinoapi.club/sZfbdItt5jeX?kp_id=${urlvars.id}`
