@@ -116,8 +116,8 @@ function preSearch(){
       }
     });
 
-    let sorting = document.getElementById("sorting").value;
-    let type = document.getElementById("film-type").value;
+    let sorting = document.querySelector("select#sorting").value;
+    let type = document.querySelector("select#film-type").value;
     let years = document.getElementById('years-slider').noUiSlider.get(true);
     let rating = document.getElementById('rating-slider').noUiSlider.get(true);
 

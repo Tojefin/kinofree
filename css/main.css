@@ -537,7 +537,8 @@ mark {
   line-height: 1.14583vw;
   color: #C9C9C9;
   cursor: pointer;
-  margin: 10px auto; }
+  margin: 10px auto;
+  white-space: nowrap; }
   .selector__item--active {
     color: #FFFFFF; }
   @media (max-width: 1023px) {
@@ -800,6 +801,11 @@ mark {
 
 .search__select-label {
   color: #FFFFFF; }
+
+.select--search {
+  color: #fff;
+  font-size: 1.04167vw;
+  font-weight: 300; }
 
 input[type=checkbox] {
   background-color: #DDD;
