@@ -1304,7 +1304,7 @@ input[type=checkbox]:checked {
     font-size: 1.25vw;
     line-height: 1.45833vw;
     color: #FFFFFF;
-    margin-bottom: 5%;
+    margin-bottom: 2%;
     text-transform: uppercase; }
   .info-popup p {
     font-family: 'Montserrat';

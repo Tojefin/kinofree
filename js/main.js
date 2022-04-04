@@ -62,6 +62,8 @@ document.addEventListener('DOMNodeInserted', e => {
     elm.style.background = '#444';
   }
 })
+//https://github.com/Tojefin/JS-tools
+
 function popupShow(id) {
   const container = document.querySelector('.popup-container')
   if (!container) {return console.log("Контейнер не найден")}
@@ -79,6 +81,7 @@ function popupShow(id) {
   }
 
   if (container.classList.contains('popup-container--active')) {
+    container.innerHTML = '';
     history.replaceState("", document.title, window.location.pathname + window.location.search);
   }
   return container.classList.toggle('popup-container--active');
@@ -180,10 +183,10 @@ async function search() {
       break;
   }
 
-  let res = await apiReq(url)
+  let response = await apiReq(url)
   container.innerHTML = ''
 
-  if (res == 'Error') {
+  if (response == 'Error' || response =='') {
     container.innerHTML += `
       <div>
         <h2 class="card__title">Ничего не найдено</h2>
@@ -194,7 +197,7 @@ async function search() {
     return
   }
 
-  res = res.films ?? res.items
+  res = response.films ?? response.items ?? response
   res.forEach((item) => {
     if (item.genres) {
       var genr = '';
@@ -239,38 +242,48 @@ async function search() {
     `;
   });
 
-  var prew = +urlvars.page - 1;
-  var next = +urlvars.page + 1;
-  if (urlvars.page == 1) {
+  let pageCount = response.totalPages ?? response.pagesCount;
+
+  if (pageCount) {
+    var prew = +urlvars.page - 1;
+    var next = +urlvars.page + 1;
+
+    let prewB = `<input class="button result__button" type="button" value="<" onclick="searchStart('search${location.search.replace("&page="+urlvars.page, "&page="+prew)}')">`
+    let nextB
+
     let vars = getUrlVars()
     if (vars.page) {
-      nav.innerHTML = `<p>Страница ${urlvars.page}</p> <input class="button result__button" type="button" value=">" onclick="searchStart('search${location.search.replace("&page="+urlvars.page, "&page="+next)}')">`
+      nextB = `<input class="button result__button" type="button" value=">" onclick="searchStart('search${location.search.replace("&page="+urlvars.page, "&page="+next)}')">`
     } else {
-      nav.innerHTML = `<p>Страница ${urlvars.page}</p> <input class="button result__button" type="button" value=">" onclick="searchStart('search${location.search}&page=2')">`
+      nextB = `<input class="button result__button" type="button" value=">" onclick="searchStart('search${location.search}&page=2')">`
     }
 
-  } else {
-    nav.innerHTML =`<input class="button result__button" type="button" value="<" onclick="searchStart('search${location.search.replace("&page="+urlvars.page, "&page="+prew)}')"> <p>Страница ${urlvars.page}</p> <input class="button result__button" type="button" value=">" onclick="searchStart('search${location.search.replace("&page="+urlvars.page, "&page="+next)}')">`
-  };
+    if (urlvars.page == 1) {
+      nav.innerHTML = `<p>Страница ${urlvars.page}</p> ${nextB}`
+    } else if (pageCount != urlvars.page) {
+      nav.innerHTML =`${prewB} <p>Страница ${urlvars.page}</p> ${nextB}`
+    } else {
+      nav.innerHTML =`${prewB} <p>Страница ${urlvars.page}</p>`
+    };
+  }
 }
-// by Tojefin
-// v1.0
-// Как использовать:
-// 1. Разметить обычный селект
-// 2. Указать id селекту
-// 3. Добавить основной класс для селекта
-// 4. В опции прописать числовой value от 0
-// 5. Классы для стилей <основной класс>__[container, list, list--open, item, item--active]
+//https://github.com/Tojefin/JS-tools
 
 //События селектов
-function selectOnChange(origin, value, oldvalue) {
-  if (value != oldvalue) {
-    if (origin.id == 'filmState') {
-      selectChangeValue(origin, 0, true)
+function selectOnChange(origin, valueId, oldvalueId) {
+  if (valueId != oldvalueId) {
+    if (origin.querySelectorAll('option')[oldvalueId]) {
+      var oldvalue = origin.querySelectorAll('option')[oldvalueId].value
+    } else {
+      var oldvalue = null
     }
-    if (origin.id == 'playerUsed') {
-      loadPlayer()
-    }
+    let value = origin.value
+    const event = new CustomEvent('selectorChange', {
+      bubbles: true,
+      detail: {value: `${value}`, oldvalue: `${oldvalue}`,
+        valueId: `${valueId}`, oldvalueId: `${oldvalueId}`}
+      });
+    origin.dispatchEvent(event);
   }
 }
 
@@ -284,13 +297,13 @@ function selectOption(option) {
 
 //Изменение значения
 function selectChangeValue(origin, value, noevent) {
-  oldvalue = origin.value
   let select = document.querySelector(`div#${origin.id}`)
   if (select) {
-    select.value = value
+    oldvalue = select.value
     select.querySelector('span').innerText = select.querySelectorAll('li')[value].innerText
+    select.value = value
   }
-  origin.value = value
+  origin.value = origin.querySelectorAll('option')[value].value
   if (!noevent) {
     selectOnChange(origin, value, oldvalue)
   }
@@ -304,39 +317,50 @@ function selectToggle(select) {
   if (list.classList.contains(`${list.classList[0]}--open`)) {
     let options = ``;
     document.querySelector(`select#${select.id}`).querySelectorAll('option').forEach((opt, i) => {
-      if (i == select.value) {
-        options = `${options}<li class="${className}__item ${className}__item--active" value="${i}" onclick="selectOption(this)">${opt.innerText}</li>`
+      if (opt.value == select.value) {
+        classList = `${className}__item ${className}__item--active`
       } else {
-        options = `${options}<li class="${className}__item" value="${i}" onclick="selectOption(this)">${opt.innerText}</li>`
+        classList = `${className}__item`
       }
+      options = `${options}<li class="${classList}" value="${i}" onclick="selectOption(this)">${opt.innerText}</li>`
     });
     list.innerHTML = `${options}`
+    select.focus();
+    select.addEventListener('focusout', () => {
+      list.classList.remove(`${list.classList[0]}--open`)
+      list.innerHTML = '';
+    }, {once: true})
+  } else {
+    list.innerHTML = '';
   }
 }
 
 // Инициализация селектов
-const selectors = document.querySelectorAll('.selector')
+const selectors = document.querySelectorAll('select')
 if (selectors) {
   if (window.innerWidth > 768) {
     selectors.forEach((item) => {
       let select = `
-          <span class="${item.classList}" onclick="selectToggle(this.parentNode)">${Array.from(item.querySelectorAll('option'))[item.value].innerText}</span>
-          <ul class="${item.classList[0]}__list">
-          </ul>
+        <span class="${item.classList}" onclick="selectToggle(this.parentNode)">${Array.from(item.querySelectorAll('option'))[0].innerText}</span>
+        <ul class="${item.classList[0]}__list"></ul>
       `
       let element = document.createElement('div');
       element.id = item.id
+      element.value = 0
+      element.tabIndex = '-1'
       element.classList = `${item.classList[0]}__container`
       element.innerHTML = select
       item.parentNode.insertBefore(element, item);
-      item.style.position = 'fixed';
-      item.style.top = '-100vh';
+      item.style.cssText = `
+        position: fixed;
+        top: -100vh;
+      `;
     });
   } else {
     selectors.forEach((item) => {
       item.addEventListener('change', (event) => {
         let origin = document.querySelector(`select#${event.target.id}`)
-        selectOnChange(origin, origin.value)
+        selectOnChange(origin, origin.value, null)
       });
     });
   }
@@ -359,6 +383,15 @@ async function watch() {
   document.querySelector('#rating').innerText = res.ratingKinopoisk ?? res.rating ?? res.ratingImdb ?? "-"
   document.querySelector('#age').innerText = res.ratingAgeLimits.split('age')[1]+'+' ?? "-"
   document.querySelector('#desc').innerText = res.description ?? "-"
+
+  let filmState = document.querySelector('select#filmState')
+  filmState.addEventListener('selectorChange', () => {
+    selectChangeValue(filmState, 0, true)
+  })
+  let playerUsed = document.querySelector('select#playerUsed')
+  playerUsed.addEventListener('selectorChange', () => {
+    loadPlayer(playerUsed.value)
+  })
 }
 
 function watchSearch(type) {
