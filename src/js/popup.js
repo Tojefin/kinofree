@@ -1,3 +1,5 @@
+//https://github.com/Tojefin/JS-tools
+
 function popupShow(id) {
   const container = document.querySelector('.popup-container')
   if (!container) {return console.log("Контейнер не найден")}
@@ -15,6 +17,7 @@ function popupShow(id) {
   }
 
   if (container.classList.contains('popup-container--active')) {
+    container.innerHTML = '';
     history.replaceState("", document.title, window.location.pathname + window.location.search);
   }
   return container.classList.toggle('popup-container--active');

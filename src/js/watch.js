@@ -16,6 +16,15 @@ async function watch() {
   document.querySelector('#rating').innerText = res.ratingKinopoisk ?? res.rating ?? res.ratingImdb ?? "-"
   document.querySelector('#age').innerText = res.ratingAgeLimits.split('age')[1]+'+' ?? "-"
   document.querySelector('#desc').innerText = res.description ?? "-"
+
+  let filmState = document.querySelector('select#filmState')
+  filmState.addEventListener('selectorChange', () => {
+    selectChangeValue(filmState, 0, true)
+  })
+  let playerUsed = document.querySelector('select#playerUsed')
+  playerUsed.addEventListener('selectorChange', () => {
+    loadPlayer(playerUsed.value)
+  })
 }
 
 function watchSearch(type) {

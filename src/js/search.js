@@ -83,10 +83,10 @@ async function search() {
       break;
   }
 
-  let res = await apiReq(url)
+  let response = await apiReq(url)
   container.innerHTML = ''
 
-  if (res == 'Error') {
+  if (response == 'Error' || response =='') {
     container.innerHTML += `
       <div>
         <h2 class="card__title">Ничего не найдено</h2>
@@ -97,7 +97,7 @@ async function search() {
     return
   }
 
-  res = res.films ?? res.items
+  res = response.films ?? response.items ?? response
   res.forEach((item) => {
     if (item.genres) {
       var genr = '';
@@ -142,17 +142,28 @@ async function search() {
     `;
   });
 
-  var prew = +urlvars.page - 1;
-  var next = +urlvars.page + 1;
-  if (urlvars.page == 1) {
+  let pageCount = response.totalPages ?? response.pagesCount;
+
+  if (pageCount) {
+    var prew = +urlvars.page - 1;
+    var next = +urlvars.page + 1;
+
+    let prewB = `<input class="button result__button" type="button" value="<" onclick="searchStart('search${location.search.replace("&page="+urlvars.page, "&page="+prew)}')">`
+    let nextB
+
     let vars = getUrlVars()
     if (vars.page) {
-      nav.innerHTML = `<p>Страница ${urlvars.page}</p> <input class="button result__button" type="button" value=">" onclick="searchStart('search${location.search.replace("&page="+urlvars.page, "&page="+next)}')">`
+      nextB = `<input class="button result__button" type="button" value=">" onclick="searchStart('search${location.search.replace("&page="+urlvars.page, "&page="+next)}')">`
     } else {
-      nav.innerHTML = `<p>Страница ${urlvars.page}</p> <input class="button result__button" type="button" value=">" onclick="searchStart('search${location.search}&page=2')">`
+      nextB = `<input class="button result__button" type="button" value=">" onclick="searchStart('search${location.search}&page=2')">`
     }
 
-  } else {
-    nav.innerHTML =`<input class="button result__button" type="button" value="<" onclick="searchStart('search${location.search.replace("&page="+urlvars.page, "&page="+prew)}')"> <p>Страница ${urlvars.page}</p> <input class="button result__button" type="button" value=">" onclick="searchStart('search${location.search.replace("&page="+urlvars.page, "&page="+next)}')">`
-  };
+    if (urlvars.page == 1) {
+      nav.innerHTML = `<p>Страница ${urlvars.page}</p> ${nextB}`
+    } else if (pageCount != urlvars.page) {
+      nav.innerHTML =`${prewB} <p>Страница ${urlvars.page}</p> ${nextB}`
+    } else {
+      nav.innerHTML =`${prewB} <p>Страница ${urlvars.page}</p>`
+    };
+  }
 }
