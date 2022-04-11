@@ -78,7 +78,8 @@ var gulp = require('gulp'),                                 // подключа�
     rimraf = require('gulp-rimraf'),                        // плагин для удаления файлов и каталогов
     version = require('gulp-version-number'),               // плагин для добавлении версий css и js файлов
     rename = require('gulp-rename'),
-    ghPages = require('gulp-gh-pages');
+    ghPages = require('gulp-gh-pages'),
+    babel = require('gulp-babel');
 
 /* задачи */
 
@@ -97,7 +98,6 @@ gulp.task('html:build', function () {
     return gulp.src(path.src.html)                  // выбор всех html файлов по указанному пути
         .pipe(plumber())                            // отслеживание ошибок
         .pipe(rigger())                             // импорт вложений
-        .pipe(version(config.version))              // добавление версий css и js
         .pipe(gulp.dest(path.build.html))           // выкладывание готовых файлов
         .pipe(webserver.reload({ stream: true }));  // перезагрузка сервера
 });
@@ -122,6 +122,9 @@ gulp.task('js:build', function () {
     return gulp.src(path.src.js)                    // получим файл main.js
         .pipe(plumber())                            // для отслеживания ошибок
         .pipe(rigger())                             // импортируем все указанные файлы в main.js
+        .pipe(babel({
+            presets: [['@babel/env', {targets: 'defaults, not ie 11, not ie_mob 11'}]]
+        }))
         .pipe(gulp.dest(path.build.js))
         .pipe(rename({ suffix: '.min' }))
         .pipe(uglify())                             // минимизируем js

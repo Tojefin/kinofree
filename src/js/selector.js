@@ -30,7 +30,7 @@ function selectOption(option) {
 function selectChangeValue(origin, value, noevent) {
   let select = document.querySelector(`div#${origin.id}`)
   if (select) {
-    oldvalue = select.value
+    var oldvalue = select.value
     select.querySelector('span').innerText = select.querySelectorAll('li')[value].innerText
     select.value = value
   }
@@ -49,9 +49,9 @@ function selectToggle(select) {
     let options = ``;
     document.querySelector(`select#${select.id}`).querySelectorAll('option').forEach((opt, i) => {
       if (opt.value == select.value) {
-        classList = `${className}__item ${className}__item--active`
+        var classList = `${className}__item ${className}__item--active`
       } else {
-        classList = `${className}__item`
+        var classList = `${className}__item`
       }
       options = `${options}<li class="${classList}" value="${i}" onclick="selectOption(this)">${opt.innerText}</li>`
     });

@@ -41,9 +41,9 @@ function searchStart(newhref){
 }
 
 async function search() {
-  section = document.querySelector('.result')
-  nav = section.querySelector('.result__nav')
-  container = section.querySelector('.result__list')
+  let section = document.querySelector('.result')
+  let nav = section.querySelector('.result__nav')
+  let container = section.querySelector('.result__list')
   container.innerHTML = `
     <div class="card__loading"></div>
     <div class="card__loading"></div>
@@ -97,7 +97,7 @@ async function search() {
     return
   }
 
-  res = response.films ?? response.items ?? response
+  let res = response.films ?? response.items ?? response
   res.forEach((item) => {
     if (item.genres) {
       var genr = '';

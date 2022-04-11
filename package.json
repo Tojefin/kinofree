@@ -21,9 +21,12 @@
     "img": "gulp image:build webp:build"
   },
   "devDependencies": {
+    "@babel/core": "^7.17.9",
+    "@babel/preset-env": "^7.16.11",
     "browser-sync": "^2.26.3",
     "gulp": "^4.0.0",
     "gulp-autoprefixer": "^6.0.0",
+    "gulp-babel": "^8.0.0",
     "gulp-cache": "^1.0.2",
     "gulp-clean-css": "^4.0.0",
     "gulp-gh-pages": "^0.5.4",
