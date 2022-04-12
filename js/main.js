@@ -204,7 +204,7 @@ async function search() {
   let response = await apiReq(url);
   container.innerHTML = '';
 
-  if (response == 'Error' || response == '') {
+  if (response == 'Error' || response == '' || response.total == 0) {
     container.innerHTML += "\n      <div>\n        <h2 class=\"card__title\">\u041D\u0438\u0447\u0435\u0433\u043E \u043D\u0435 \u043D\u0430\u0439\u0434\u0435\u043D\u043E</h2>\n        <p class=\"card__other\">\u041F\u043E\u043F\u0440\u043E\u0431\u0443\u0439\u0442\u0435 \u0438\u0437\u043C\u0435\u043D\u0438\u0442\u044C \u0437\u0430\u043F\u0440\u043E\u0441</p>\n      </div>\n    ";
     nav.innerHTML = '';
     return;
@@ -226,6 +226,8 @@ async function search() {
         var linkType = 'Продолжение';
       } else if (item.relationType == "PREQUEL") {
         var linkType = 'Предыстория';
+      } else if (item.relationType == "REMAKE") {
+        var linkType = 'Ремейк';
       }
     }
 
@@ -379,7 +381,7 @@ window.addEventListener('load', event => {
 });
 
 async function watch() {
-  var _ref8, _res$nameRu, _res$year, _ref9, _ref10, _res$ratingKinopoisk, _ref11, _res$description;
+  var _ref8, _res$nameRu, _res$year, _ref9, _ref10, _res$ratingKinopoisk, _res$description;
 
   loadPlayer();
   let urlvars = getUrlVars();
@@ -389,7 +391,7 @@ async function watch() {
   document.querySelector('#title').innerText = (_ref8 = (_res$nameRu = res.nameRu) !== null && _res$nameRu !== void 0 ? _res$nameRu : res.nameOriginal) !== null && _ref8 !== void 0 ? _ref8 : "-";
   document.querySelector('#year').innerText = (_res$year = res.year) !== null && _res$year !== void 0 ? _res$year : "-";
   document.querySelector('#rating').innerText = (_ref9 = (_ref10 = (_res$ratingKinopoisk = res.ratingKinopoisk) !== null && _res$ratingKinopoisk !== void 0 ? _res$ratingKinopoisk : res.rating) !== null && _ref10 !== void 0 ? _ref10 : res.ratingImdb) !== null && _ref9 !== void 0 ? _ref9 : "-";
-  document.querySelector('#age').innerText = (_ref11 = res.ratingAgeLimits.split('age')[1] + '+') !== null && _ref11 !== void 0 ? _ref11 : "-";
+  document.querySelector('#age').innerText = res.ratingAgeLimits ? res.ratingAgeLimits.split('age')[1] + '+' : "-";
   document.querySelector('#desc').innerText = (_res$description = res.description) !== null && _res$description !== void 0 ? _res$description : "-";
   let filmState = document.querySelector('select#filmState');
   filmState.addEventListener('selectorChange', () => {
