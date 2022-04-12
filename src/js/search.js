@@ -86,7 +86,7 @@ async function search() {
   let response = await apiReq(url)
   container.innerHTML = ''
 
-  if (response == 'Error' || response =='') {
+  if (response == 'Error' || response == '' || response.total == 0) {
     container.innerHTML += `
       <div>
         <h2 class="card__title">Ничего не найдено</h2>
@@ -108,6 +108,8 @@ async function search() {
         var linkType = 'Продолжение';
       } else if (item.relationType == "PREQUEL") {
         var linkType = 'Предыстория';
+      } else if (item.relationType == "REMAKE") {
+        var linkType = 'Ремейк';
       }
     }
     var id = item.kinopoiskId ?? item.filmId;

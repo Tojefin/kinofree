@@ -14,7 +14,7 @@ async function watch() {
   document.querySelector('#title').innerText = res.nameRu ?? res.nameOriginal ?? "-"
   document.querySelector('#year').innerText = res.year ?? "-"
   document.querySelector('#rating').innerText = res.ratingKinopoisk ?? res.rating ?? res.ratingImdb ?? "-"
-  document.querySelector('#age').innerText = res.ratingAgeLimits.split('age')[1]+'+' ?? "-"
+  document.querySelector('#age').innerText = res.ratingAgeLimits ? res.ratingAgeLimits.split('age')[1]+'+' : "-"
   document.querySelector('#desc').innerText = res.description ?? "-"
 
   let filmState = document.querySelector('select#filmState')
