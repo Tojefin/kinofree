@@ -2,7 +2,6 @@
   margin-top: 80px;
   margin-left: 86px;
   display: flex;
-  gap: 5%;
 
   @media (max-width: 1023px) {
     margin-left: 20px;
@@ -23,6 +22,7 @@
   animation-duration: 3s;
   animation-name: gradientRoll;
   animation-iteration-count: infinite;
+  margin-right: 5%;
 
   @media (max-width: 1024px) {
     max-width: 660px;

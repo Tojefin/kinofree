@@ -108,11 +108,14 @@
   top: 80px;
   right: 0;
   display: flex;
-  gap: 25px;
 
   font-weight: 400;
   font-size: rel(1920, 14);
   line-height: rel(1920, 17);
+
+  & a {
+    margin-left: 25px;
+  }
 
   @media (max-width: 1440px) {
     top: 70px;

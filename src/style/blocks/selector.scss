@@ -3,7 +3,6 @@
   border-radius: 0;
   background: none;
   padding: 0;
-  cursor: pointer;
   width: fit-content;
   text-align: center;
   padding-bottom: 8px;
@@ -40,6 +39,9 @@
   padding: 0 10px;
   border-radius: 5px;
   background: rgba(0,0,0,0.1);
+  @supports not (backdrop-filter: blur(30px)) {
+    background: rgba(62,62,62,0.9)
+  }
   backdrop-filter: blur(30px);
   opacity: 0;
   overflow: hidden;
