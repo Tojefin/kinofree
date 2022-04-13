@@ -488,7 +488,6 @@ mark {
   border-radius: 0;
   background: none;
   padding: 0;
-  cursor: pointer;
   width: -webkit-fit-content;
   width: -moz-fit-content;
   width: fit-content;
@@ -525,6 +524,9 @@ mark {
   transition: 0.3s all ease;
   top: -8px;
   left: -10px; }
+  @supports not ((-webkit-backdrop-filter: blur(30px)) or (backdrop-filter: blur(30px))) {
+    .selector__list {
+      background: rgba(62, 62, 62, 0.9); } }
   .selector__list--open {
     z-index: 10;
     opacity: 1; }
@@ -711,10 +713,11 @@ mark {
   right: 0;
   display: -ms-flexbox;
   display: flex;
-  gap: 25px;
   font-weight: 400;
   font-size: 0.72917vw;
   line-height: 0.88542vw; }
+  .search__nav a {
+    margin-left: 25px; }
   @media (max-width: 1440px) {
     .search__nav {
       top: 70px; } }
@@ -1260,8 +1263,7 @@ input[type=checkbox]:checked {
   margin-top: 80px;
   margin-left: 86px;
   display: -ms-flexbox;
-  display: flex;
-  gap: 5%; }
+  display: flex; }
   @media (max-width: 1023px) {
     .watch {
       margin-left: 20px;
@@ -1283,7 +1285,8 @@ input[type=checkbox]:checked {
   -webkit-animation-name: gradientRoll;
           animation-name: gradientRoll;
   -webkit-animation-iteration-count: infinite;
-          animation-iteration-count: infinite; }
+          animation-iteration-count: infinite;
+  margin-right: 5%; }
   @media (max-width: 1024px) {
     .watch__player {
       max-width: 660px;
