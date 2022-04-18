@@ -1,10 +1,8 @@
 var APP_PREFIX = 'kinofree_';
-var VERSION = 'v_0.0.2';
+var VERSION = 'v_1';
 var URLS = [
   `/`,
   `/index`,
-  `/search`,
-  `/watch`,
   `/profile`,
   `/arc-sw.js`,
   `/css/main.min.css`,
