@@ -140,7 +140,7 @@ gulp.task('fonts:build', function () {
 
 // перенос остальных файлов
 gulp.task('copy:build', function () {
-    return gulp.src(['src/.htaccess', 'src/site.webmanifest', 'src/CNAME', 'src/arc-sw.js'])
+    return gulp.src(['src/.htaccess', 'src/site.webmanifest', 'src/CNAME', 'src/arc-sw.js', 'src/app-sw.js'])
         .pipe(gulp.dest(path.build.html));
 });
 
