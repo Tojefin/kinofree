@@ -1,11 +1,11 @@
 var APP_PREFIX = 'kinofree_';
-var VERSION = 'v_0.0.1';
+var VERSION = 'v_0.0.2';
 var URLS = [
   `/`,
-  `/index.html`,
-  `/search.html`,
-  `/watch.html`,
-  `/profile.html`,
+  `/index`,
+  `/search`,
+  `/watch`,
+  `/profile`,
   `/arc-sw.js`,
   `/css/main.min.css`,
   `/img/favicon.ico`,
@@ -15,14 +15,11 @@ var URLS = [
 
 var CACHE_NAME = APP_PREFIX + VERSION
 self.addEventListener('fetch', function (e) {
-  console.log('Fetch request : ' + e.request.url);
   e.respondWith(
     caches.match(e.request).then(function (request) {
       if (request) {
-        console.log('Responding with cache : ' + e.request.url);
         return request
       } else {
-        console.log('File is not cached, fetching : ' + e.request.url);
         return fetch(e.request)
       }
     })
