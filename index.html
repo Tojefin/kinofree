@@ -10,6 +10,7 @@
 		<meta name="robots" content="index, follow">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
 		<meta http-equiv="X-UA-Compatible" content="ie=edge">
+		<link rel="manifest" href="site.webmanifest">
 		<!-- Преподключения -->
 		<link rel="preconnect" href="https://kinopoiskapiunofficial.tech">
 		<link rel="preconnect" href="https://api1629919197.tobaco.ws">
@@ -31,6 +32,16 @@
 		  ym(85563634, "init", {clickmap:true, trackLinks:true, accurateTrackBounce:true, webvisor:true});</script>
 		<noscript><div><img src="https://mc.yandex.ru/watch/85563634" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
 		<!-- /Yandex.Metrika counter -->
+		<!-- PWA -->
+		<script>
+		  if (navigator.serviceWorker) {
+		    navigator.serviceWorker.register (
+		      '/app-sw.js',
+		      {scope: '/'}
+		    )
+		  }
+		</script>
+		<!-- /PWA -->
 		<title>KinoFree | Смотрите кино онлайн</title>
 	</head>
 	<body>
