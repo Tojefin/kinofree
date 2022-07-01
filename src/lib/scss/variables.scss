@@ -1,0 +1,17 @@
+@function rel($base, $value) {
+  @return calc(100vw / $base) * $value;
+}
+
+@keyframes gradientRoll {
+  from {
+    background: #737373;
+  }
+
+  50% {
+    background: #2C2C2C;
+  }
+
+  to {
+    background: #737373;
+  }
+}

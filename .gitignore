@@ -1,4 +1,9 @@
-/node_modules
-/.vscode
+.DS_Store
+node_modules
+gh-pages.js
 /build
-/.publish
+/.svelte-kit
+/package
+.env
+.env.*
+!.env.example
