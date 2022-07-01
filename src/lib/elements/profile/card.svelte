@@ -48,22 +48,22 @@ button {
 .card {
   background: #212121;
   border-radius: 20px;
-  width: rel(1920, 350);
-  height: rel(1920, 530);
+  width: rel(1920, 330);
+  height: rel(1920, 560);
   overflow: hidden;
   display: flex;
   flex-direction: column;
 
   @media (max-width: 1024px) {
     max-width: 660px;
-    width: rel(568, 170);
-    height: rel(568, 260);
+    width: rel(568, 160);
+    height: rel(568, 270);
   }
 
   @media (max-width: 567px) {
     max-width: 528px;
     width: rel(320, 170);
-    height: rel(320, 260);;
+    height: rel(320, 290);;
   }
 }
 
@@ -72,7 +72,7 @@ button {
   animation-name: gradientRoll;
   animation-iteration-count: 3;
   border-radius: 20px;
-  aspect-ratio: 4 / 5;
+  aspect-ratio: 360 / 533;
   width: 100%;
 }
 
@@ -80,18 +80,18 @@ button {
   font-family: 'Montserrat', sans-serif;
   font-style: normal;
   font-weight: 600;
-  font-size: rel(1920, 26);
+  font-size: rel(1920, 24);
   line-height: rel(1920, 32);
   color: #FFFFFF;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
-  margin-top: 12px;
+  margin-top: 0px;
   margin-bottom: 5px;
-  margin-left: 20px;
+  margin-left: 10px;
 
   @media (max-width: 1024px) {
-    font-size: 20px;
+    font-size: 18px;
     line-height: 24px;
   }
 

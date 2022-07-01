@@ -19,7 +19,7 @@ afterNavigate(() => {
 
       $req = getUrlVars()
       $req.search = $req[0]
-      if ($req.sort) {
+      if ($req.rating) {
         $req.genr = $req.genr.split(',')
         $req.rating = $req.rating.split(',')
         $req.years = $req.years.split(',')

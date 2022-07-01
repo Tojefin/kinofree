@@ -10,6 +10,10 @@ onMount(() => {
 
 function loadlist() {
   data = JSON.parse(localStorage.getItem('watch_history'));
+  if (!data) {
+    localStorage.setItem('watch_history', JSON.stringify([]));
+    data = [];
+  }
 }
 
 </script>
@@ -30,7 +34,7 @@ function loadlist() {
 
 <style lang="scss">
 section {
-  margin-top: 100px;
+  margin-top: 50px;
   margin-left: 86px;
   margin-bottom: 20px;
 
