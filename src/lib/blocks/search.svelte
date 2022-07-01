@@ -14,7 +14,7 @@ const statusObserver = (ns) => {
 
 afterNavigate(() => {
   if (location.pathname == '/search') {
-    if ($status != 'ready') {
+    if (!$status || $status == 'ready') {
 
       $req = getUrlVars()
       $req.search = $req[0]

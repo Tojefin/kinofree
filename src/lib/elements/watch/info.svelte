@@ -95,8 +95,8 @@ function blockfilmstate(event) {
         on:optionselect={blockfilmstate}
       />
     {/key}
-    <a class="link filminfo__other" on:click={()=>click("sequels_and_prequels")}>Связанное</a>
-    <a class="link filminfo__other" on:click={()=>click("similars")}>Похожее</a>
+    <span class="link filminfo__other" on:click={()=>click("sequels_and_prequels")}>Связанное</span>
+    <span class="link filminfo__other" on:click={()=>click("similars")}>Похожее</span>
     <br>
     <p class="filminfo__other">Плеер:</p>
     <Selector
