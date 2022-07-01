@@ -1,6 +1,7 @@
 <script>
 import { status, data, req } from "$lib/elements/search/store.js"
 import { getUrlVars } from "$lib/js/tools.js"
+import { goto } from '$app/navigation';
 import Card from "$lib/elements/result/card.svelte"
 import Nav from "$lib/elements/result/nav.svelte"
 
@@ -59,10 +60,11 @@ const Navigate = (event) => {
     newhref = location.search + "&page=2"
   }
 
+  $req.search = newhref
   let url = new URL("/search"+newhref, window.location.origin)
-  window.history.replaceState({}, '', url)
-
+  window.scrollTo(0, 0);
   $status = "search"
+  goto(url)
 }
 
 </script>

@@ -14,8 +14,7 @@ const statusObserver = (ns) => {
 
 afterNavigate(() => {
   if (location.pathname == '/search') {
-    if ($status === undefined || $status == 'ready') {
-      console.log("Get req from URL");
+    if ($status != 'ready') {
 
       $req = getUrlVars()
       $req.search = $req[0]

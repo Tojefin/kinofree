@@ -15,7 +15,7 @@ function click(newhref) {
 <nav class="search__nav">
   <span class="link" on:click={()=>click("popular")}>ПОПУЛЯРНОЕ</span>
   <span class="link" on:click={()=>click("premiers")}>ПРЕМЬЕРЫ</span>
-  <span class="link" >ПОДБОРКИ</span>
+  <!-- <span class="link" >ПОДБОРКИ</span> -->
 </nav>
 
 <style lang="scss">
