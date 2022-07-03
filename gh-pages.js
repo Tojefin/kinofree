@@ -1,4 +1,4 @@
-require('dotenv').config();
+import 'dotenv/config'
 import { publish } from 'gh-pages';
 
 publish(
