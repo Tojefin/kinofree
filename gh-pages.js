@@ -5,7 +5,7 @@ publish(
  'build',
  {
   branch: 'gh-pages',
-  repo: `https://${process.env.GH_TOKEN}@github.com/Tojefin/kinofree.git`
+  repo: `https://${process.env.GH_TOKEN}@github.com/Tojefin/kinofree.git`,
   dotfiles: true
   },
   () => {
