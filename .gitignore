@@ -1,6 +1,5 @@
 .DS_Store
 node_modules
-gh-pages.js
 /build
 /.svelte-kit
 /package

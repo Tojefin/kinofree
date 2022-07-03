@@ -60,7 +60,7 @@ const Navigate = (event) => {
     newhref = location.search + "&page=2"
   }
 
-  $req.search = newhref
+  $req.search = urlvars[0]
   let url = new URL("/search"+newhref, window.location.origin)
   window.scrollTo(0, 0);
   $status = "search"
