@@ -30,7 +30,7 @@ const init = async () => {
     let index = data.indexOf(target)
     data.splice(index, 1)
     data.unshift({ id: urlvars.id, name: res.nameRu ?? res.nameOriginal, poster: res.posterUrlPreview })
-    if (data.length > 8) {
+    if (data.length > 16) {
       data.pop()
     }
     localStorage.setItem('watch_history', JSON.stringify(data))

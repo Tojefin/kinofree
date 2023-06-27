@@ -6,7 +6,7 @@ export default function createSliders() {
     connect: true,
     range: {
       min: [1950, 1],
-      max: [2022, 1]
+      max: [2023, 1]
     },
     format: {
       to: function(value) {
