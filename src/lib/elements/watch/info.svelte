@@ -52,10 +52,10 @@ function selectPlayer(event) {
       $playerSrc = `https://api1629919197.tobaco.ws/embed/kp/${$filmId}`
       break;
     case 1:
-      $playerSrc = `https://patriot.allohastream.com/?token=70f3e30270ec1a18376655a55e8646&kp=${$filmId}`
+      $playerSrc = `https://polati.newplayjj.com:9443/?token=a3fd119d8a9418f6c3f6a7ae628a41&kp=${$filmId}` 
       break;
     case 2:
-      $playerSrc = `https://vcdn.kinoapi.club/sZfbdItt5jeX?kp_id=${$filmId}`
+      $playerSrc = `//49442664434375553.svetacdn.in/sZfbdItt5jeX?kp_id=${$filmId}`
       break;
     default:
       $playerSrc = `https://api1629919197.tobaco.ws/embed/kp/${$filmId}`
