@@ -1,6 +1,7 @@
 <script>
   import { onMount } from 'svelte';
 
+  const publish = false
   let show = false;
   let ver = 1
 
@@ -13,6 +14,8 @@
   };
 
   onMount(() => {
+    if (!publish) return
+
     let anonse = JSON.parse(localStorage.getItem('anonse'));
     if (!anonse) {
       anonse = {};
@@ -46,10 +49,9 @@
           width="100"
         />
       </a>
-      <span
-        ><a href="https://forms.gle/dNF5BnBwuYB8U4uu7" target="_blank">КЛИК</a
-        ></span
-      >
+      <span>
+        <a href="https://forms.gle/dNF5BnBwuYB8U4uu7" target="_blank">КЛИК</a>
+      </span>
     </div>
   </section>
 {:else}
