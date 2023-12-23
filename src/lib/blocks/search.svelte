@@ -5,32 +5,31 @@
   import Form from '$lib/elements/search/form.svelte';
   import Nav from '$lib/elements/search/nav.svelte';
 
-  $: status, statusObserver($status);
-  const statusObserver = (ns) => {
-    if (ns == 'search') {
+  const searchPre = () => {
+    console.log($status);
+    if (location.pathname == '/search') {
+      $req = getUrlVars();
+      $req.search = $req[0];
+      if ($req.rating) {
+        $req.genr = $req.genr.split(',');
+        $req.rating = $req.rating.split(',');
+        $req.years = $req.years.split(',');
+      }
+
+      $status = 'search';
       GoSearch();
     }
   };
 
-  afterNavigate(() => {
-    if (location.pathname == '/search') {
-      if (!$status || $status == 'ready') {
-        $req = getUrlVars();
-        $req.search = $req[0];
-        if ($req.rating) {
-          $req.genr = $req.genr.split(',');
-          $req.rating = $req.rating.split(',');
-          $req.years = $req.years.split(',');
-        }
-
-        $status = 'search';
-        console.log(first);
-        GoSearch();
-      }
+  const statusObserver = (ns) => {
+    if (ns == 'search') {
+      console.log('observer');
+      searchPre();
     }
-  });
+  };
+  $: status, statusObserver($status);
 
-  const GoSearch = async () => {
+  async function GoSearch() {
     $status = 'await';
     if (!$req.page) {
       $req.page = 1;
@@ -108,7 +107,11 @@
       $status = 'render';
     }
     $req = [];
-  };
+  }
+
+  afterNavigate(() => {
+    searchPre();
+  });
 </script>
 
 <section class="search">

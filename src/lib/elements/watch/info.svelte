@@ -22,7 +22,7 @@ const init = async () => {
   let target = data.filter((obj)=>obj.id == urlvars.id)[0]
   if (target == undefined) {
     data.unshift({ id: urlvars.id, name: res.nameRu ?? res.nameOriginal, poster: res.posterUrlPreview })
-    if (data.length > 8) {
+    if (data.length > 24) {
       data.pop()
     }
     localStorage.setItem('watch_history', JSON.stringify(data))
@@ -30,7 +30,7 @@ const init = async () => {
     let index = data.indexOf(target)
     data.splice(index, 1)
     data.unshift({ id: urlvars.id, name: res.nameRu ?? res.nameOriginal, poster: res.posterUrlPreview })
-    if (data.length > 16) {
+    if (data.length > 24) {
       data.pop()
     }
     localStorage.setItem('watch_history', JSON.stringify(data))
