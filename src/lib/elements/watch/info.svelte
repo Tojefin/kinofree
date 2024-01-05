@@ -49,7 +49,7 @@ const init = async () => {
 function selectPlayer(event) {
   switch (event.detail.value) {
     case 0:
-      $playerSrc = `https://api1629919197.tobaco.ws/embed/kp/${$filmId}`
+      $playerSrc = `https://api.framprox.ws/embed/kp/${$filmId}`
       break;
     case 1:
       $playerSrc = `https://polati.newplayjj.com:9443/?token=a3fd119d8a9418f6c3f6a7ae628a41&kp=${$filmId}` 
@@ -58,7 +58,7 @@ function selectPlayer(event) {
       $playerSrc = `//49442664434375553.svetacdn.in/sZfbdItt5jeX?kp_id=${$filmId}`
       break;
     default:
-      $playerSrc = `https://api1629919197.tobaco.ws/embed/kp/${$filmId}`
+      $playerSrc = `https://api.framprox.ws/embed/kp/${$filmId}`
   }
 }
 

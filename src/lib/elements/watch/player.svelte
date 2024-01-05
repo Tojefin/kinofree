@@ -15,7 +15,7 @@ onMount(() => {
 function init() {
   let urlvars = getUrlVars()
   $filmId = urlvars.id
-  $playerSrc = `https://api1629919197.tobaco.ws/embed/kp/${$filmId}`
+  $playerSrc = `https://api.framprox.ws/embed/kp/${$filmId}`
 }
 </script>
 
