@@ -2,6 +2,8 @@
   background: fixed linear-gradient(128.1deg, #434343 0%, #101010 100%);
   overflow: hidden;
   min-height: 100vh;
+  position: relative;
+  z-index: 0;
 }
 
 .hide {
