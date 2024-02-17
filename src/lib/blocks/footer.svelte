@@ -29,13 +29,13 @@
 		@media (max-width: 768px) {
 			padding: 16px 16px 40px;
 			flex: 1 0 auto;
-			width: -webkit-fill-available;
+			width: 100%;
 		}
 	}
 
 	div {
 		display: flex;
-		width: -webkit-fill-available;
+		width: 100%;
 		justify-content: center;
 		align-items: center;
 		gap: 16px;
