@@ -1,37 +1,60 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="ru">
 	<head>
-		<meta charset="utf-8">
-    <meta http-equiv="Content-Type" content="text/html">
-    <meta name="description" content="KinoFree - поисковик бесплатных фильмов, кино и сериалов. ">
-    <meta name="keywords" content="Онлайн, бесплатно, фильм, сериал, смотреть, kinofree.tv, кинофри">
-    <meta name="author" content="Tojefin">
-    <meta name="publisher-email" content="skyedge.xyz">
-    <meta name="robots" content="index, follow">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <link rel="manifest" href="%sveltekit.assets%/site.webmanifest">
-    <!-- Преподключения -->
-    <link rel="preconnect" href="https://kinopoiskapiunofficial.tech">
-    <link rel="preconnect" href="https://api1629919197.tobaco.ws">
-    <link rel="preconnect" href="https://patriot.allohastream.com">
-    <link rel="preconnect" href="https://vcdn.kinoapi.club">
-    <!-- Стили и визуал -->
-    <link rel="shortcut icon" href="%sveltekit.assets%/img/favicon.ico" type="image/x-icon">
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600&family=Roboto:wght@300;400;500&display=swap" rel="stylesheet">
-    <!-- Скрипты -->
-    <script defer src="https://refreshless.com/nouislider/dist/nouislider.js?v=1540"></script>
-    <!-- Yandex.Metrika counter -->
-    <script defer type="text/javascript" >
-      (function(m,e,t,r,i,k,a){m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
-      m[i].l=1*new Date();k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)})
-      (window, document, "script", "https://mc.yandex.ru/metrika/tag.js", "ym");
-      ym(85563634, "init", {clickmap:true, trackLinks:true, accurateTrackBounce:true, webvisor:true});</script>
-    <noscript><div><img src="https://mc.yandex.ru/watch/85563634" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
-    <!-- /Yandex.Metrika counter -->
+		<meta charset="utf-8" />
+		<meta name="description" content="KinoFree - поисковик бесплатных фильмов, кино и сериалов. " />
+		<meta
+			name="keywords"
+			content="Онлайн, бесплатно, фильм, сериал, смотреть, kinofree.su, кинофри"
+		/>
+		<meta name="author" content="Tojefin" />
+		<meta name="publisher-email" content="skyedge.xyz" />
+		<meta name="robots" content="index, follow" />
+		<link rel="icon" href="%sveltekit.assets%/favicon.svg" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<link rel="preconnect" href="https://fonts.googleapis.com" />
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+		<link
+			href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
+			rel="stylesheet"
+		/>
+		<link rel="manifest" href="%sveltekit.assets%/site.webmanifest" />
+		<!-- Yandex.Metrika counter -->
+		<script defer type="text/javascript">
+			(function (m, e, t, r, i, k, a) {
+				m[i] =
+					m[i] ||
+					function () {
+						(m[i].a = m[i].a || []).push(arguments);
+					};
+				m[i].l = 1 * new Date();
+				(k = e.createElement(t)),
+					(a = e.getElementsByTagName(t)[0]),
+					(k.async = 1),
+					(k.src = r),
+					a.parentNode.insertBefore(k, a);
+			})(window, document, 'script', 'https://mc.yandex.ru/metrika/tag.js', 'ym');
+			ym(85563634, 'init', {
+				clickmap: true,
+				trackLinks: true,
+				accurateTrackBounce: true,
+				webvisor: true
+			});
+		</script>
+		<noscript>
+			<div>
+				<img
+					src="https://mc.yandex.ru/watch/85563634"
+					style="position: absolute; left: -9999px"
+					alt=""
+				/>
+			</div>
+		</noscript>
+		<!-- /Yandex.Metrika counter -->
 		%sveltekit.head%
 	</head>
-	<body>
-		<div>%sveltekit.body%</div>
+
+	<body data-sveltekit-preload-data="hover">
+		<div style="display: contents">%sveltekit.body%</div>
 	</body>
 </html>

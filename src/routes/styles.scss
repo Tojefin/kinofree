@@ -1,0 +1,53 @@
+@import 'static/styles/reset';
+@import 'static/styles/font-face';
+
+svg * {
+	min-width: fit-content;
+	transition: all ease 0.25s;
+}
+
+* {
+	font-family: Inter;
+	font-style: normal;
+}
+
+html,
+body {
+	scrollbar-gutter: stable;
+}
+
+body {
+	&:has(dialog[open]) {
+		overflow: hidden;
+	}
+
+	&::-webkit-scrollbar {
+		width: 4px;
+		border-radius: 30px;
+	}
+
+	&::-webkit-scrollbar-thumb {
+		cursor: pointer;
+		border-radius: 100px;
+		background: #4f4c10;
+
+		&:hover {
+			background: var(--yellow, #fce802);
+		}
+	}
+
+	&::-webkit-scrollbar-track {
+		background-color: #13161b;
+		border-radius: 100px;
+	}
+}
+
+:root {
+	--white: #ffffff;
+	--gray: #898989;
+	--yellow: #fce802;
+	--green: #cbfb45;
+	--red: #ff1952;
+	--black: #000000;
+	color-scheme: light dark;
+}
