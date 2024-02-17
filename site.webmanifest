@@ -1,18 +1,25 @@
 {
-  "name":"KinoFree",
-  "short_name":"KinoFree",
+  "name":"KINOFREE",
+  "short_name":"KINOFREE",
   "icons":[
     {
-      "src":"img/favicon.ico",
-      "sizes":"48x48","type":"image/ico"
+      "src":"icons/favicon.ico",
+      "sizes":"200x200",
+      "type":"image/ico"
     },
     {
-      "src":"img/logo-512.png",
-      "sizes":"512x512","type":"image/png"
+      "src":"icons/favicon.png",
+      "sizes":"512x512",
+      "type":"image/png"
+    },
+    {
+      "src":"./favicon.svg",
+      "sizes":"64x64",
+      "type":"image/svg"
     }
   ],
   "start_url": "index.html",
-  "theme_color":"#444",
-  "background_color":"#444",
+  "theme_color":"#13161B",
+  "background_color":"#13161B",
   "display":"fullscreen"
 }

@@ -1,0 +1,1 @@
+let e={method:"GET",headers:{"Content-Type":"application/json","X-API-KEY":"4b12f46d-638b-4bac-bf06-33865d3a3524"}},a="https://kinopoiskapiunofficial.tech/api/v2.2/films/";async function n(t){return t?await(await fetch(`${a}${t}`,e)).json():{}}export{n as g,e as o};
