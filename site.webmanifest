@@ -1,25 +1,25 @@
 {
-  "name":"KINOFREE",
-  "short_name":"KINOFREE",
-  "icons":[
-    {
-      "src":"icons/favicon.ico",
-      "sizes":"200x200",
-      "type":"image/ico"
-    },
-    {
-      "src":"icons/favicon.png",
-      "sizes":"512x512",
-      "type":"image/png"
-    },
-    {
-      "src":"./favicon.svg",
-      "sizes":"64x64",
-      "type":"image/svg"
-    }
-  ],
-  "start_url": "index.html",
-  "theme_color":"#13161B",
-  "background_color":"#13161B",
-  "display":"fullscreen"
+	"name": "KINOFREE",
+	"short_name": "KINOFREE",
+	"icons": [
+		{
+			"src": "icons/favicon.ico",
+			"sizes": "200x200",
+			"type": "image/ico"
+		},
+		{
+			"src": "icons/favicon.png",
+			"sizes": "512x512",
+			"type": "image/png"
+		},
+		{
+			"src": "./favicon.svg",
+			"sizes": "64x64",
+			"type": "image/svg"
+		}
+	],
+	"start_url": "index.html",
+	"theme_color": "#13161B",
+	"background_color": "#13161B",
+	"display": "fullscreen"
 }
