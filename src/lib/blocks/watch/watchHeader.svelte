@@ -8,7 +8,7 @@
 
 <section>
 	<div class="back">
-		<Button nav vibro dark circle on:click={() => window.history.back()}>
+		<Button title="Назад" nav vibro dark circle on:click={() => window.history.back()}>
 			<Arrow left />
 		</Button>
 	</div>
