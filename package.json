@@ -5,7 +5,7 @@
 	"scripts": {
 		"dev": "vite dev --port 80 --host",
 		"build": "vite build",
-		"preview": "vite preview --host",
+		"preview": "vite preview --port 80 --host",
 		"check": "svelte-kit sync && svelte-check --tsconfig ./jsconfig.json",
 		"check:watch": "svelte-kit sync && svelte-check --tsconfig ./jsconfig.json --watch",
 		"lint": "prettier --check . && eslint .",
