@@ -230,7 +230,7 @@
 
 		&.inputFocus {
 			border-radius: 40px;
-			outline: 4px solid rgba(252, 232, 3, 0.2);
+			box-shadow: 0 0 0 4px rgba(252, 232, 3, 0.2);
 			background: #fff;
 			.loupe {
 				:global(g) {
