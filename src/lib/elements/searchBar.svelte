@@ -79,7 +79,7 @@
 		</div>
 		<input
 			on:focus={() => focusStatus(true)}
-			on:blur={() => setTimeout(() => focusStatus(false), 100)}
+			on:blur={() => focusStatus(false)}
 			on:keydown={inputController}
 			on:keyup={inputHandler}
 			bind:value={inputValue}
@@ -94,9 +94,14 @@
 		{#if inputFocus && suggest.list.length && inputValue.trim().length > 2}
 			<ul class="suggest">
 				{#each suggest.list as { title, id }}
-					<a href={`/search?key=${title}`}>
-						<li>{title}</li>
-					</a>
+					<button
+						on:pointerdown|stopPropagation={() => {
+							inputValue = title
+							goto(`/search?key=${title}`);
+						}}
+					>
+						{title}
+					</button>
 				{/each}
 			</ul>
 		{/if}
@@ -169,7 +174,10 @@
 		overflow: hidden;
 		z-index: 3;
 
-		li {
+		button {
+			background: #fff;
+			border: none;
+			text-align: start;
 			font-family: var(--font-family);
 			font-weight: 400;
 			font-size: 14px;
