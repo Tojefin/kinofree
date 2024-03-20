@@ -2,11 +2,10 @@
 	import { goto } from '$app/navigation';
 	import { Button } from '$lib/elements';
 	import { Arrow } from '$lib/icons';
-	import { vibroTap } from '$lib/scripts';
+	import { vibroTap, getWatchHistory } from '$lib/scripts';
 	import { onMount } from 'svelte';
 
 	let lastFilm;
-	let lastTime;
 
 	const timeOptions = {
 		month: 'long',
@@ -20,25 +19,22 @@
 	}
 
 	onMount(() => {
-		let local = JSON.parse(localStorage.getItem('last_film'));
-		if (local) {
-			let { film, time } = local;
-			lastFilm = film;
-			lastTime = time;
-		}
+		lastFilm = getWatchHistory()[0];
 	});
 </script>
 
 {#if lastFilm}
 	<section on:click={clickHandler} on:keydown={null} role="button" tabindex="-0">
 		<div class="info">
-			<img src={lastFilm.posterUrlPreview} alt="Фильм" />
+			<img src={lastFilm.posterUrlPreview} alt="Постер" />
 			<div class="text">
 				<h3>{lastFilm.nameRu || lastFilm.nameEn || lastFilm.nameOriginal}</h3>
-				<div class="time">
-					<p>Последний просмотр</p>
-					<span>{new Date(lastTime).toLocaleString('ru', timeOptions)}</span>
-				</div>
+				{#if lastFilm._kinofree?.lastviewed}
+					<div class="time">
+						<p>Последний просмотр</p>
+						<span>{new Date(lastFilm._kinofree.lastviewed).toLocaleString('ru', timeOptions)}</span>
+					</div>
+				{/if}
 			</div>
 		</div>
 		<div class="more">

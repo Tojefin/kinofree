@@ -4,14 +4,16 @@
 
 	export let lable = '';
 	export let list;
+	// TODO: Сделать коллбэк на удаление
 	export let canDelete = false;
 	export let nothing = {
 		title: 'Ничего не найдено',
-		text: ''
+		text: '',
+		disable: false
 	};
 </script>
 
-<section>
+<section class:disable={Array.isArray(list) && !list.length && nothing.disable}>
 	{#if !Array.isArray(list)}
 		<div class="loader">
 			<div class="loader-spin" />
@@ -25,7 +27,7 @@
 				<ResultCard {film} {canDelete} />
 			{/each}
 		</ul>
-	{:else}
+	{:else if !nothing.disable}
 		<div class="nothing">
 			<div class="visual">
 				{#if nothing.title == 'Ничего не найдено'}
@@ -56,6 +58,10 @@
 		gap: 32px;
 		flex: 1 0 0;
 		align-self: stretch;
+
+		&.disable {
+			padding: 0;
+		}
 
 		@media (max-width: 768px) {
 			padding: 16px 16px 40px 16px;

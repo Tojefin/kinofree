@@ -1,11 +1,15 @@
 <script>
 	import { goto } from '$app/navigation';
 	import { Loupe, Cross, Arrow } from '$lib/icons';
-	import { vibroTap } from '$lib/scripts';
+	import { vibroTap, apiSearchFilm } from '$lib/scripts';
 	import { page } from '$app/stores';
 	import { afterNavigate } from '$app/navigation';
 
 	let params;
+	let suggest = {
+		select: -1,
+		list: []
+	};
 
 	let input;
 	let inputFocus = false;
@@ -19,7 +23,45 @@
 		input.focus();
 	}
 	function search() {
-		goto('./search?key=' + inputValue);
+		if (!inputValue.trim()) return;
+		goto('./search?key=' + encodeURIComponent(inputValue));
+	}
+
+	let timer = null;
+	function inputHandler(e) {
+		if (e.key == 'ArrowUp' || e.key == 'ArrowDown' || inputValue.trim().length < 3) return;
+
+		if (timer) clearTimeout(timer);
+		suggest.select = -1;
+		timer = setTimeout(async () => {
+			let { films } = await apiSearchFilm(inputValue);
+			if (films) {
+				suggest.list = films
+					.map((obj) => {
+						return { title: `${obj.nameRu || obj.nameEn} ${obj.year || ''}`, id: obj.filmId };
+					})
+					.slice(0, 5);
+			} else {
+				suggest.list = [];
+			}
+			suggest.list[-1] = { title: inputValue };
+		}, 400);
+	}
+
+	function inputController(e) {
+		if (e.key == 'Enter') search();
+		if (e.key == 'ArrowUp') {
+			if (suggest.list.length > 0 && suggest.select > -1) {
+				suggest.select--;
+				inputValue = suggest.list[suggest.select].title;
+			}
+		}
+		if (e.key == 'ArrowDown') {
+			if (suggest.list.length > 0 && suggest.select + 1 < suggest.list.length) {
+				suggest.select++;
+				inputValue = suggest.list[suggest.select].title;
+			}
+		}
 	}
 
 	afterNavigate(() => {
@@ -37,10 +79,9 @@
 		</div>
 		<input
 			on:focus={() => focusStatus(true)}
-			on:blur={() => focusStatus(false)}
-			on:keydown={(e) => {
-				if (e.key == 'Enter') search();
-			}}
+			on:blur={() => setTimeout(() => focusStatus(false), 100)}
+			on:keydown={inputController}
+			on:keyup={inputHandler}
 			bind:value={inputValue}
 			bind:this={input}
 			type="text"
@@ -49,11 +90,21 @@
 		<button class="clear" on:click={clearinput} class:canClear={inputValue}>
 			<Cross small />
 		</button>
+
+		{#if inputFocus && suggest.list.length && inputValue.trim().length > 2}
+			<ul class="suggest">
+				{#each suggest.list as { title, id }}
+					<a href={`/search?key=${title}`}>
+						<li>{title}</li>
+					</a>
+				{/each}
+			</ul>
+		{/if}
 	</div>
 	<button
 		class="search"
-		disabled={!(inputValue.length > 0)}
-		on:click={() => {
+		disabled={!(inputValue.trim().length > 0)}
+		on:pointerdown={() => {
 			vibroTap();
 			search();
 		}}
@@ -103,6 +154,32 @@
 	}
 	.canClear {
 		visibility: visible;
+	}
+
+	.suggest {
+		top: calc(100% + 12px);
+		position: absolute;
+		display: flex;
+		flex-direction: column;
+		border-top: 1px solid #3a393e;
+		border-radius: 12px;
+		box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.1);
+		width: 100%;
+		background: #fff;
+		overflow: hidden;
+		z-index: 3;
+
+		li {
+			font-family: var(--font-family);
+			font-weight: 400;
+			font-size: 14px;
+			line-height: 129%;
+			color: var(--black);
+			padding: 12px 16px;
+			@include hover {
+				background: var(--gray);
+			}
+		}
 	}
 
 	.input {

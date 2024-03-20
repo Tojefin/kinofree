@@ -1,25 +1,62 @@
 <script>
 	import { Cross, Arrow } from '$lib/icons';
 	import { Button } from '$lib/elements';
+	import { onMount } from 'svelte';
+
+	const publish = true;
+	let show = false;
+	let ver = 2;
+
+	const hideClick = () => {
+		let anonse = JSON.parse(localStorage.getItem('anonse'));
+		show = false;
+		anonse.show = false;
+		anonse.ver = ver;
+		localStorage.setItem('anonse', JSON.stringify(anonse));
+	};
+
+	onMount(() => {
+		if (!publish) return;
+
+		let anonse = JSON.parse(localStorage.getItem('anonse'));
+		if (!anonse) {
+			anonse = {};
+		}
+		if (anonse.ver != ver) {
+			show = true;
+			anonse.ver = ver;
+			anonse.show = true;
+		}
+		show = anonse.show;
+		localStorage.setItem('anonse', JSON.stringify(anonse));
+	});
 </script>
 
-<section>
-	<img src="icons/qr.svg" alt="QR code" draggable="false" />
+<section class:hide={!show || !publish}>
+	<img
+		src="https://api.qrserver.com/v1/create-qr-code/?size=100x100&color=fce802&bgcolor=1f2227&data=http://tg.skyedge.xyz"
+		alt="QR code"
+		height="100"
+		width="100"
+		draggable="false"
+	/>
 	<article>
-		<h2>Как то так вот)</h2>
+		<h2>Мы в Telegram</h2>
 		<p>
-			Скоро начнётся разработка глобального обновления. Все подробности, ход разработки, голосования
-			за итоговые решения и прочее будут выходить в Телеграм-канале
+			Следите за этим и другими проектами в нашем телеграм канале. Ход разработки, голосования за
+			итоговые решения и прочее будут выходить там.
 		</p>
 		<div class="more">
-			<Button>
-				Подробнее
-				<Arrow />
-			</Button>
+			<a href="https://tg.skyedge.xyz/#banner" target="_blank">
+				<Button>
+					Открыть TG
+					<Arrow />
+				</Button>
+			</a>
 		</div>
 	</article>
 	<div class="close">
-		<Button circle>
+		<Button circle on:click={hideClick}>
 			<Cross />
 		</Button>
 	</div>
@@ -37,6 +74,10 @@
 		border: 1px solid rgba(255, 255, 255, 0.04);
 		background: #1f2227;
 		box-shadow: 0px 1px 0px 0px rgba(255, 255, 255, 0.08) inset;
+
+		&.hide {
+			display: none;
+		}
 
 		@media (max-width: 768px) {
 			margin: 16px;

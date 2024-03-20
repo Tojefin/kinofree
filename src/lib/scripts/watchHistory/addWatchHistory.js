@@ -8,6 +8,9 @@ export default function addWatchHistory(film) {
 		let index = data.indexOf(target);
 		data.splice(index, 1);
 	}
+
+	let now = Date.now();
+	film = {...film, _kinofree: {lastviewed: now} }
 	data.unshift(film);
 	if (data.length > 24) {
 		data.pop();

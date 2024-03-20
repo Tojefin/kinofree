@@ -5,9 +5,7 @@
 
 <div class="page-main">
 	<Header />
-	{#if $page.url.hash == '#donat' || $page.url.hash == '#profile'}
-		<Anonser />
-	{/if}
+	<Anonser />
 	<SearchSection />
 	<Last />
 	<Footer />

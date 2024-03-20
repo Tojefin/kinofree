@@ -23,14 +23,14 @@
 
 <a href={`/watch?id=${film.filmId || film.id || film.kinopoiskId}`}>
 	<li>
-		<img src={film.posterUrlPreview || film.posterUrl} alt="Фильм" loading="lazy" inert />
+		<img src={film.posterUrlPreview || film.posterUrl} alt="Постер" loading="lazy" inert />
 		<div class="text">
 			<h3 title={film.nameRu || film.nameEn || film.nameOriginal}>
 				{film.nameRu || film.nameEn || film.nameOriginal}
 			</h3>
 			<time>{film.year}</time>
-			<p title={film.description || 'Описание не найдено'}>
-				{film.description || 'Описание не найдено'}
+			<p title={film.description || ''}>
+				{film.description || ''}
 			</p>
 			<div>
 				{#if rating > 0}
@@ -39,7 +39,7 @@
 						{rating}
 					</mark>
 				{:else}
-					<span>Рейтинг не найден</span>
+					<span></span>
 				{/if}
 			</div>
 		</div>

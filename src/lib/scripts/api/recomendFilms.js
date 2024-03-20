@@ -1,11 +1,20 @@
 import options from './_options';
 
-let apiURI = 'https://kinopoiskapiunofficial.tech/api/v2.1/films/search-by-keyword';
+let similarsAPI = 'https://kinopoiskapiunofficial.tech/api/v2.2/films';
+let sequelsAPI = 'https://kinopoiskapiunofficial.tech//api/v2.1/films';
 
-export default async function searchFilm(keyword, page = 1) {
-	if (keyword) {
-		let response = await fetch(`${apiURI}?keyword=${keyword}&page=${page}`, options);
-		return await response.json();
+/**
+ * Get linked and similar films by id
+ * @param {number} id 
+ * @returns {Promise<Array>}
+ */
+export default async function recomendFilms(id) { 
+	if (id) {
+		let similars = await fetch(`${similarsAPI}/${id}/similars`, options);
+		similars = await similars.json()
+		let sequels = await fetch(`${sequelsAPI}/${id}/sequels_and_prequels`, options);
+		sequels = await sequels.json()
+		return [...sequels, ...similars.items]
 	}
-	return {};
+	return [];
 }

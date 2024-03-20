@@ -5,7 +5,7 @@ import preprocess from 'svelte-preprocess';
 const config = {
 	preprocess: preprocess({
 		scss: {
-			prependData: `@import './static/styles/mixins.scss';`
+			prependData: `@import './static/styles/index.scss';`
 		}
 	}),
 	kit: {

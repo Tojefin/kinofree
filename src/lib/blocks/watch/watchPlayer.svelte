@@ -15,13 +15,14 @@
 		alpha: 'https://voidboost.tv/embed/',
 		beta: 'https://polati.newplayjj.com:9443/?token=a3fd119d8a9418f6c3f6a7ae628a41&kp=',
 		gamma: 'https://api.framprox.ws/embed/kp/',
-		delta: '//49442664434375553.svetacdn.in/sZfbdItt5jeX?kp_id='
+		delta: 'https://49442664434375553.svetacdn.in/sZfbdItt5jeX?kp_id='
 	};
 	let activePlayer = 'alpha';
 
 	function setActivePlayer(select) {
 		activePlayer = select;
 		localStorage.setItem('last_active_player', JSON.stringify(select));
+		window.history.replaceState([] , '');
 	}
 
 	function getStoregePlayer() {
@@ -43,13 +44,12 @@
 		{#if !film}
 			Загрузка ...
 		{:else}
-			<!-- svelte-ignore a11y-click-events-have-key-events -->
-			<!-- svelte-ignore a11y-no-static-element-interactions -->
 			<div class="player">
 				<iframe
 					bind:this={iframe}
 					title="player"
 					allowfullscreen="true"
+					sandbox="allow-scripts allow-same-origin"
 					src="{players[activePlayer]}{film.kinopoiskId}"
 				></iframe>
 			</div>

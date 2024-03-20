@@ -4,7 +4,6 @@
 
 <svelte:head>
 	<title>KINOFREE</title>
-	<meta name="description" content="" />
 </svelte:head>
 
 <main class="app">
