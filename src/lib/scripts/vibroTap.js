@@ -1,5 +1,9 @@
 export default function vibroTap() {
-	if (navigator.vibrate) {
-		navigator.vibrate(45);
+	try {
+		if (navigator.vibrate) {
+			navigator.vibrate(45);
+		}
+	} catch (error) {
+		console.error(error)
 	}
 }
