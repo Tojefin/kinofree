@@ -10,8 +10,10 @@
 	onMount(async () => {
 		let data = await fetch('https://last-donation-api.vercel.app/api/last_donation');
 		data = await data.json();
-		if (data) {
-			donater = `${data.donator_info.name} - ${data.amount} ${data.origin_currency}`;
+		if (Math.random() > 0.5) {
+			if (data) {
+				donater = `${data.donator_info.name} - ${data.amount} ${data.origin_currency}`;
+			}
 		}
 	});
 </script>
@@ -20,7 +22,7 @@
 	<a href="/"><h1>KINOFREE</h1></a>
 	<nav class:hideMobile={$page.url.pathname != '/'}>
 		<a class="button" href="https://www.donationalerts.com/r/tojefin" target="_blank">
-			<Button nav vibro dark style="max-width: 250px; white-space: nowrap; overflow: hidden;">
+			<Button nav vibro dark style="white-space: nowrap; overflow: hidden;">
 				<Coffee />
 				{donater}
 			</Button>
