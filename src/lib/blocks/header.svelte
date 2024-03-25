@@ -3,17 +3,26 @@
 	import { Button } from '$lib/elements';
 	import { vibroTap } from '$lib/scripts';
 	import { page } from '$app/stores';
+	import { onMount } from 'svelte';
 
-	console.log($page.url.pathname);
+	let donater = 'Поддержать проект';
+
+	onMount(async () => {
+		let data = await fetch('https://last-donation-api.vercel.app/api/last_donation');
+		data = await data.json();
+		if (data) {
+			donater = `${data.donator_info.name} - ${data.amount} ${data.origin_currency}`;
+		}
+	});
 </script>
 
 <header>
 	<a href="/"><h1>KINOFREE</h1></a>
 	<nav class:hideMobile={$page.url.pathname != '/'}>
 		<a class="button" href="https://www.donationalerts.com/r/tojefin" target="_blank">
-			<Button nav vibro dark>
+			<Button nav vibro dark style="max-width: 250px; white-space: nowrap; overflow: hidden;">
 				<Coffee />
-				Поддержать проект
+				{donater}
 			</Button>
 		</a>
 		<a class="button" href="/search?popular">

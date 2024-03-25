@@ -1,8 +1,8 @@
 @import 'static/styles/reset';
 @import 'static/styles/font-face';
 
-svg * {
-	min-width: fit-content;
+svg {
+	min-width: min-content;
 	transition: all ease 0.25s;
 }
 
