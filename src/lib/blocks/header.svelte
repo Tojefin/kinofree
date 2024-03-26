@@ -8,9 +8,9 @@
 	let donater = 'Поддержать проект';
 
 	onMount(async () => {
-		let data = await fetch('https://last-donation-api.vercel.app/api/last_donation');
-		data = await data.json();
 		if (Math.random() > 0.5) {
+			let data = await fetch('https://last-donation-api.vercel.app/api/last_donation');
+			data = await data.json();
 			if (data) {
 				donater = `${data.donator_info.name} - ${data.amount} ${data.origin_currency}`;
 			}
