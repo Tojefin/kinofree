@@ -108,7 +108,6 @@
 			padding: 11px 24px;
 			height: 100%;
 			align-items: center;
-			max-width: 250px;
 			gap: 10px;
 			border-radius: 16px;
 
@@ -118,7 +117,6 @@
 			text-decoration: none;
 
 			@media (max-width: 1024px) {
-				max-width: inherit;
 				display: flex;
 				width: inherit;
 				padding: 12px;
