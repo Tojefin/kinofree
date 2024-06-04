@@ -1,5 +1,7 @@
 export { default as vibroTap } from './vibroTap.js';
 
+export { default as pb } from './pocketbase/index.js';
+
 export { default as getWatchHistory } from './watchHistory/getWatchHistory.js';
 export { default as addWatchHistory } from './watchHistory/addWatchHistory.js';
 export { default as removeWatchHistory } from './watchHistory/removeWatchHistory.js';

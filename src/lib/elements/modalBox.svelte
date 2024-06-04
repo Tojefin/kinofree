@@ -22,41 +22,43 @@
 	on:click|stopPropagation
 	{...$$restProps}
 >
-	<!-- svelte-ignore a11y-no-static-element-interactions -->
-	<div class="box">
-		<!-- svelte-ignore a11y-autofocus -->
-		<div class="close">
-			<Button circle autofocus on:click={closeModal}>
-				<Cross />
-			</Button>
-		</div>
-		<div class="header">
-			<slot name="title" />
-			<slot name="subtitle" />
-		</div>
-		<div class="content">
-			<slot name="content" />
-		</div>
-		<div class="footer">
-			<slot name="footer" />
-		</div>
+	<!-- <div class="box">
+
+	</div> -->
+
+	<div class="close">
+		<Button circle autofocus on:click={closeModal}>
+			<Cross />
+		</Button>
+	</div>
+	<div class="header">
+		<slot name="title" />
+		<slot name="subtitle" />
+	</div>
+	<div class="content">
+		<slot name="content" />
+	</div>
+	<div class="footer">
+		<slot name="footer" />
 	</div>
 </dialog>
 
 <style lang="scss">
-	dialog {
+	dialog[open] {
 		position: fixed;
 		border-radius: 20px;
-		padding: 0;
+		padding: 48px 40px;
 		margin: 80px auto;
 		overflow: hidden;
-		height: 100%;
+		height: min-content;
 		width: 100%;
 		max-width: 800px;
 		max-height: -webkit-fill-available;
 		border: 1px solid rgba(255, 255, 255, 0.04);
 		background: #1f2227;
 		box-shadow: 0px 1px 0px 0px rgba(255, 255, 255, 0.08) inset;
+		display: flex;
+		flex-direction: column;
 
 		&::backdrop {
 			background: rgba(0, 0, 0, 0.6);
@@ -86,20 +88,6 @@
 			}
 			to {
 				opacity: 1;
-			}
-		}
-
-		.box {
-			padding: 48px 40px;
-			display: flex;
-			max-width: 800px;
-			flex-direction: column;
-			align-items: flex-start;
-			width: 100%;
-			height: 100%;
-
-			@media (max-width: 768px) {
-				padding: 80px 16px 32px;
 			}
 		}
 	}

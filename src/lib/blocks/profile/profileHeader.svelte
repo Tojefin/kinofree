@@ -1,12 +1,13 @@
 <script>
 	import { goto, afterNavigate } from '$app/navigation';
-	import { Button } from '$lib/elements';
+	import { Button, Login, Logout } from '$lib/elements';
 	import { Arrow, Delete } from '$lib/icons';
-	import { getWatchHistory } from '$lib/scripts';
+	import { getWatchHistory, pb } from '$lib/scripts';
 
 	export let activeList = 'history';
 	let nav;
 	let watchHistory = [];
+	let isLogin = pb.authStore.isValid;
 
 	function setActiveList(list) {
 		activeList = list;
@@ -35,10 +36,14 @@
 
 	afterNavigate(() => {
 		watchHistory = getWatchHistory();
+		isLogin = pb.authStore.isValid;
 	});
 </script>
 
 <section>
+	{#if !isLogin}
+		<Login />
+	{/if}
 	<div class="top">
 		<div class="back">
 			<Button title="Назад" nav vibro dark circle on:click={() => history.back()}>
@@ -46,21 +51,30 @@
 			</Button>
 		</div>
 		<h2>Профиль</h2>
+		{#if isLogin}
+			<div class="user">
+				<p>{pb.authStore.model?.email?.split('@')[0]}</p>
+				<Logout />
+			</div>
+		{/if}
 	</div>
+
 	<div class="bottom">
 		<nav bind:this={nav} on:scroll={scrollFade}>
 			<Button toggle active={activeList == 'history'} on:click={() => setActiveList('history')}>
 				История
 			</Button>
-			<!-- <Button toggle active={activeList == 'planned'} on:click={() => setActiveList('planned')}>
-				Буду смотреть
-			</Button>
-			<Button toggle active={activeList == 'favorite'} on:click={() => setActiveList('favorite')}>
-				Любимые
-			</Button>
-			<Button toggle active={activeList == 'viewed'} on:click={() => setActiveList('viewed')}>
-				Просмотрено
-			</Button> -->
+			{#if isLogin}
+				<Button toggle active={activeList == 'planned'} on:click={() => setActiveList('planned')}>
+					Буду смотреть
+				</Button>
+				<Button toggle active={activeList == 'favorite'} on:click={() => setActiveList('favorite')}>
+					Любимые
+				</Button>
+				<Button toggle active={activeList == 'viewed'} on:click={() => setActiveList('viewed')}>
+					Просмотрено
+				</Button>
+			{/if}
 		</nav>
 		{#if activeList == 'history' && watchHistory.length}
 			<button on:click={clearWatchHistory}>
@@ -98,6 +112,22 @@
 			font-size: 32px;
 			line-height: 137%;
 			color: var(--white);
+		}
+
+		.user {
+			display: flex;
+			flex: 1 0 0;
+			justify-content: flex-end;
+			gap: 32px;
+			align-items: center;
+
+			p {
+				font-family: var(--font-family);
+				font-weight: 700;
+				font-size: 18px;
+				line-height: 133%;
+				color: var(--yellow);
+			}
 		}
 	}
 

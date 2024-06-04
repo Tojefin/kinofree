@@ -9,3 +9,4 @@ export { default as Delete } from './delete.svelte';
 export { default as List } from './list.svelte';
 export { default as WifiProblem } from './wifiProblem.svelte';
 export { default as Refresh } from './refresh.svelte';
+export { default as IconLogout } from './logout.svelte';

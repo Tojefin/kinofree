@@ -13,7 +13,7 @@
 
 <div class="page-main">
 	<Header />
-	<ProfileHeader {activeList} />
+	<ProfileHeader bind:activeList />
 	<ResultList
 		lable={null}
 		list={data}
