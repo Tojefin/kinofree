@@ -1,0 +1,1 @@
+export {default as Anonser } from './ui.anonser.svelte'
