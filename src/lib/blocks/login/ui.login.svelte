@@ -1,5 +1,5 @@
 <script>
-	import LoginProviders from '$lib/blocks/modals';
+	import { LoginProviders } from '$lib/blocks/modals';
 
 	let providerModal = false
 </script>

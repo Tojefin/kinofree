@@ -1,15 +1,16 @@
 <script>
+	import watchHistory from '$lib/shared/scripts/watchHistory';
 	import { goto } from '$app/navigation';
-	import { Arrow, Delete } from '$lib/icons';
+	import { ArrowIcon, DeleteIcon } from '$lib/shared/icons';
 	import { onMount } from 'svelte';
-	import { apiGetFilm, removeWatchHistory } from '$lib/scripts';
+	import { apiGetFilm } from '$lib/shared/api';
 
 	export let canDelete = false;
 	export let film;
 	let rating = film.rating || film.ratingKinopoisk;
 
 	function deleteHandler() {
-		removeWatchHistory(film);
+		watchHistory.remove(film);
 		goto('');
 	}
 
@@ -46,11 +47,11 @@
 		<div class="actions">
 			{#if canDelete}
 				<button class="delete" on:click|preventDefault={deleteHandler} title="Удалить">
-					<Delete />
+					<DeleteIcon />
 				</button>
 			{/if}
 			<div class="arrow">
-				<Arrow />
+				<ArrowIcon />
 			</div>
 		</div>
 	</li>

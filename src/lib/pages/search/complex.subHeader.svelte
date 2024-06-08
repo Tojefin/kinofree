@@ -1,12 +1,13 @@
 <script>
-	import { Button, SearchBar } from '$lib/elements';
-	import { Arrow } from '$lib/icons';
+	import { ArrowIcon } from '$lib/shared/icons';
+	import { Button } from '$lib/elements/button';
+	import { SearchBar } from '$lib/blocks/searchBar';
 </script>
 
 <section>
 	<div class="back">
 		<Button title="Назад" nav vibro dark circle on:click={() => history.back()}>
-			<Arrow left />
+			<ArrowIcon left />
 		</Button>
 	</div>
 	<SearchBar />

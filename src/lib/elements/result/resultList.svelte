@@ -1,10 +1,10 @@
 <script>
-	import { Loupe, List } from '$lib/icons';
-	import { ResultCard } from '$lib/blocks';
+	import { LoupeIcon, ListIcon } from '$lib/shared/icons';
+	import ResultCard from './resultCard.svelte';
 
 	export let lable = '';
 	export let list;
-	// TODO: Сделать коллбэк на удаление
+	// TODO: Сделать коллбэк на удаление и другие экшены
 	export let canDelete = false;
 	export let nothing = {
 		title: 'Ничего не найдено',
@@ -31,9 +31,9 @@
 		<div class="nothing">
 			<div class="visual">
 				{#if nothing.title == 'Ничего не найдено'}
-					<Loupe />
+					<LoupeIcon />
 				{:else}
-					<List />
+					<ListIcon />
 				{/if}
 			</div>
 			<div class="text">
