@@ -80,7 +80,7 @@
 				return true;
 			}
 		})[0];
-		if (kinobox.source) {
+		if (kinobox?.source) {
 			players = [...players, { name: kinobox.source, iframe: kinobox.iframeUrl }];
 		}
 
