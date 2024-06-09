@@ -15,8 +15,10 @@
 	}
 
 	onMount(async () => {
+		console.log(film)
+
 		if (!film.description) {
-			film = await apiGetFilm(film.filmId || film.id || film.kinopoiskId);
+			film = await apiGetFilm(film.film_id || film.filmId || film.id || film.kinopoiskId );
 			rating = film.rating || film.ratingKinopoisk;
 		}
 	});

@@ -29,7 +29,7 @@
 			<h2>{lable}</h2>
 		{/if}
 		<ul>
-			{#each list as film (film.filmId || film.id || film.kinopoiskId)}
+			{#each list as film (film.filmId || film.id || film.kinopoiskId || film.film_id)}
 				<ResultCard {film} {canDelete} />
 			{/each}
 		</ul>

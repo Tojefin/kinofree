@@ -5,6 +5,7 @@
 	import { apiGetFilm } from '$lib/shared/api';
 	import watchHistory from '$lib/shared/scripts/watchHistory';
 	import pb from '$lib/shared/pocketbase';
+	import { CheckboxGroup } from '$lib/elements/checkbox';
 
 	export let film = '';
 
@@ -18,20 +19,45 @@
 
 	let players = [];
 	let activeIframe = '';
+	let activeList = '';
+	let params;
+
+	let lists = [
+		{ id: 'planned', label: 'Буду смотреть' },
+		{ id: 'viewed', label: 'Просмотренно' },
+		{ id: 'favorite', label: 'Любимое' }
+	];
 
 	function setActiveIframe(select) {
 		activeIframe = select;
 	}
 
-	afterNavigate(async () => {
-		let params = Object.fromEntries($page.url.searchParams);
+	async function updateLists(id, activeList) {
+		if (!activeList) {
+			await pb.collection('lists').delete(isListed.id);
+		}
 
-		isLogin = pb.authStore.isValid;
+		let data = {
+			user: pb.authStore.model.id,
+			film_id: id,
+			status: activeList
+		};
+
+		if (isListed && activeList) {
+			await pb.collection('lists').update(isListed.id, data);
+		}
+		if (!isListed && activeList) {
+			await pb.collection('lists').create(data);
+		}
+
 		isListed = await pb.collection('lists').getFullList({
 			filter: `film_id = "${params.id}"`
 		});
+		isListed = isListed[0];
+	}
 
-		console.log(isListed)
+	afterNavigate(async () => {
+		params = Object.fromEntries($page.url.searchParams);
 
 		film = await apiGetFilm(params.id);
 		watchHistory.add(film);
@@ -54,7 +80,18 @@
 				return true;
 			}
 		})[0];
-		players = [...players, { name: kinobox.source, iframe: kinobox.iframeUrl }];
+		if (kinobox.source) {
+			players = [...players, { name: kinobox.source, iframe: kinobox.iframeUrl }];
+		}
+
+		try {
+			isLogin = pb.authStore.isValid;
+			isListed = await pb.collection('lists').getFullList({
+				filter: `film_id = "${params.id}"`
+			});
+			isListed = isListed[0];
+			activeList = isListed?.status;
+		} catch {}
 	});
 </script>
 
@@ -94,12 +131,11 @@
 						<div class="list">
 							<h4>Добавить в профиль</h4>
 							<div>
-								<input type="checkbox" id="planned"/>
-								<label for="planned">Буду смотреть</label>
-								<input type="checkbox" id="viwed"/>
-								<label for="viwed">Просмотренно</label>
-								<input type="checkbox" id="favorite"/>
-								<label for="favorite">Любимое</label>
+								<CheckboxGroup
+									on:change={() => updateLists(params.id, activeList)}
+									options={lists}
+									bind:value={activeList}
+								/>
 							</div>
 						</div>
 					{/if}

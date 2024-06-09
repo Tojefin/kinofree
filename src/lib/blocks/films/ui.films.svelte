@@ -51,7 +51,8 @@
 			sort: '-created',
 			filter: `status = "${status}"`
 		});
-		canDelete = true;
+		console.log(films)
+		canDelete = false;
 	}
 
 	async function getRecomends() {
