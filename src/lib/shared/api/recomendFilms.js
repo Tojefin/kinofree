@@ -14,7 +14,15 @@ export default async function recomendFilms(id) {
 		similars = await similars.json()
 		let sequels = await fetch(`${sequelsAPI}/${id}/sequels_and_prequels`, options);
 		sequels = await sequels.json()
-		return [...sequels, ...similars.items]
+		let result = [...sequels, ...similars.items]
+
+		result = result.filter((value, index, self) =>
+			index === self.findIndex((t) => (
+				t.place === value.place && t.filmId === value.filmId
+			))
+		)
+
+		return result
 	}
 	return [];
 }

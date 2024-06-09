@@ -1,6 +1,6 @@
 <script>
-	import { Button } from '$lib/elements';
-	import { Arrow } from '$lib/icons';
+	import { Button } from '$lib/elements/button';
+	import { ArrowIcon } from '$lib/shared/icons';
 
 	export let title = '';
 	export let year = '';
@@ -8,20 +8,11 @@
 
 <section>
 	<div class="back">
-		<Button
-			title="Назад"
-			nav
-			vibro
-			dark
-			circle
-			on:click={() => {
-				history.go(-1);
-			}}
-		>
-			<Arrow left />
+		<Button title="Назад" nav vibro dark circle on:click={() => history.back()}>
+			<ArrowIcon left />
 		</Button>
 	</div>
-	<h2>{title}<span>{year}</span></h2>
+	<h2>{title ?? ''}<span>{year ?? ''}</span></h2>
 </section>
 
 <style lang="scss">

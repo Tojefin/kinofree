@@ -1,56 +1,74 @@
 <script>
-	import { Button } from '$lib/elements';
-	import { onMount } from 'svelte';
+	import { afterNavigate } from '$app/navigation';
+	import { Button } from '$lib/elements/button';
+	import { page } from '$app/stores';
+	import { apiGetFilm } from '$lib/shared/api';
+	import watchHistory from '$lib/shared/scripts/watchHistory';
+	import pb from '$lib/shared/pocketbase';
 
-	export let film;
-
-	let iframe;
+	export let film = '';
 
 	$: rating = {
 		score: film?.ratingKinopoisk || film?.ratingImdb,
 		platform: film?.ratingKinopoisk ? 'Кинопоиск' : film?.ratingImdb ? 'IMDB' : ''
 	};
 
-	let players = {
-		alpha: 'https://voidboost.tv/embed/',
-		beta: 'https://polati.newplayjj.com:9443/?token=a3fd119d8a9418f6c3f6a7ae628a41&kp=',
-		gamma: 'https://api.framprox.ws/embed/kp/',
-		delta: 'https://49442664434375553.svetacdn.in/sZfbdItt5jeX?kp_id='
-	};
-	let activePlayer = 'alpha';
+	let isLogin;
+	let isListed;
 
-	function setActivePlayer(select) {
-		activePlayer = select;
-		localStorage.setItem('last_active_player', JSON.stringify(select));
-		window.history.replaceState([] , '');
+	let players = [];
+	let activeIframe = '';
+
+	function setActiveIframe(select) {
+		activeIframe = select;
 	}
 
-	function getStoregePlayer() {
-		let storedPlayer = JSON.parse(localStorage.getItem('last_active_player'));
-		if (!storedPlayer) {
-			localStorage.setItem('last_active_player', JSON.stringify('alpha'));
-			storedPlayer = 'alpha';
-		}
-		setActivePlayer(storedPlayer);
-	}
+	afterNavigate(async () => {
+		let params = Object.fromEntries($page.url.searchParams);
 
-	onMount(() => {
-		getStoregePlayer();
+		isLogin = pb.authStore.isValid;
+		isListed = await pb.collection('lists').getFullList({
+			filter: `film_id = "${params.id}"`
+		});
+
+		console.log(isListed)
+
+		film = await apiGetFilm(params.id);
+		watchHistory.add(film);
+
+		players = [
+			{
+				name: 'Alloha',
+				iframe: 'https://polati.newplayjj.com:9443/?token=a3fd119d8a9418f6c3f6a7ae628a41&kp='
+			},
+			{ name: 'Collaps', iframe: 'https://api.tobaco.ws/embed/kp/' },
+			{ name: 'VideoCDN', iframe: 'https://49442664434375553.svetacdn.in/sZfbdItt5jeX?kp_id=' }
+		];
+		activeIframe = players[0].iframe;
+
+		let kinobox = await fetch('https://kinobox.tv/api/players?kinopoisk=' + params.id).then((res) =>
+			res.json()
+		);
+		kinobox = kinobox.filter((balanser) => {
+			if (balanser.source == 'Kodik' && balanser.iframeUrl) {
+				return true;
+			}
+		})[0];
+		players = [...players, { name: kinobox.source, iframe: kinobox.iframeUrl }];
 	});
 </script>
 
 <section>
 	<div class="box">
-		{#if !film}
+		{#if film == ''}
 			Загрузка ...
 		{:else}
 			<div class="player">
 				<iframe
-					bind:this={iframe}
 					title="player"
 					allowfullscreen="true"
 					sandbox="allow-scripts allow-same-origin"
-					src="{players[activePlayer]}{film.kinopoiskId}"
+					src="{activeIframe}{film.kinopoiskId}"
 				></iframe>
 			</div>
 			<aside>
@@ -64,8 +82,6 @@
 							>
 								{rating.score}
 							</mark>
-						{:else}
-							<span>Рейтинг не найден</span>
 						{/if}
 					</div>
 					<p>
@@ -74,37 +90,31 @@
 				</div>
 
 				<div class="actions">
+					{#if isLogin}
+						<div class="list">
+							<h4>Добавить в профиль</h4>
+							<div>
+								<input type="checkbox" id="planned"/>
+								<label for="planned">Буду смотреть</label>
+								<input type="checkbox" id="viwed"/>
+								<label for="viwed">Просмотренно</label>
+								<input type="checkbox" id="favorite"/>
+								<label for="favorite">Любимое</label>
+							</div>
+						</div>
+					{/if}
 					<div class="sources">
 						<h4>Плееры</h4>
 						<div>
-							<Button
-								toggle
-								active={activePlayer == 'alpha'}
-								on:click={() => setActivePlayer('alpha')}
-							>
-								Alpha
-							</Button>
-							<Button
-								toggle
-								active={activePlayer == 'beta'}
-								on:click={() => setActivePlayer('beta')}
-							>
-								Beta
-							</Button>
-							<Button
-								toggle
-								active={activePlayer == 'gamma'}
-								on:click={() => setActivePlayer('gamma')}
-							>
-								Gamma
-							</Button>
-							<Button
-								toggle
-								active={activePlayer == 'delta'}
-								on:click={() => setActivePlayer('delta')}
-							>
-								Delta
-							</Button>
+							{#each players as player}
+								<Button
+									toggle
+									active={activeIframe == player.iframe}
+									on:click={() => setActiveIframe(player.iframe)}
+								>
+									{player.name}
+								</Button>
+							{/each}
 						</div>
 					</div>
 				</div>
@@ -245,6 +255,25 @@
 		display: flex;
 		gap: 32px;
 		flex-direction: column;
+	}
+
+	.list {
+		display: flex;
+		flex-direction: column;
+		gap: 16px;
+
+		h4 {
+			font-weight: 700;
+			font-size: 16px;
+			line-height: 125%;
+			color: var(--gray);
+		}
+
+		div {
+			display: flex;
+			flex-direction: column;
+			gap: 12px;
+		}
 	}
 
 	.sources {

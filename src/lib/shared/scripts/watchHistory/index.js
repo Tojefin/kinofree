@@ -9,7 +9,7 @@ const watchHistory = {
 	},
 
 	add: (film) => {
-		let data = this.get()
+		let data = watchHistory.get()
 
 		let target = data.filter((obj) => obj.kinopoiskId == film.kinopoiskId)[0];
 		if (target) {
@@ -27,7 +27,7 @@ const watchHistory = {
 	},
 
 	remove: (film) => {
-		let data = this.get()
+		let data = watchHistory.get()
 
 		let filtered = data.filter((obj) => obj.kinopoiskId != film.kinopoiskId);
 		localStorage.setItem('watch_history', JSON.stringify(filtered));

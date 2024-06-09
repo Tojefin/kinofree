@@ -1,11 +1,13 @@
 <script>
 	import ComplexSubHeader from './complex.subHeader.svelte';
 	import { Films } from '$lib/blocks/films';
+
+	let activeList
 </script>
 
 <div class="page-profile">
-	<ComplexSubHeader />
-	<Films type="lastviewed" />
+	<ComplexSubHeader bind:activeList />
+	<Films type={activeList} />
 </div>
 
 <style lang="scss">

@@ -1,12 +1,18 @@
-<script>
+<script lang="ts">
 	import { LoupeIcon, ListIcon } from '$lib/shared/icons';
 	import ResultCard from './resultCard.svelte';
+
+	interface Nothing {
+		title?: string,
+		text?: string,
+		disable: boolean
+	}
 
 	export let lable = '';
 	export let list;
 	// TODO: Сделать коллбэк на удаление и другие экшены
 	export let canDelete = false;
-	export let nothing = {
+	export let nothing: Nothing = {
 		title: 'Ничего не найдено',
 		text: '',
 		disable: false

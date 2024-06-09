@@ -31,4 +31,7 @@
 		background: none;
 		border: none;
 	}
+	h2 {
+		width: max-content;
+	}
 </style>
