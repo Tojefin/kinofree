@@ -54,6 +54,7 @@
 		transition: all ease 0.25s;
 
 		:global(svg path) {
+			stroke: var(--black, #000);
 			transition: all ease 0.25s;
 		}
 

@@ -13,7 +13,7 @@
 		display: flex;
 		flex-direction: column;
 		align-items: center;
-		min-height: 100vh;
+		flex: 1 0 0;
 		width: 100%;
 	}
 </style>

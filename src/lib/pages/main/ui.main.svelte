@@ -15,7 +15,7 @@
 		display: flex;
 		flex-direction: column;
 		align-items: center;
-		height: 70vh;
+		flex: 1 0 0;
 		width: 100%;
 	}
 </style>

@@ -1,19 +1,6 @@
 <script>
-	import { Header, Offline, Footer } from '$lib/blocks';
-	import { page } from '$app/stores';
+	import { Offline } from '$lib/pages/offline';
 </script>
 
-<div class="page-main">
-	<Header />
-	<Offline />
-	<Footer />
-</div>
+<Offline />
 
-<style lang="scss">
-	.page-main {
-		display: flex;
-		flex-direction: column;
-		align-items: center;
-		min-height: 100vh;
-	}
-</style>

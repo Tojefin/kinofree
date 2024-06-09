@@ -1,21 +1,25 @@
 <script>
-	import { WifiProblem, Refresh } from '$lib/icons';
+	export let title = '';
+	export let desc = '';
 </script>
 
 <section>
-	<div class="offline">
-		<div class="visual">
-			<WifiProblem />
-		</div>
-		<div class="text">
-			<p>Нет интернета</p>
-			<span> Проверьте подключение и обновите страницу </span>
-		</div>
-		<a href="/">
-			<button>
-				Обновить страницу <Refresh />
-			</button>
-		</a>
+	<div class="error">
+		{#if $$slots.icon}
+			<div class="visual">
+				<slot name="icon" />
+			</div>
+		{/if}
+		{#if $$slots.content}
+			<slot name="content" />
+		{/if}
+		{#if title || desc}
+			<div class="text">
+				<p>{title}</p>
+				<span>{desc}</span>
+			</div>
+		{/if}
+		<slot name="action" />
 	</div>
 </section>
 
@@ -35,43 +39,7 @@
 		}
 	}
 
-	button {
-		appearance: none;
-		border: none;
-		display: flex;
-		padding: 11px 24px;
-		align-items: center;
-		gap: 8px;
-		border-radius: 32px;
-		background: var(--white, #fff);
-		color: var(--black, #000);
-		font-family: Inter;
-		font-size: 14px;
-		font-weight: 500;
-		line-height: 18px; /* 128.571% */
-		user-select: none;
-
-		transition: all ease 0.25s;
-
-		:global(svg path) {
-			transition: all ease 0.25s;
-		}
-
-		:global(svg path) {
-			stroke: var(--black, #000);
-		}
-
-		@include hover {
-			background: var(--black, #000);
-			color: var(--white, #fff);
-
-			:global(svg path) {
-				stroke: var(--white, #fff);
-			}
-		}
-	}
-
-	.offline {
+	.error {
 		display: flex;
 		flex-direction: column;
 		gap: 32px;
@@ -95,6 +63,10 @@
 			height: 80px;
 			box-shadow: inset 0 1px 0 0 rgba(255, 255, 255, 0.08);
 			background: rgba(255, 255, 255, 0.02);
+
+			:global(svg path) {
+				stroke: var(--white, #fff);
+			}
 		}
 
 		.text {
