@@ -12,10 +12,9 @@
 
 <style lang="scss">
 	.page-main {
-		display: flex;
-		flex-direction: column;
-		align-items: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 		flex: 1 0 0;
-		width: 100%;
 	}
 </style>

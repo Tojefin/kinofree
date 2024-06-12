@@ -33,7 +33,7 @@
 	}
 
 	async function updateLists(id, activeList) {
-		if (!activeList) {
+		if (!activeList && isListed) {
 			await pb.collection('lists').delete(isListed.id);
 		}
 
@@ -65,7 +65,7 @@
 		players = [
 			{
 				name: 'Alloha',
-				iframe: 'https://polati.newplayjj.com:9443/?token=a3fd119d8a9418f6c3f6a7ae628a41&kp='
+				iframe: 'https://attractive-as.allarknow.online/?token=a3fd119d8a9418f6c3f6a7ae628a41&kp='
 			},
 			{ name: 'Collaps', iframe: 'https://api.tobaco.ws/embed/kp/' },
 			{ name: 'VideoCDN', iframe: 'https://49442664434375553.svetacdn.in/sZfbdItt5jeX?kp_id=' }
@@ -160,5 +160,5 @@
 </section>
 
 <style lang="scss">
-	@import './styles.scss'
+	@import './styles.scss';
 </style>

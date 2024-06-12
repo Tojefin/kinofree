@@ -10,10 +10,10 @@
 		<a class="tg" href="https://tg.skyedge.xyz" target="_blank"> <TelegramIcon /> Мы в Telegram </a>
 		<nav>
 			<button type="button" on:click={() => (dmcaModal = true)}>Правообладателям</button>
-			<!-- <span>•</span>
-			<button>Соглашение</button>
 			<span>•</span>
-			<button>Конфиденциальность</button> -->
+			<a href="/legal/tos">Соглашение</a>
+			<span>•</span>
+			<a href="/legal/privacy">Конфиденциальность</a>
 		</nav>
 	</div>
 </footer>
@@ -103,7 +103,7 @@
 			}
 		}
 
-		button {
+		button, a {
 			appearance: none;
 			background: none;
 			border: none;

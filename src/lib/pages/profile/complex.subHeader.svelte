@@ -44,7 +44,7 @@
 </script>
 
 <section>
-	{#if !isLogin && false}
+	{#if !isLogin}
 		<Login />
 	{/if}
 	<div class="top">

@@ -9,19 +9,27 @@
 </svelte:head>
 
 <main class="app">
-	<Header />
-	<slot />
-	<Footer />
+	<div class="content-view">
+		<Header />
+		<slot />
+		<Footer />
+	</div>
 </main>
 
 <style>
 	.app {
 		overflow-x: hidden;
-		min-height: 100vh;
 		background: #13161b;
 		display: flex;
 		flex-direction: column;
 		align-items: center;
+		min-height: 100vh;
+	}
+	.content-view {
 		max-width: 1920px;
+		width: 100vw;
+		display: flex;
+		flex-direction: column;
+		min-height: 100vh;
 	}
 </style>
