@@ -1,1 +1,1 @@
-export {default as BlogBox } from './ui.modalBox.svelte'
+export {default as BlogBox } from './ui.blogBox.svelte'

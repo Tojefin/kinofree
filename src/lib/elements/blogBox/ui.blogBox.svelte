@@ -1,5 +1,4 @@
 <script>
-
 </script>
 
 <section>
@@ -17,7 +16,15 @@
 
 <style lang="scss">
 	section {
-		max-width: 1440px;
+		max-width: 768px;
+		padding: 10px 20px;
+
+		@media (max-width: 1024px) {
+			padding: 10px 40px;
+		}
+		@media (max-width: 768px) {
+			padding: 10px 20px;
+		}
 	}
 
 	.header {
@@ -46,7 +53,6 @@
 		overflow-y: scroll;
 		padding: 24px 20px 44px 0;
 		margin-bottom: -40px;
-		mask-image: linear-gradient(to bottom, black 90%, transparent 100%);
 		&::-webkit-scrollbar {
 			width: 8px;
 		}
@@ -67,7 +73,7 @@
 		}
 
 		:global(h3) {
-			margin-bottom: 24px;
+			margin-bottom: 10px;
 			color: #fff;
 
 			/* H4 — Desktop */
