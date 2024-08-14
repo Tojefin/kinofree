@@ -68,14 +68,11 @@
 				История
 			</Button>
 			{#if isLogin}
+				<Button toggle active={activeList == 'view'} on:click={() => setActiveList('view')}>
+					Смотрю
+				</Button>
 				<Button toggle active={activeList == 'planned'} on:click={() => setActiveList('planned')}>
 					Буду смотреть
-				</Button>
-				<Button toggle active={activeList == 'viewed'} on:click={() => setActiveList('viewed')}>
-					Просмотрено
-				</Button>
-				<Button toggle active={activeList == 'favorite'} on:click={() => setActiveList('favorite')}>
-					Любимые
 				</Button>
 			{/if}
 		</nav>

@@ -82,16 +82,8 @@
 					disable: false
 				};
 				break;
-			case 'favorite':
-				await getBase('favorite');
-				nothing = {
-					title: 'Список пуст',
-					text: '',
-					disable: false
-				};
-				break;
-			case 'viewed':
-				await getBase('viewed');
+			case 'view':
+				await getBase('view');
 				nothing = {
 					title: 'Список пуст',
 					text: '',

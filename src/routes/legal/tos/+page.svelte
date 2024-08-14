@@ -1,6 +1,6 @@
 <script>
-	import { Main } from '$lib/pages/main';
+	import { Tos } from '$lib/pages/tos';
 </script>
 
-<Main />
+<Tos />
 

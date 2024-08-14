@@ -24,8 +24,7 @@
 
 	let lists = [
 		{ id: 'planned', label: 'Буду смотреть' },
-		{ id: 'viewed', label: 'Просмотренно' },
-		{ id: 'favorite', label: 'Любимое' }
+		{ id: 'view', label: 'Смотрю' }
 	];
 
 	function setActiveIframe(select) {
@@ -95,11 +94,9 @@
 	});
 </script>
 
-<section>
-	<div class="box">
-		{#if film == ''}
-			Загрузка ...
-		{:else}
+{#if film != ''}
+	<section>
+		<div class="box">
 			<div class="player">
 				<iframe
 					title="player"
@@ -155,9 +152,9 @@
 					</div>
 				</div>
 			</aside>
-		{/if}
-	</div>
-</section>
+		</div>
+	</section>
+{/if}
 
 <style lang="scss">
 	@import './styles.scss';

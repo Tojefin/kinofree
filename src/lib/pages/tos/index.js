@@ -1,0 +1,1 @@
+export {default as Tos } from './ui.tos.svelte'

@@ -81,6 +81,16 @@
 			font-weight: 700;
 			line-height: 24px; /* 133.333% */
 		}
+		:global(h4) {
+			margin-bottom: 10px;
+			margin-left: 20px;
+			color: #fff;
+
+			/* H4 — Desktop */
+			font-size: 16px;
+			font-weight: 600;
+			line-height: 24px; /* 133.333% */
+		}
 		:global(p) {
 			color: #fff;
 

@@ -6,7 +6,23 @@ const config = {
 	preprocess: preprocess({
 		scss: {
 			prependData: `@import './static/styles/index.scss';`
-		}
+		},
+		babel: {
+      presets: [
+        [
+          '@babel/preset-env',
+          {
+            loose: true,
+            // No need for babel to resolve modules
+            modules: false,
+            targets: {
+              // ! Very important. Target es6+
+              esmodules: true,
+            },
+          },
+        ],
+      ],
+    },
 	}),
 	kit: {
 		// adapter-auto only supports some environments, see https://kit.svelte.dev/docs/adapter-auto for a list.
