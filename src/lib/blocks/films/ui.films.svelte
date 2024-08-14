@@ -5,6 +5,7 @@
 	import { ResultList } from '$lib/elements/result';
 	import watchHistory from '$lib/shared/scripts/watchHistory';
 	import pb from '$lib/shared/pocketbase';
+	import { browser } from '$app/environment';
 
 	export let type = 'search';
 
@@ -18,6 +19,7 @@
 	let canDelete = false;
 
 	async function getSearch() {
+		if (!browser) return
 		params = Object.fromEntries($page.url.searchParams);
 		if (params.key) {
 			let searched = await apiSearchFilm(params.key, currentPage);
@@ -56,6 +58,7 @@
 	}
 
 	async function getRecomends() {
+		if (!browser) return
 		params = Object.fromEntries($page.url.searchParams);
 		let recomend = await apiRecomendFilms(params.id);
 		films = recomend;
