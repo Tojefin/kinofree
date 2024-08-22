@@ -1,7 +1,7 @@
 <script>
 	import { LoginProviders } from '$lib/blocks/modals';
 
-	let providerModal = false
+	let providerModal = false;
 </script>
 
 <button class="login" on:click={() => (providerModal = true)}>
@@ -27,7 +27,8 @@
 
 		@media (max-width: 768px) {
 			padding: 20px;
-			gap: 20px;
+			gap: 8px;
+			border-radius: 12px;
 			flex-direction: column;
 			align-items: flex-start;
 		}
@@ -47,6 +48,14 @@
 		font-size: 18px;
 		line-height: 133%;
 		color: var(--black);
+
+		@media (max-width: 768px) {
+			font-family: var(--font-family);
+			font-weight: 700;
+			font-size: 18px;
+			line-height: 133%;
+			color: var(--black);
+		}
 	}
 
 	span {
@@ -55,5 +64,14 @@
 		font-size: 14px;
 		line-height: 129%;
 		color: #3a393e;
+
+		@media (max-width: 768px) {
+			font-family: var(--font-family);
+			font-weight: 400;
+			font-size: 14px;
+			line-height: 129%;
+			color: #3a393e;
+			text-align: left;
+		}
 	}
 </style>

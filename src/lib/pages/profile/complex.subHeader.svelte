@@ -76,14 +76,14 @@
 				</Button>
 			{/if}
 		</nav>
-		{#if activeList == 'history' && historyList.length}
+		<!-- {#if activeList == 'history' && historyList.length}
 			<button on:click={clearWatchHistory}>
 				<Button circle dark vibro>
 					<DeleteIcon />
 				</Button>
-				Очистить список «История»
+				<span>Очистить список «История»</span>
 			</button>
-		{/if}
+		{/if} -->
 	</div>
 </section>
 
@@ -168,6 +168,12 @@
 		line-height: 129%;
 		color: var(--white);
 		transition: all 0.25s ease;
+
+		@media (max-width: 768px) {
+			span {
+				display: none;
+			}
+		}
 
 		&:active {
 			transform: scale(90%);

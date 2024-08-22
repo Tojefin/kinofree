@@ -44,6 +44,7 @@ section {
 
 .player {
 	aspect-ratio: 16/9;
+	height: -webkit-fill-available;
 	width: 100%;
 	border-radius: 8px;
 	overflow: hidden;

@@ -104,6 +104,7 @@
 		}
 
 		button, a {
+			padding: 0;
 			appearance: none;
 			background: none;
 			border: none;
