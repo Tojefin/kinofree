@@ -6,6 +6,7 @@
 	import watchHistory from '$lib/shared/scripts/watchHistory';
 	import pb from '$lib/shared/pocketbase';
 	import { CheckboxGroup } from '$lib/elements/checkbox';
+	import { ExternalIcon } from '$lib/shared/icons';
 
 	export let film = '';
 
@@ -107,17 +108,20 @@
 			</div>
 			<aside>
 				<div class="info">
-					<div>
-						{#if rating.score > 0}
-							<span>{rating.platform}:</span>
-							<mark
-								class:okey={rating.score > 3.9 && rating.score < 7}
-								class:bad={rating.score < 4}
-							>
-								{rating.score}
-							</mark>
-						{/if}
-					</div>
+					<a href={`https://www.kinopoisk.ru/film/${params.id}`} target="_blank">
+						<div class="rating">
+							{#if rating.score > 0}
+								<mark
+									class:okey={rating.score > 3.9 && rating.score < 7}
+									class:bad={rating.score < 4}
+								>
+									{rating.score}
+								</mark>
+								<span>{rating.platform}</span>
+								<ExternalIcon />
+							{/if}
+						</div>
+					</a>
 					<p>
 						{film.description || 'Описание не найдено'}
 					</p>

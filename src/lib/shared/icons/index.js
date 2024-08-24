@@ -10,3 +10,4 @@ export { default as ListIcon } from './list.svelte';
 export { default as WifiProblemIcon } from './wifiProblem.svelte';
 export { default as RefreshIcon } from './refresh.svelte';
 export { default as LogoutIcon } from './logout.svelte';
+export { default as ExternalIcon } from './external.svelte';

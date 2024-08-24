@@ -72,6 +72,22 @@ aside {
 	gap: 16px;
 	flex-direction: column;
 
+	.rating {
+		display: flex;
+		align-items: center;
+		gap: 6px;
+
+		:global(svg path) {
+			transition: all ease 0.25s;
+		}
+
+		@include hover {
+			:global(svg path) {
+				stroke: var(--yellow, #fce802);
+			}
+		}
+	}
+
 	span {
 		font-weight: 700;
 		font-size: 18px;
