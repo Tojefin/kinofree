@@ -86,11 +86,13 @@
 
 		try {
 			isLogin = pb.authStore.isValid;
-			isListed = await pb.collection('lists').getFullList({
-				filter: `film_id = "${params.id}"`
-			});
-			isListed = isListed[0];
-			activeList = isListed?.status;
+			if (isLogin) {
+				isListed = await pb.collection('lists').getFullList({
+					filter: `film_id = "${params.id}"`
+				});
+				isListed = isListed[0];
+				activeList = isListed?.status;
+			}
 		} catch {}
 	});
 </script>

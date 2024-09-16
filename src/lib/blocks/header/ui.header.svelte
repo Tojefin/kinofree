@@ -20,7 +20,7 @@
 
 <header>
 	<a href="/"><h1>KINOFREE</h1></a>
-	<nav class:hideMobile={$page.url.pathname != '/'}>
+	<nav class:hideMobile={$page.url.pathname != '/' && $page.url.pathname != '/index.html'}>
 		<a class="button" href="https://www.donationalerts.com/r/tojefin" target="_blank">
 			<Button nav vibro dark>
 				<CoffeeIcon />

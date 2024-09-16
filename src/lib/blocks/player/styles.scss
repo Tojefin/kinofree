@@ -60,6 +60,7 @@ aside {
 	display: flex;
 	height: 100%;
 	width: 50%;
+	gap: 40px;
 	flex-direction: column;
 
 	@media (max-width: 1024px) {
@@ -71,6 +72,10 @@ aside {
 	display: flex;
 	gap: 16px;
 	flex-direction: column;
+
+	@media (max-width: 1024px) {
+		order: 1;
+	}
 
 	.rating {
 		display: flex;
@@ -138,14 +143,21 @@ aside {
 			background-color: #13161b;
 			border-radius: 100px;
 		}
+
+		@media (max-width: 768px) {
+			max-height: 100%;
+		}
 	}
 }
 
 .actions {
-	padding-top: 40px;
 	display: flex;
 	gap: 32px;
 	flex-direction: column;
+
+	@media (max-width: 1024px) {
+		order: 0;
+	}
 }
 
 .list {

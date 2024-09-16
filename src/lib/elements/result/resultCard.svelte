@@ -35,7 +35,6 @@
 			</p>
 			<div>
 				{#if rating > 0}
-					<span>Кинопоиск:</span>
 					<mark class:okey={rating > 3.9 && rating < 7} class:bad={rating < 4}>
 						{rating}
 					</mark>
@@ -138,6 +137,7 @@
 		max-height: 92px;
 		display: -webkit-box;
 		-webkit-line-clamp: 4;
+		line-clamp: 4;
 		-webkit-box-orient: vertical;
 		overflow: hidden;
 		text-overflow: ellipsis;
