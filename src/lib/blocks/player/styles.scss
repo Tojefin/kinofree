@@ -43,8 +43,7 @@ section {
 }
 
 .player {
-	aspect-ratio: 16/9;
-	height: -webkit-fill-available;
+	height: 100%;
 	width: 100%;
 	border-radius: 8px;
 	overflow: hidden;
@@ -52,6 +51,7 @@ section {
 
 	iframe {
 		aspect-ratio: 16/9;
+		height: 100%;
 		width: 100%;
 	}
 }
