@@ -101,12 +101,14 @@
 	<section>
 		<div class="box">
 			<div class="player">
-				<iframe
-					title="player"
-					allowfullscreen="true"
-					sandbox="allow-scripts allow-same-origin"
-					src={activeIframe + film.kinopoiskId}
-				></iframe>
+				{#key activeIframe}
+					<iframe
+						title="player"
+						allowfullscreen="true"
+						sandbox="allow-scripts allow-same-origin"
+						src={activeIframe + film.kinopoiskId}
+					></iframe>
+				{/key}
 			</div>
 			<aside>
 				<div class="info">

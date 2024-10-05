@@ -8,7 +8,7 @@
 
 <section>
 	<div class="back">
-		<Button title="Назад" nav vibro dark circle on:click={() => history.back()}>
+		<Button title="Назад" nav vibro dark circle on:click={() => history.go(-2)}>
 			<ArrowIcon left />
 		</Button>
 	</div>
