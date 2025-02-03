@@ -1,5 +1,7 @@
 # KINOFREE
 
+![Telegram](https://img.shields.io/badge/Telegram-24A1DE?style=for-the-badge&link=https%3A%2F%2Ft.me%2F%2BWRTVf77IofcxNDQ6)
+
 ## Developing
 
 ```bash
