@@ -68,21 +68,9 @@
 				iframe: 'https://attractive-as.allarknow.online/?token=a3fd119d8a9418f6c3f6a7ae628a41&kp='
 			},
 			{ name: 'Collaps', iframe: 'https://api.tobaco.ws/embed/kp/' },
-			{ name: 'VideoCDN', iframe: 'https://49442664434375553.svetacdn.in/sZfbdItt5jeX?kp_id=' }
+			{ name: 'Lumex', iframe: 'https://49442664434375553.svetacdn.in/sZfbdItt5jeX?kp_id=' }
 		];
 		activeIframe = players[0].iframe;
-
-		let kinobox = await fetch('https://kinobox.tv/api/players?kinopoisk=' + params.id).then((res) =>
-			res.json()
-		);
-		kinobox = kinobox.filter((balanser) => {
-			if (balanser.source == 'Kodik' && balanser.iframeUrl) {
-				return true;
-			}
-		})[0];
-		if (kinobox?.source) {
-			players = [...players, { name: kinobox.source, iframe: kinobox.iframeUrl }];
-		}
 
 		try {
 			isLogin = pb.authStore.isValid;
@@ -93,7 +81,9 @@
 				isListed = isListed[0];
 				activeList = isListed?.status;
 			}
-		} catch {}
+		} catch (error) {
+			console.error(error);
+		}
 	});
 </script>
 
