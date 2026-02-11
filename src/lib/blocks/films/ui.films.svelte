@@ -62,7 +62,7 @@
 		params = Object.fromEntries($page.url.searchParams);
 		let recomend = await apiRecomendFilms(params.id);
 		films = recomend;
-		listName = 'Похожие фильмы';
+		listName = 'Связанное и похожее';
 		nothing = {
 			disable: true
 		};

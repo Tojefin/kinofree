@@ -14,9 +14,42 @@
 		goto('');
 	}
 
+	function reletionType(type) {
+		switch (type) {
+			case 'SIMILAR':
+				return 'Похожее';
+			case 'SEQUEL':
+				return 'Продолжение';
+			case 'PREQUEL':
+				return 'Предыстория';
+			case 'VERSION':
+				return 'Версия фильма';
+			case 'SPIN_OFF':
+				return 'Спин-офф';
+			default:
+				return type;
+		}
+	}
+
+	function showType(type) {
+		switch (type) {
+			case 'FILM':
+				return 'Фильм';
+			case 'TV_SERIES':
+				return 'Сериал';
+			case 'MINI_SERIES':
+				return 'Мини-сериал';
+			case 'VIDEO':
+				return 'Короткометражка';
+			default:
+				return type;
+		}
+	}
+
 	onMount(async () => {
 		if (!film.description) {
-			film = await apiGetFilm(film.film_id || film.filmId || film.id || film.kinopoiskId );
+			const moreInfo = await apiGetFilm(film.film_id || film.filmId || film.id || film.kinopoiskId);
+			film = { ...film, ...moreInfo };
 			rating = film.rating || film.ratingKinopoisk;
 		}
 	});
@@ -29,14 +62,18 @@
 			<h3 title={film.nameRu || film.nameEn || film.nameOriginal}>
 				{film.nameRu || film.nameEn || film.nameOriginal}
 			</h3>
-			<time>{film.year}</time>
+			<time>{film.year || ''}</time>
+			<kbd>{showType(film.type) || ''}</kbd>
+			{#if film.relationType}
+				<kbd>{reletionType(film.relationType) || ''}</kbd>
+			{/if}
 			<p title={film.description || ''}>
 				{film.description || ''}
 			</p>
 			<div>
 				{#if rating > 0}
 					<mark class:okey={rating > 3.9 && rating < 7} class:bad={rating < 4}>
-						{rating}
+						{rating || ''}
 					</mark>
 				{:else}
 					<span></span>
@@ -126,6 +163,17 @@
 		line-height: 125%;
 		color: var(--gray);
 		display: inline-block;
+		margin-bottom: 16px;
+	}
+
+	kbd {
+		font-weight: 400;
+		font-size: 14px;
+		line-height: 130%;
+		color: var(--gray);
+		background: rgba(255, 255, 255, 0.08);
+		border-radius: 8px;
+		padding: 4px 8px;
 		margin-bottom: 16px;
 	}
 
