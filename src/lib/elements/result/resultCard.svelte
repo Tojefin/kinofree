@@ -48,14 +48,14 @@
 
 	onMount(async () => {
 		if (!film.description) {
-			const moreInfo = await apiGetFilm(film.film_id || film.filmId || film.id || film.kinopoiskId);
+			const moreInfo = await apiGetFilm(film.film_id || film.filmId || film.kinopoiskId || film.id);
 			film = { ...film, ...moreInfo };
 			rating = film.rating || film.ratingKinopoisk;
 		}
 	});
 </script>
 
-<a href={`/watch?id=${film.filmId || film.id || film.kinopoiskId}`}>
+<a href={`/watch?id=${film.film_id || film.filmId || film.kinopoiskId || film.id}`}>
 	<li>
 		<img src={film.posterUrlPreview || film.posterUrl} alt="Постер" loading="lazy" inert />
 		<div class="text">
