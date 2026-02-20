@@ -34,7 +34,7 @@
 
 <section class:hide={!show || !publish}>
 	<img
-		src="https://api.qrserver.com/v1/create-qr-code/?size=100x100&color=fce802&bgcolor=1f2227&data=http://tg.skyedge.xyz"
+		src="https://api.qrserver.com/v1/create-qr-code/?size=100x100&color=fce802&bgcolor=1f2227&data=https://t.me/+CtT26G_ZF_k5ODMy"
 		alt="QR code"
 		height="100"
 		width="100"
@@ -47,7 +47,7 @@
 			итоговые решения и прочее будут выходить там.
 		</p>
 		<div class="more">
-			<a href="https://tg.skyedge.xyz/#banner" target="_blank">
+			<a href="https://t.me/+CtT26G_ZF_k5ODMy/#banner" target="_blank">
 				<Button>
 					Открыть TG
 					<ArrowIcon />

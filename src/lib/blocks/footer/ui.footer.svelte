@@ -7,7 +7,7 @@
 
 <footer>
 	<div>
-		<a class="tg" href="https://tg.skyedge.xyz" target="_blank"> <TelegramIcon /> Мы в Telegram </a>
+		<a class="tg" href="https://t.me/+CtT26G_ZF_k5ODMy" target="_blank"> <TelegramIcon /> Мы в Telegram </a>
 		<nav>
 			<button type="button" on:click={() => (dmcaModal = true)}>Правообладателям</button>
 			<span>•</span>
