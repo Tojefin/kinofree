@@ -5,7 +5,7 @@
 
 	const publish = true;
 	let show = false;
-	let ver = 2;
+	let ver = 3;
 
 	const hideClick = () => {
 		let anonse = JSON.parse(localStorage.getItem('anonse'));
@@ -34,22 +34,21 @@
 
 <section class:hide={!show || !publish}>
 	<img
-		src="https://api.qrserver.com/v1/create-qr-code/?size=100x100&color=fce802&bgcolor=1f2227&data=https://t.me/+CtT26G_ZF_k5ODMy"
+		src="https://api.qrserver.com/v1/create-qr-code/?size=100x100&color=fce802&bgcolor=1f2227&data=https://t.me/skyedgexyz/161"
 		alt="QR code"
 		height="100"
 		width="100"
 		draggable="false"
 	/>
 	<article>
-		<h2>Мы в Telegram</h2>
+		<h2>Ускоритель Telegram</h2>
 		<p>
-			Следите за этим и другими проектами в нашем телеграм канале. Ход разработки, голосования за
-			итоговые решения и прочее будут выходить там.
+			Бесплатный ускоритель для подписчиком нашего телеграм канала, оставайтесь на связи
 		</p>
 		<div class="more">
-			<a href="https://t.me/+CtT26G_ZF_k5ODMy/#banner" target="_blank">
+			<a href="https://t.me/skyedgexyz/161" target="_blank">
 				<Button>
-					Открыть TG
+					Ускорить TG
 					<ArrowIcon />
 				</Button>
 			</a>
