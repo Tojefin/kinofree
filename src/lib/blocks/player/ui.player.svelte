@@ -6,7 +6,10 @@
 	import watchHistory from '$lib/shared/scripts/watchHistory';
 	import pb from '$lib/shared/pocketbase';
 	import { CheckboxGroup } from '$lib/elements/checkbox';
-	import { ExternalIcon } from '$lib/shared/icons';
+	import { ArrowIcon, ExternalIcon } from '$lib/shared/icons';
+	import { ErrorTemplate } from '$lib/elements/error';
+	import { CrossIcon, RefreshIcon } from '$lib/shared/icons';
+	import blocked from '$lib/shared/stores/blocked';
 
 	export let film = '';
 
@@ -22,6 +25,7 @@
 	let activeIframe = '';
 	let activeList = '';
 	let params;
+	let isBlocked;
 
 	let lists = [
 		{ id: 'planned', label: 'Буду смотреть' },
@@ -58,6 +62,7 @@
 
 	afterNavigate(async () => {
 		params = Object.fromEntries($page.url.searchParams);
+		isBlocked = blocked.includes(params.id)
 
 		film = await apiGetFilm(params.id);
 		watchHistory.add(film);
@@ -92,12 +97,23 @@
 		<div class="box">
 			<div class="player">
 				{#key activeIframe}
-					<iframe
-						title="player"
-						allowfullscreen="true"
-						sandbox="allow-scripts allow-same-origin"
-						src={activeIframe + film.kinopoiskId}
-					></iframe>
+					{#if !isBlocked}
+						<iframe
+							title="player"
+							allowfullscreen="true"
+							sandbox="allow-scripts allow-same-origin"
+							src={activeIframe + film.kinopoiskId}
+						></iframe>
+					{:else}
+						<ErrorTemplate title="Заблокированно" desc="По просьбе правообладателей, онлайн просмотр данного материалла недоступен">
+							<CrossIcon slot="icon" />
+							<a href="/" slot="action">
+								<Button>
+									Перейти на главную <RefreshIcon />
+								</Button>
+							</a>
+						</ErrorTemplate>
+					{/if}
 				{/key}
 			</div>
 			<aside>
@@ -134,20 +150,22 @@
 							</div>
 						</div>
 					{/if}
-					<div class="sources">
-						<h4>Плееры</h4>
-						<div>
-							{#each players as player}
-								<Button
-									toggle
-									active={activeIframe == player.iframe}
-									on:click={() => setActiveIframe(player.iframe)}
-								>
-									{player.name}
-								</Button>
-							{/each}
+					{#if !isBlocked}
+						<div class="sources">
+							<h4>Плееры</h4>
+							<div>
+								{#each players as player}
+									<Button
+										toggle
+										active={activeIframe == player.iframe}
+										on:click={() => setActiveIframe(player.iframe)}
+									>
+										{player.name}
+									</Button>
+								{/each}
+							</div>
 						</div>
-					</div>
+					{/if}
 				</div>
 			</aside>
 		</div>
