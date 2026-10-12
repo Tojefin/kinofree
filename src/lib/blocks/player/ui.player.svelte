@@ -6,7 +6,7 @@
 	import watchHistory from '$lib/shared/scripts/watchHistory';
 	import pb from '$lib/shared/pocketbase';
 	import { CheckboxGroup } from '$lib/elements/checkbox';
-	import { ArrowIcon, ExternalIcon } from '$lib/shared/icons';
+	import { ExternalIcon } from '$lib/shared/icons';
 	import { ErrorTemplate } from '$lib/elements/error';
 	import { CrossIcon, RefreshIcon } from '$lib/shared/icons';
 	import blocked from '$lib/shared/stores/blocked';
@@ -62,10 +62,7 @@
 
 	afterNavigate(async () => {
 		params = Object.fromEntries($page.url.searchParams);
-		isBlocked = blocked.includes(params.id)
-
-		film = await apiGetFilm(params.id);
-		watchHistory.add(film);
+		isBlocked = blocked.includes(params.id);
 
 		players = [
 			{
@@ -78,6 +75,9 @@
 		activeIframe = players[0].iframe;
 
 		try {
+			film = await apiGetFilm(params.id);
+			watchHistory.add(film);
+
 			isLogin = pb.authStore.isValid;
 			if (isLogin) {
 				isListed = await pb.collection('lists').getFullList({
@@ -92,85 +92,88 @@
 	});
 </script>
 
-{#if film != ''}
-	<section>
-		<div class="box">
-			<div class="player">
-				{#key activeIframe}
-					{#if !isBlocked}
+<section>
+	<div class="box">
+		<div class="player">
+			{#key activeIframe}
+				{#if !isBlocked}
+					{#if activeIframe}
 						<iframe
 							title="player"
 							allowfullscreen="true"
 							sandbox="allow-scripts allow-same-origin"
 							src={activeIframe + film.kinopoiskId}
 						></iframe>
-					{:else}
-						<ErrorTemplate title="Заблокированно" desc="По просьбе правообладателей, онлайн просмотр данного материалла недоступен">
-							<CrossIcon slot="icon" />
-							<a href="/" slot="action">
-								<Button>
-									Перейти на главную <RefreshIcon />
-								</Button>
-							</a>
-						</ErrorTemplate>
 					{/if}
-				{/key}
-			</div>
-			<aside>
-				<div class="info">
-					<a href={`https://www.kinopoisk.ru/film/${params.id}`} target="_blank">
-						<div class="rating">
-							{#if rating.score > 0}
-								<mark
-									class:okey={rating.score > 3.9 && rating.score < 7}
-									class:bad={rating.score < 4}
-								>
-									{rating.score}
-								</mark>
-								<span>{rating.platform}</span>
-								<ExternalIcon />
-							{/if}
-						</div>
-					</a>
-					<p>
-						{film.description || 'Описание не найдено'}
-					</p>
-				</div>
-
-				<div class="actions">
-					{#if isLogin}
-						<div class="list">
-							<h4>Добавить в профиль</h4>
-							<div>
-								<CheckboxGroup
-									on:change={() => updateLists(params.id, activeList)}
-									options={lists}
-									bind:value={activeList}
-								/>
-							</div>
-						</div>
-					{/if}
-					{#if !isBlocked}
-						<div class="sources">
-							<h4>Плееры</h4>
-							<div>
-								{#each players as player}
-									<Button
-										toggle
-										active={activeIframe == player.iframe}
-										on:click={() => setActiveIframe(player.iframe)}
-									>
-										{player.name}
-									</Button>
-								{/each}
-							</div>
-						</div>
-					{/if}
-				</div>
-			</aside>
+				{:else}
+					<ErrorTemplate
+						title="Заблокированно"
+						desc="По просьбе правообладателей, онлайн просмотр данного материалла недоступен"
+					>
+						<CrossIcon slot="icon" />
+						<a href="/" slot="action">
+							<Button>
+								Перейти на главную <RefreshIcon />
+							</Button>
+						</a>
+					</ErrorTemplate>
+				{/if}
+			{/key}
 		</div>
-	</section>
-{/if}
+		<aside>
+			<div class="info">
+				<a href={`https://www.kinopoisk.ru/film/${params?.id}`} target="_blank">
+					<div class="rating">
+						{#if rating.score > 0}
+							<mark
+								class:okey={rating.score > 3.9 && rating.score < 7}
+								class:bad={rating.score < 4}
+							>
+								{rating.score}
+							</mark>
+							<span>{rating.platform}</span>
+							<ExternalIcon />
+						{/if}
+					</div>
+				</a>
+				<p>
+					{film.description || 'Описание не найдено'}
+				</p>
+			</div>
+
+			<div class="actions">
+				{#if isLogin}
+					<div class="list">
+						<h4>Добавить в профиль</h4>
+						<div>
+							<CheckboxGroup
+								on:change={() => updateLists(params.id, activeList)}
+								options={lists}
+								bind:value={activeList}
+							/>
+						</div>
+					</div>
+				{/if}
+				{#if !isBlocked}
+					<div class="sources">
+						<h4>Плееры</h4>
+						<div>
+							{#each players as player}
+								<Button
+									toggle
+									active={activeIframe == player.iframe}
+									on:click={() => setActiveIframe(player.iframe)}
+								>
+									{player.name}
+								</Button>
+							{/each}
+						</div>
+					</div>
+				{/if}
+			</div>
+		</aside>
+	</div>
+</section>
 
 <style lang="scss">
 	@import './styles.scss';

@@ -4,6 +4,7 @@
 	import { ArrowIcon, DeleteIcon } from '$lib/shared/icons';
 	import { onMount } from 'svelte';
 	import { apiGetFilm } from '$lib/shared/api';
+	import viewportObserver from '$lib/shared/scripts/viewportObserver';
 
 	export let canDelete = false;
 	export let film;
@@ -46,16 +47,20 @@
 		}
 	}
 
-	onMount(async () => {
+	async function getResource(){
 		if (!film.description) {
 			const moreInfo = await apiGetFilm(film.film_id || film.filmId || film.kinopoiskId || film.id);
 			film = { ...film, ...moreInfo };
 			rating = film.rating || film.ratingKinopoisk;
 		}
-	});
+	}
 </script>
 
-<a href={`/watch?id=${film.film_id || film.filmId || film.kinopoiskId || film.id}`}>
+<a
+	use:viewportObserver
+	on:enterViewport={getResource}
+	href={`/watch?id=${film.film_id || film.filmId || film.kinopoiskId || film.id}`}
+>
 	<li>
 		<img src={film.posterUrlPreview || film.posterUrl} alt="Постер" loading="lazy" inert />
 		<div class="text">
