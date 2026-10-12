@@ -102,7 +102,7 @@
 							title="player"
 							allowfullscreen="true"
 							sandbox="allow-scripts allow-same-origin"
-							src={activeIframe + film.kinopoiskId}
+							src={activeIframe + params?.id}
 						></iframe>
 					{/if}
 				{:else}
