@@ -67,10 +67,9 @@
 		players = [
 			{
 				name: 'Alloha',
-				iframe: 'https://attractive-as.allarknow.online/?token=a3fd119d8a9418f6c3f6a7ae628a41&kp='
+				iframe: 'https://robin-as.stravers.live/?token=c24c6d99f6f7cda8ec832fce104a69&kp='
 			},
 			{ name: 'Collaps', iframe: 'https://api.tobaco.ws/embed/kp/' },
-			{ name: 'Lumex', iframe: 'https://49442664434375553.svetacdn.in/sZfbdItt5jeX?kp_id=' }
 		];
 		activeIframe = players[0].iframe;
 
