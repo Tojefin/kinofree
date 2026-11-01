@@ -3,9 +3,9 @@
 	import { Button } from '$lib/elements/button';
 	import { onMount } from 'svelte';
 
-	const publish = true;
+	const publish = false;
 	let show = false;
-	let ver = 3;
+	let ver = 4;
 
 	const hideClick = () => {
 		let anonse = JSON.parse(localStorage.getItem('anonse'));
@@ -34,21 +34,21 @@
 
 <section class:hide={!show || !publish}>
 	<img
-		src="https://api.qrserver.com/v1/create-qr-code/?size=100x100&color=fce802&bgcolor=1f2227&data=https://t.me/skyedgexyz/161"
+		src="https://api.qrserver.com/v1/create-qr-code/?size=100x100&color=fce802&bgcolor=1f2227&data=https://t.me/skyedgexyz"
 		alt="QR code"
 		height="100"
 		width="100"
 		draggable="false"
 	/>
 	<article>
-		<h2>Ускоритель Telegram</h2>
+		<h2>РКН заблокировал сайт</h2>
 		<p>
-			Бесплатный ускоритель для подписчиком нашего телеграм канала, оставайтесь на связи
+			⚡ Новости о будущей жизни и обсуждение сайта в телеграме
 		</p>
 		<div class="more">
-			<a href="https://t.me/skyedgexyz/161" target="_blank">
+			<a href="https://t.me/skyedgexyz" target="_blank">
 				<Button>
-					Ускорить TG
+					Telegram
 					<ArrowIcon />
 				</Button>
 			</a>
