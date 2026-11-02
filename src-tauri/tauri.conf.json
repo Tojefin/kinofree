@@ -1,7 +1,7 @@
 {
   "$schema": "../node_modules/@tauri-apps/cli/config.schema.json",
   "productName": "Kinofree",
-  "version": "5.0.5",
+  "version": "5.0.6",
   "identifier": "su.kinofree.app",
   "build": {
     "frontendDist": "../build",
