@@ -10,13 +10,15 @@
 		"check:watch": "svelte-kit sync && svelte-check --tsconfig ./jsconfig.json --watch",
 		"lint": "prettier --check . && eslint .",
 		"format": "prettier --write .",
-		"deploy": "node ./gh-pages.js"
+		"deploy": "node ./gh-pages.js",
+		"tauri": "tauri"
 	},
 	"devDependencies": {
 		"@sveltejs/adapter-auto": "^3.3.1",
 		"@sveltejs/adapter-static": "^3.0.6",
 		"@sveltejs/kit": "^2.13.0",
 		"@sveltejs/vite-plugin-svelte": "^3.1.2",
+		"@tauri-apps/cli": "^2.12.4",
 		"@types/eslint": "8.56.12",
 		"eslint": "^8.57.1",
 		"eslint-config-prettier": "^9.1.0",
@@ -34,6 +36,10 @@
 	},
 	"type": "module",
 	"dependencies": {
+		"@tauri-apps/api": "^2.12.4",
+		"@tauri-apps/plugin-opener": "^2.7.2",
+		"@tauri-apps/plugin-process": "^2.4.0",
+		"@tauri-apps/plugin-updater": "^2.14.1",
 		"pocketbase": "^0.21.5"
 	}
 }
