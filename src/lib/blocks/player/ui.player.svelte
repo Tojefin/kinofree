@@ -1,4 +1,5 @@
 <script>
+	import { onDestroy, onMount } from 'svelte';
 	import { afterNavigate } from '$app/navigation';
 	import { Button } from '$lib/elements/button';
 	import { page } from '$app/stores';
@@ -31,6 +32,42 @@
 		{ id: 'planned', label: 'Буду смотреть' },
 		{ id: 'view', label: 'Смотрю' }
 	];
+
+	let isTauriAndroid = false;
+	let isAppFullscreen = false;
+
+	onMount(() => {
+		isTauriAndroid = '__TAURI_INTERNALS__' in window && /android/i.test(navigator.userAgent);
+	});
+
+	onDestroy(() => {
+		if (isAppFullscreen) exitAppFullscreen();
+	});
+
+	async function setAppFullscreen(state) {
+		isAppFullscreen = state;
+
+		try {
+			if (state) {
+				await screen.orientation?.lock?.('landscape');
+			} else {
+				screen.orientation?.unlock?.();
+			}
+		} catch (error) {
+			console.error(error);
+		}
+
+		try {
+			const { getCurrentWindow } = await import('@tauri-apps/api/window');
+			await getCurrentWindow().setFullscreen(state);
+		} catch (error) {
+			console.error(error);
+		}
+	}
+
+	function exitAppFullscreen() {
+		setAppFullscreen(false);
+	}
 
 	function setActiveIframe(select) {
 		activeIframe = select;
@@ -93,7 +130,22 @@
 
 <section>
 	<div class="box">
-		<div class="player">
+		<div class="player" class:fullscreen={isAppFullscreen}>
+			{#if isTauriAndroid}
+				<button
+					class="fullscreen-toggle"
+					aria-label="Полный экран"
+					on:click={() => setAppFullscreen(!isAppFullscreen)}
+				>
+					<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+						{#if isAppFullscreen}
+							<path d="M8 3v3a2 2 0 0 1-2 2H3m18 0h-3a2 2 0 0 1-2-2V3m0 18v-3a2 2 0 0 1 2-2h3M3 16h3a2 2 0 0 1 2 2v3" />
+						{:else}
+							<path d="M8 3H5a2 2 0 0 0-2 2v3m18 0V5a2 2 0 0 0-2-2h-3m0 18h3a2 2 0 0 0 2-2v-3M3 16v3a2 2 0 0 0 2 2h3" />
+						{/if}
+					</svg>
+				</button>
+			{/if}
 			{#key activeIframe}
 				{#if !isBlocked}
 					{#if activeIframe}
