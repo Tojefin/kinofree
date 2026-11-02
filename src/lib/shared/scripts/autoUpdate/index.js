@@ -59,9 +59,26 @@ async function updateAndroid() {
 	await openUrl(url);
 }
 
+// Старый service worker ломал навигацию в tauri.localhost —
+// принудительно снимаем регистрации и чистим кэши при старте приложения
+async function cleanupServiceWorkers() {
+	if (!('serviceWorker' in navigator)) return;
+
+	const registrations = await navigator.serviceWorker.getRegistrations();
+	await Promise.all(registrations.map((registration) => registration.unregister()));
+
+	if ('caches' in window) {
+		const keys = await caches.keys();
+		await Promise.all(keys.map((key) => caches.delete(key)));
+	}
+}
+
 export default async function autoUpdate() {
 	try {
 		if (!isTauri()) return;
+
+		await cleanupServiceWorkers();
+
 		if (isAndroid()) {
 			await updateAndroid();
 		} else {

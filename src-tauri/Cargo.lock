@@ -2012,7 +2012,7 @@ dependencies = [
 
 [[package]]
 name = "kinofree"
-version = "5.0.6"
+version = "5.0.7"
 dependencies = [
  "log",
  "serde",
