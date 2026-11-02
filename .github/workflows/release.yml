@@ -89,6 +89,11 @@ jobs:
           TAURI_ANDROID_STORE_FILE: ${{ runner.temp }}/release.keystore
           TAURI_ANDROID_STORE_PASSWORD: ${{ secrets.TAURI_ANDROID_STORE_PASSWORD }}
         run: npm run tauri -- android build --apk
+      - name: Rename apk
+        run: |
+          VERSION=$(node -p "require('./package.json').version")
+          cd src-tauri/gen/android/app/build/outputs/apk/universal/release
+          mv app-universal-release.apk "Kinofree_${VERSION}.apk"
       - name: Upload apk to release
         uses: softprops/action-gh-release@v2
         env:

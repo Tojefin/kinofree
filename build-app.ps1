@@ -35,5 +35,12 @@ if ($Target -eq 'android' -or $Target -eq 'all') {
 	Write-Host "=== Building Android apk ===" -ForegroundColor Cyan
 	npm.cmd run tauri -- android build --apk
 	if ($LASTEXITCODE -ne 0) { exit 1 }
-	Write-Host "Артефакты: src-tauri\gen\android\app\build\outputs\apk\" -ForegroundColor Green
+
+	# Переименовываем apk в Kinofree_<версия>.apk
+	$version = (Get-Content package.json -Raw | ConvertFrom-Json).version
+	$apkDir = "src-tauri\gen\android\app\build\outputs\apk\universal\release"
+	if (Test-Path "$apkDir\app-universal-release.apk") {
+		Move-Item "$apkDir\app-universal-release.apk" "$apkDir\Kinofree_$version.apk" -Force
+	}
+	Write-Host "Артефакты: $apkDir\Kinofree_$version.apk" -ForegroundColor Green
 }
