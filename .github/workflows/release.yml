@@ -83,13 +83,17 @@ jobs:
           if [ -n "$ANDROID_KEYSTORE_BASE64" ]; then
             echo "$ANDROID_KEYSTORE_BASE64" | base64 -d > "$RUNNER_TEMP/release.keystore"
           fi
-      - uses: tauri-apps/tauri-action@v0
+      - name: Build Android apk
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           TAURI_ANDROID_KEY_ALIAS: ${{ secrets.TAURI_ANDROID_KEY_ALIAS }}
           TAURI_ANDROID_KEY_PASSWORD: ${{ secrets.TAURI_ANDROID_KEY_PASSWORD }}
           TAURI_ANDROID_STORE_FILE: ${{ runner.temp }}/release.keystore
           TAURI_ANDROID_STORE_PASSWORD: ${{ secrets.TAURI_ANDROID_STORE_PASSWORD }}
+        run: npm run tauri -- android build --apk
+      - name: Upload apk to release
+        uses: softprops/action-gh-release@v2
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
-          releaseId: ${{ needs.create-release.outputs.release_id }}
-          args: android build --apk
+          tag_name: ${{ github.ref_name }}
+          files: src-tauri/gen/android/app/build/outputs/apk/universal/release/*.apk
