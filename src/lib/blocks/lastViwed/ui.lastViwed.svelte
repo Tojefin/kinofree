@@ -30,7 +30,12 @@
 			<img src={lastFilm.posterUrlPreview} alt="Постер" />
 			<div class="text">
 				<h3>{lastFilm.nameRu || lastFilm.nameEn || lastFilm.nameOriginal}</h3>
-				{#if lastFilm._kinofree?.lastviewed}
+				{#if lastFilm._kinofree?.progress.season}
+					<div class="time">
+						<p>Вы остановились на</p>
+						<span>{lastFilm._kinofree?.progress.episode} серии {lastFilm._kinofree?.progress.season} сезона</span>
+					</div>
+				{:else}
 					<div class="time">
 						<p>Последний просмотр</p>
 						<span>{new Date(lastFilm._kinofree.lastviewed).toLocaleString('ru', timeOptions)}</span>

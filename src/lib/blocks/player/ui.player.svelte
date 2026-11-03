@@ -27,6 +27,7 @@
 	let activeList = '';
 	let params;
 	let isBlocked;
+	let progress;
 
 	let lists = [
 		{ id: 'planned', label: 'Буду смотреть' },
@@ -41,10 +42,12 @@
 	});
 
 	onDestroy(() => {
-		if (isAppFullscreen) exitAppFullscreen();
+		if (isAppFullscreen) setAppFullscreen(false);
 	});
 
 	async function setAppFullscreen(state) {
+		if (!isTauriAndroid) return
+
 		isAppFullscreen = state;
 
 		try {
@@ -65,12 +68,32 @@
 		}
 	}
 
-	function exitAppFullscreen() {
-		setAppFullscreen(false);
-	}
-
 	function setActiveIframe(select) {
 		activeIframe = select;
+	}
+
+	function playerMessageHandler(event) {
+		let message
+		if (typeof event.data === "string") {
+			message = JSON.parse(event.data)
+		} else {
+			message = event.data
+		}
+		console.log(event, message);
+
+		if (message.event === "enterfullscreen") {
+			setAppFullscreen(true)
+		}
+		if (message.event === "exitfullscreen") {
+			document.querySelector("iframe").contentWindow.postMessage(JSON.stringify({api: "getTimeSave"}), "*");
+			setAppFullscreen(false)
+		}
+		if (message.event === "pause") {
+			document.querySelector("iframe").contentWindow.postMessage(JSON.stringify({api: "getTimeSave"}), "*");
+		}
+		if (message.event === "getTimeSave" && message.saveInfo.serial.season) {
+			watchHistory.setProgress(params.id, message.saveInfo.serial)
+		}
 	}
 
 	async function updateLists(id, activeList) {
@@ -106,13 +129,14 @@
 				name: 'Alloha',
 				iframe: 'https://robin-as.stravers.live/?token=c24c6d99f6f7cda8ec832fce104a69&kp='
 			},
-			{ name: 'Collaps', iframe: 'https://api.tobaco.ws/embed/kp/' },
+			{ name: 'Collaps', iframe: 'https://api.tobaco.ws/embed/kp/' }
 		];
 		activeIframe = players[0].iframe;
 
 		try {
 			film = await apiGetFilm(params.id);
 			watchHistory.add(film);
+			progress = watchHistory.get(params.id)._kinofree.progress
 
 			isLogin = pb.authStore.isValid;
 			if (isLogin) {
@@ -128,24 +152,10 @@
 	});
 </script>
 
+<svelte:window on:message={playerMessageHandler} />
 <section>
 	<div class="box">
 		<div class="player" class:fullscreen={isAppFullscreen}>
-			{#if isTauriAndroid}
-				<button
-					class="fullscreen-toggle"
-					aria-label="Полный экран"
-					on:click={() => setAppFullscreen(!isAppFullscreen)}
-				>
-					<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-						{#if isAppFullscreen}
-							<path d="M8 3v3a2 2 0 0 1-2 2H3m18 0h-3a2 2 0 0 1-2-2V3m0 18v-3a2 2 0 0 1 2-2h3M3 16h3a2 2 0 0 1 2 2v3" />
-						{:else}
-							<path d="M8 3H5a2 2 0 0 0-2 2v3m18 0V5a2 2 0 0 0-2-2h-3m0 18h3a2 2 0 0 0 2-2v-3M3 16v3a2 2 0 0 0 2 2h3" />
-						{/if}
-					</svg>
-				</button>
-			{/if}
 			{#key activeIframe}
 				{#if !isBlocked}
 					{#if activeIframe}
@@ -154,6 +164,7 @@
 							allowfullscreen="true"
 							sandbox="allow-scripts allow-same-origin"
 							src={activeIframe + params?.id}
+							on:message={playerMessageHandler}
 						></iframe>
 					{/if}
 				{:else}
@@ -187,6 +198,9 @@
 						{/if}
 					</div>
 				</a>
+				{#if progress}
+					<span>Вы остановились на {progress.episode} серии {progress.season} сезона</span>
+				{/if}
 				<p>
 					{film.description || 'Описание не найдено'}
 				</p>

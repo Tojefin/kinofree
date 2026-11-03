@@ -69,29 +69,6 @@ section {
 	}
 }
 
-.fullscreen-toggle {
-	position: absolute;
-	top: 8px;
-	right: 8px;
-	z-index: 1;
-	display: flex;
-	align-items: center;
-	justify-content: center;
-	width: 36px;
-	height: 36px;
-	border: none;
-	border-radius: 8px;
-	color: var(--white);
-	background: rgba(19, 22, 27, 0.7);
-	cursor: pointer;
-	transition: all ease 0.25s;
-
-	&:active {
-		transform: scale(90%);
-		color: var(--yellow, #fce802);
-	}
-}
-
 aside {
 	display: flex;
 	height: 100%;
