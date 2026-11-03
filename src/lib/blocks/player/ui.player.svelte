@@ -135,7 +135,7 @@
 		try {
 			film = await apiGetFilm(params.id);
 			watchHistory.add(film);
-			progress = watchHistory.get(params.id)._kinofree.progress
+			progress = watchHistory.get(params.id)?._kinofree?.progress ?? null
 
 			isLogin = pb.authStore.isValid;
 			if (isLogin) {

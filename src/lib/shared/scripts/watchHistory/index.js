@@ -25,7 +25,7 @@ const watchHistory = {
 		}
 
 		let now = Date.now();
-		film = { ...film, _kinofree: { lastviewed: now, progress: target._kinofree.progress ?? null } };
+		film = { ...film, _kinofree: { lastviewed: now, progress: target?._kinofree?.progress ?? null } };
 		data.unshift(film);
 		if (data.length > 24) {
 			data.pop();
