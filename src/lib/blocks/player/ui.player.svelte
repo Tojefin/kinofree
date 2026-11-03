@@ -79,7 +79,6 @@
 		} else {
 			message = event.data
 		}
-		console.log(event, message);
 
 		if (message.event === "enterfullscreen") {
 			setAppFullscreen(true)
