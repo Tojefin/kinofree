@@ -1,6 +1,6 @@
 {
 	"name": "kinofree.su",
-	"version": "5.0.10",
+	"version": "5.0.11",
 	"private": true,
 	"scripts": {
 		"dev": "vite dev --port 80 --host",
