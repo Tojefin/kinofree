@@ -25,7 +25,7 @@
 </script>
 
 {#if lastFilm}
-	<section on:click={clickHandler} on:keydown={null} role="button" tabindex="-0">
+	<section on:click={clickHandler} on:keydown={clickHandler} role="button" tabindex="0">
 		<div class="info">
 			<img src={lastFilm.posterUrlPreview} alt="Постер" />
 			<div class="text">
@@ -44,7 +44,7 @@
 			</div>
 		</div>
 		<div class="more">
-			<Button>
+			<Button tabindex="-1">
 				Смотреть дальше
 				<ArrowIcon />
 			</Button>

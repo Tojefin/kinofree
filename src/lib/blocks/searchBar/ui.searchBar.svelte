@@ -110,7 +110,7 @@
 	<button
 		class="search"
 		disabled={!(inputValue.trim().length > 0)}
-		on:pointerdown={() => {
+		on:click={() => {
 			vibroTap();
 			search();
 		}}

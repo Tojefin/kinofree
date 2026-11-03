@@ -72,7 +72,8 @@
 			color: #fff;
 			text-wrap: nowrap;
 
-			&:hover {
+			&:hover,
+			&:focus-visible {
 				box-shadow: inset 0 1px 0 0 rgba(255, 255, 255, 0.08);
 				background: #36393d;
 			}
@@ -81,6 +82,12 @@
 				color: #000;
 				box-shadow: inset 0 1px 0 0 rgba(255, 255, 255, 0.08);
 				background: var(--white);
+
+				&:focus-visible {
+					box-shadow: inset 0 1px 0 0 rgba(255, 255, 255, 0.08);
+					background: #36393d;
+					color: #fff;
+				}
 			}
 		}
 

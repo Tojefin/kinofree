@@ -1,7 +1,6 @@
 <script>
 	import { CoffeeIcon, ChartIcon, UserIcon } from '$lib/shared/icons';
 	import { Button } from '$lib/elements/button';
-	import vibroTap from '$lib/shared/scripts/vibroTap';
 	import { page } from '$app/stores';
 	import { onMount } from 'svelte';
 
@@ -21,24 +20,24 @@
 <header>
 	<a href="/"><h1>KINOFREE</h1></a>
 	<nav class:hideMobile={$page.url.pathname != '/' && $page.url.pathname != '/index.html'}>
-		<a class="button" href="https://www.donationalerts.com/r/tojefin" target="_blank">
+		<a class="button" href="https://www.donationalerts.com/r/tojefin" target="_blank" tabindex="-1">
 			<Button nav vibro dark>
 				<CoffeeIcon />
 				{donater}
 			</Button>
 		</a>
-		<a class="button" href="/search?popular">
+		<a class="button" href="/search?popular" tabindex="-1">
 			<Button nav vibro dark>
 				<ChartIcon />
 				Популярно сейчас
 			</Button>
 		</a>
 	</nav>
-	<a class="profile" href="/profile">
-		<button on:click={vibroTap}>
+	<a class="profile" href="/profile" tabindex="-1">
+		<Button nav vibro dark>
 			<UserIcon />
 			<p>Профиль</p>
-		</button>
+		</Button>
 	</a>
 </header>
 
@@ -62,6 +61,9 @@
 		}
 	}
 
+	a:focus-visible h1 {
+		color: var(--yellow, #fce802);
+	}
 	h1 {
 		color: var(--white, #fff);
 		cursor: pointer;

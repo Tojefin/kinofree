@@ -30,7 +30,8 @@ body {
 		border-radius: 100px;
 		background: #4f4c10;
 
-		&:hover {
+		&:hover,
+		&:focus-visible {
 			background: var(--yellow, #fce802);
 		}
 	}

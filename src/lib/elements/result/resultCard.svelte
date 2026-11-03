@@ -47,7 +47,7 @@
 		}
 	}
 
-	async function getResource(){
+	async function getResource() {
 		if (!film.description) {
 			const moreInfo = await apiGetFilm(film.film_id || film.filmId || film.kinopoiskId || film.id);
 			film = { ...film, ...moreInfo };
@@ -99,8 +99,18 @@
 </a>
 
 <style lang="scss">
-	a {
-		min-width: 0;
+	a:focus-visible li {
+		background: #36393d;
+
+		h3 {
+			color: var(--yellow);
+		}
+
+		.arrow {
+			:global(svg path) {
+				stroke: var(--yellow);
+			}
+		}
 	}
 
 	li {
@@ -241,7 +251,8 @@
 		padding: 0;
 	}
 	.delete {
-		&:hover {
+		&:hover,
+		&:focus-visible {
 			z-index: 2;
 			:global(svg path) {
 				stroke: var(--yellow);

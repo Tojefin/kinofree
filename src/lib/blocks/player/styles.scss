@@ -90,6 +90,13 @@ aside {
 		order: 1;
 	}
 
+	a {
+		@include hover {
+			:global(svg path) {
+				stroke: var(--yellow, #fce802);
+			}
+		}
+	}
 	.rating {
 		display: flex;
 		align-items: center;
