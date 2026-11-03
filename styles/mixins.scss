@@ -9,4 +9,7 @@
 			@content;
 		}
 	}
+	&:focus-visible {
+		@content;
+	}
 }
