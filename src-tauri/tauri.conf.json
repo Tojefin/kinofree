@@ -17,7 +17,7 @@
         "height": 800,
         "resizable": true,
         "maximized": true,
-        "additionalBrowserArgs": "--disable-features=msWebOOUI,msPdfOOUI,msSmartScreenProxy --host-rules=\"MAP *.doubleclick.net ~NOTFOUND,MAP *.googlesyndication.com ~NOTFOUND,MAP *.googleadservices.com ~NOTFOUND,MAP *.adriver.ru ~NOTFOUND,MAP *.adfox.ru ~NOTFOUND,MAP an.yandex.ru ~NOTFOUND,MAP *.adhigh.net ~NOTFOUND,MAP *.betweendigital.com ~NOTFOUND,MAP *.adsniper.ru ~NOTFOUND,MAP *.admixer.net ~NOTFOUND,MAP *.bumlam.com ~NOTFOUND,MAP *.alloviewroll.com ~NOTFOUND\""
+        "additionalBrowserArgs": "--disable-features=msWebOOUI,msPdfOOUI,msSmartScreenProxy --host-rules=\"MAP *.doubleclick.net ~NOTFOUND,MAP *.googlesyndication.com ~NOTFOUND,MAP *.googleadservices.com ~NOTFOUND,MAP *.adriver.ru ~NOTFOUND,MAP *.adfox.ru ~NOTFOUND,MAP an.yandex.ru ~NOTFOUND,MAP awaps.yandex.net ~NOTFOUND,MAP *.adhigh.net ~NOTFOUND,MAP *.betweendigital.com ~NOTFOUND,MAP *.adsniper.ru ~NOTFOUND,MAP *.admixer.net ~NOTFOUND,MAP *.bumlam.com ~NOTFOUND,MAP *.alloviewroll.com ~NOTFOUND\""
       }
     ],
     "security": {

@@ -11,6 +11,7 @@
 		"lint": "prettier --check . && eslint .",
 		"format": "prettier --write .",
 		"deploy": "node ./gh-pages.js",
+		"release": "node ./bump-version.js",
 		"tauri": "tauri"
 	},
 	"devDependencies": {

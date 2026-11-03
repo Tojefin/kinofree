@@ -41,17 +41,15 @@ powershell -ExecutionPolicy Bypass -File .\build-app.ps1 all       # оба
 
 Сборка запускается автоматически при пуше тега `v*` (workflow `.github/workflows/release.yml`):
 
-1. Поднять версию в `package.json`, `src-tauri/tauri.conf.json` и `src-tauri/Cargo.toml`.
-2. Закоммитить изменения и запушить тег:
-
 ```bash
-git add -A
-git commit -m "release: v5.0.2"
-git tag v5.0.2
-git push origin main --tags
+# поднять версию во всех файлах (patch|minor|major|x.y.z),
+# закоммитить, создать тег vX.Y.Z и запушить — CI соберёт релиз
+npm run release -- patch --push
 ```
 
-3. В разделе [Releases](https://github.com/Tojefin/kinofree/releases) появится релиз с exe, apk и `latest.json` (файл для автообновления).
+Без `--push` скрипт только обновит версии в файлах (`package.json`, `package-lock.json`, `tauri.conf.json`, `Cargo.toml`, `Cargo.lock`) — коммитить и тегать можно вручную. Есть и dry-run: `npm run release -- patch --dry`.
+
+В разделе [Releases](https://github.com/Tojefin/kinofree/releases) появится релиз с exe, apk и `latest.json` (файл для автообновления).
 
 Необходимые секреты репозитория (Settings → Secrets and variables → Actions): `TAURI_SIGNING_PRIVATE_KEY`, `ANDROID_KEYSTORE_BASE64`, `TAURI_ANDROID_KEY_ALIAS`, `TAURI_ANDROID_KEY_PASSWORD`, `TAURI_ANDROID_STORE_PASSWORD`.
 
