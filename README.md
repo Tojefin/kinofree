@@ -1,7 +1,11 @@
 # KINOFREE
 
 [![Telegram](https://img.shields.io/badge/Telegram-24A1DE?style=for-the-badge)](https://t.me/+WRTVf77IofcxNDQ6)
-[![Download](https://img.shields.io/badge/Download-A4C639?style=for-the-badge)](https://github.com/Tojefin/kinofree/releases/latest)
+
+[![Download](https://img.shields.io/badge/Download_EXE/APK-A4C639?style=for-the-badge)](https://github.com/Tojefin/kinofree/releases/latest)
+
+[![Local](https://img.shields.io/badge/Download_web_starter-ccc61f?style=for-the-badge)](https://github.com/Tojefin/kinofree/tree/main/web-server-starter)
+
 
 ## Developing
 
