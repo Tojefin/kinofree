@@ -1,0 +1,24 @@
+name: Windows launcher
+
+on:
+  pull_request:
+    paths:
+      - 'web-server-starter/**'
+      - '.github/workflows/windows-launcher.yml'
+  push:
+    paths:
+      - 'web-server-starter/**'
+      - '.github/workflows/windows-launcher.yml'
+
+permissions:
+  contents: read
+
+jobs:
+  launcher:
+    runs-on: windows-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - name: Test launcher startup and updates
+        shell: powershell
+        run: .\web-server-starter\tests\test-windows-start.ps1

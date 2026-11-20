@@ -1,0 +1,4 @@
+# Raw downloads must retain Windows line endings in the Git blob.
+windows-start.bat -text
+mac-linux-start.sh text eol=lf
+tests/fixtures/legacy-server.py text eol=crlf
