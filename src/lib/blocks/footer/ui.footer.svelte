@@ -1,13 +1,20 @@
 <script>
 	import { Dmca } from '$lib/blocks/modals';
-	import { TelegramIcon } from '$lib/shared/icons';
+	import { TelegramIcon, GithubIcon } from '$lib/shared/icons';
 
 	let dmcaModal = false;
 </script>
 
 <footer>
-	<div>
-		<a class="tg" href="https://t.me/+CtT26G_ZF_k5ODMy" target="_blank"> <TelegramIcon /> Мы в Telegram </a>
+	<div class="content">
+		<div class="group">
+			<a class="social" href="https://t.me/+CtT26G_ZF_k5ODMy" target="_blank">
+				<TelegramIcon /> Telegram
+			</a>
+			<a class="social" href="https://github.com/Tojefin/kinofree" target="_blank">
+				<GithubIcon /> GitHub
+			</a>
+		</div>
 		<nav>
 			<button type="button" on:click={() => (dmcaModal = true)}>Правообладателям</button>
 			<span>•</span>
@@ -33,7 +40,7 @@
 		}
 	}
 
-	div {
+	.content {
 		display: flex;
 		width: 100%;
 		justify-content: center;
@@ -60,7 +67,17 @@
 		}
 	}
 
-	.tg {
+	.group {
+		display: flex;
+		gap: 16px;
+
+		@media (max-width: 768px) {
+			flex-direction: column;
+			gap: 8px;
+		}
+	}
+
+	.social {
 		display: flex;
 		align-items: center;
 		gap: 10px;
@@ -103,7 +120,8 @@
 			}
 		}
 
-		button, a {
+		button,
+		a {
 			padding: 0;
 			appearance: none;
 			background: none;
