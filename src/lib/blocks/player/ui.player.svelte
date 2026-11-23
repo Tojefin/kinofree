@@ -36,6 +36,8 @@
 
 	let isTauriAndroid = false;
 	let isAppFullscreen = false;
+	let inPlayer = false;
+	let focusPollingInterval = null;
 
 	onMount(() => {
 		isTauriAndroid = '__TAURI_INTERNALS__' in window && /android/i.test(navigator.userAgent);
@@ -43,7 +45,63 @@
 
 	onDestroy(() => {
 		if (isAppFullscreen) setAppFullscreen(false);
+		stopFocusPolling();
 	});
+
+	function startFocusPolling() {
+		stopFocusPolling();
+		focusPollingInterval = setInterval(() => {
+			if (!inPlayer) {
+				stopFocusPolling();
+				return;
+			}
+			const iframe = document.querySelector('iframe');
+			if (iframe && document.activeElement !== iframe && !iframe.matches(':focus')) {
+				returnToOverlay();
+			}
+		}, 400);
+	}
+
+	function stopFocusPolling() {
+		if (focusPollingInterval) {
+			clearInterval(focusPollingInterval);
+			focusPollingInterval = null;
+		}
+	}
+
+	function returnToOverlay() {
+		inPlayer = false;
+		stopFocusPolling();
+		const overlay = document.querySelector('.player-overlay');
+		if (overlay) overlay.focus();
+	}
+
+	function handleOverlayKeydown(event) {
+		const key = event.keyCode || event.which;
+		// Enter (13), Space (32), DPAD_CENTER (179 на некоторых Android TV)
+		if (key === 13 || key === 32 || key === 179) {
+			event.preventDefault();
+			const iframe = document.querySelector('iframe');
+			if (iframe) {
+				iframe.focus();
+				inPlayer = true;
+				startFocusPolling();
+			}
+		}
+	}
+
+	function handleIframeBlur() {
+		// Если фокус вернулся в родительский документ, но не на конкретный элемент
+		if (document.activeElement === document.body) {
+			returnToOverlay();
+		}
+	}
+
+	function handleWindowFocus() {
+		if (inPlayer && document.activeElement === document.body) {
+			returnToOverlay();
+		}
+	}
 
 	async function setAppFullscreen(state) {
 		if (!isTauriAndroid) return
@@ -70,6 +128,8 @@
 
 	function setActiveIframe(select) {
 		activeIframe = select;
+		inPlayer = false;
+		stopFocusPolling();
 	}
 
 	function playerMessageHandler(event) {
@@ -86,6 +146,7 @@
 		if (message.event === "exitfullscreen") {
 			document.querySelector("iframe").contentWindow.postMessage(JSON.stringify({api: "getTimeSave"}), "*");
 			setAppFullscreen(false)
+			returnToOverlay()
 		}
 		if (message.event === "pause") {
 			document.querySelector("iframe").contentWindow.postMessage(JSON.stringify({api: "getTimeSave"}), "*");
@@ -151,19 +212,33 @@
 	});
 </script>
 
-<svelte:window on:message={playerMessageHandler} />
+<svelte:window on:message={playerMessageHandler} on:focus={handleWindowFocus} />
 <section>
 	<div class="box">
 		<div class="player" class:fullscreen={isAppFullscreen}>
 			{#key activeIframe}
 				{#if !isBlocked}
 					{#if activeIframe}
+						<div
+							class="player-overlay"
+							class:active={inPlayer}
+							tabindex="0"
+							role="button"
+							aria-label="Управление плеером"
+							on:keydown={handleOverlayKeydown}
+						>
+							{#if !inPlayer}
+								<span class="hint">OK — перейти в плеер</span>
+							{/if}
+						</div>
 						<iframe
 							title="player"
 							allowfullscreen="true"
+							tabindex="-1"
 							sandbox="allow-scripts allow-same-origin"
 							src={activeIframe + params?.id}
 							on:message={playerMessageHandler}
+							on:blur={handleIframeBlur}
 						></iframe>
 					{/if}
 				{:else}
