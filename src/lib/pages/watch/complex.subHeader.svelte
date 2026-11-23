@@ -1,14 +1,23 @@
 <script>
+	import { goto } from '$app/navigation';
 	import { Button } from '$lib/elements/button';
 	import { ArrowIcon } from '$lib/shared/icons';
 
 	export let title = '';
 	export let year = '';
+
+	function goBack() {
+		if (typeof window !== 'undefined' && window.history.length > 1) {
+			window.history.back();
+		} else {
+			goto('/');
+		}
+	}
 </script>
 
 <section>
 	<div class="back">
-		<Button title="Назад" nav vibro dark circle on:click={() => history.go(-2)}>
+		<Button title="Назад" nav vibro dark circle on:click={goBack}>
 			<ArrowIcon left />
 		</Button>
 	</div>

@@ -19,6 +19,15 @@
 	function focusStatus(newState) {
 		inputFocus = newState;
 	}
+	function activateInput() {
+		input.focus();
+	}
+	function wrapperKeydown(e) {
+		if (e.key === 'Enter' || e.key === ' ') {
+			e.preventDefault();
+			activateInput();
+		}
+	}
 	function clearinput() {
 		inputValue = '';
 		input.focus();
@@ -74,7 +83,15 @@
 </script>
 
 <div class="searchBar">
-	<div class="input" class:inputFocus class:inputValue={inputValue.length && !inputFocus}>
+	<div
+		class="input"
+		class:inputFocus
+		class:inputValue={inputValue.length && !inputFocus}
+		role="button"
+		tabindex="0"
+		on:keydown={wrapperKeydown}
+		on:click={activateInput}
+	>
 		<div class="loupe">
 			<LoupeIcon />
 		</div>
@@ -86,6 +103,7 @@
 			bind:value={inputValue}
 			bind:this={input}
 			type="text"
+			tabindex="-1"
 			placeholder="Фильм или сериал"
 		/>
 		<button class="clear" on:click={clearinput} class:canClear={inputValue}>
@@ -94,10 +112,10 @@
 
 		{#if inputFocus && suggest.list.length && inputValue.trim().length > 2}
 			<ul class="suggest">
-				{#each suggest.list as { title, id }}
+				{#each suggest.list as { title }}
 					<button
 						on:pointerdown|stopPropagation={() => {
-							inputValue = title
+							inputValue = title;
 							goto(`/search?key=${title}`);
 						}}
 					>
@@ -221,6 +239,19 @@
 			border: 1px solid var(--light-1004, rgba(255, 255, 255, 0.04));
 			background: #1f2227;
 			box-shadow: 0px 1px 0px 0px rgba(255, 255, 255, 0.08) inset;
+
+			.loupe {
+				:global(g) {
+					opacity: 1;
+				}
+			}
+		}
+
+		&:focus {
+			border-radius: 40px;
+			box-shadow: 0 0 0 4px rgba(252, 232, 3, 0.2);
+			background: #1f2227;
+			outline: none;
 
 			.loupe {
 				:global(g) {

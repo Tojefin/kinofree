@@ -19,13 +19,20 @@
 		goto('/watch?id=' + lastFilm?.kinopoiskId);
 	}
 
+	function keydownHandler(event) {
+		if (event.key === 'Enter' || event.key === ' ') {
+			event.preventDefault();
+			clickHandler();
+		}
+	}
+
 	onMount(() => {
 		lastFilm = watchHistory.get()[0];
 	});
 </script>
 
 {#if lastFilm}
-	<section on:click={clickHandler} on:keydown={clickHandler} role="button" tabindex="0">
+	<section on:click={clickHandler} on:keydown={keydownHandler} role="button" tabindex="0">
 		<div class="info">
 			<img src={lastFilm.posterUrlPreview} alt="Постер" />
 			<div class="text">
