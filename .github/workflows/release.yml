@@ -41,6 +41,7 @@ jobs:
           node-version: 20
           cache: npm
       - run: npm ci
+      - run: npm run sync-adblock:check
       - uses: tauri-apps/tauri-action@v0
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
@@ -75,6 +76,7 @@ jobs:
           node-version: 20
           cache: npm
       - run: npm ci
+      - run: npm run sync-adblock:check
       - name: Decode release keystore
         env:
           ANDROID_KEYSTORE_BASE64: ${{ secrets.ANDROID_KEYSTORE_BASE64 }}

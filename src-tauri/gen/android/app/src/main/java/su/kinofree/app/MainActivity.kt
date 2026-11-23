@@ -1,6 +1,11 @@
 package su.kinofree.app
 
 import android.os.Bundle
+import android.view.KeyEvent
+import android.view.View
+import android.view.ViewGroup
+import android.webkit.WebView
+import androidx.activity.OnBackPressedCallback
 import androidx.activity.enableEdgeToEdge
 import androidx.core.view.WindowCompat
 import androidx.core.view.WindowInsetsCompat
@@ -20,12 +25,49 @@ import java.util.concurrent.TimeUnit
 import kotlin.concurrent.thread
 
 class MainActivity : TauriActivity() {
+  private var fullscreenChromeClient: FullscreenChromeClient? = null
+
   override fun onCreate(savedInstanceState: Bundle?) {
     enableEdgeToEdge()
     // локальный прокси должен слушать раньше, чем WebView сделает первый запрос;
     // если поднять не удалось — просто не включаем (fail-open)
     AdBlockProxy.enable()
     super.onCreate(savedInstanceState)
+
+    onBackPressedDispatcher.addCallback(this, object : OnBackPressedCallback(true) {
+      override fun handleOnBackPressed() {
+        val client = fullscreenChromeClient
+        if (client?.isFullscreen == true) {
+          client.onHideCustomView()
+        } else {
+          finish()
+        }
+      }
+    })
+
+    // Находим WebView после того, как wry создаст его и вызовет setContentView
+    window.decorView.post {
+      setupFullscreenSupport()
+    }
+  }
+
+  private fun setupFullscreenSupport() {
+    val webView = findWebView(window.decorView) ?: return
+    val delegate = RustWebChromeClient(this, webView.id)
+    val client = FullscreenChromeClient(this, delegate)
+    fullscreenChromeClient = client
+    webView.webChromeClient = client
+  }
+
+  private fun findWebView(view: View): RustWebView? {
+    if (view is RustWebView) return view
+    if (view is ViewGroup) {
+      for (i in 0 until view.childCount) {
+        val result = findWebView(view.getChildAt(i))
+        if (result != null) return result
+      }
+    }
+    return null
   }
 
   override fun onWindowFocusChanged(hasFocus: Boolean) {
@@ -51,22 +93,9 @@ class MainActivity : TauriActivity() {
  * рекламные домены получают 403, остальные туннелируются как есть.
  */
 object AdBlockProxy {
-  // держать в синхронизации с --host-rules в src-tauri/tauri.conf.json (desktop)
-  private val AD_DOMAINS = listOf(
-    "doubleclick.net",
-    "googlesyndication.com",
-    "googleadservices.com",
-    "adriver.ru",
-    "adfox.ru",
-    "an.yandex.ru",
-    "awaps.yandex.net",
-    "adhigh.net",
-    "betweendigital.com",
-    "adsniper.ru",
-    "admixer.net",
-    "bumlam.com",
-    "alloviewroll.com"
-  )
+  // единый источник — adblock-config.json (генерация: npm run sync-adblock);
+  // те же домены на desktop попадают в --host-rules (src-tauri/tauri.conf.json)
+  private val AD_DOMAINS = AdDomains.ALL
 
   private val RESPONSE_FORBIDDEN =
     "HTTP/1.1 403 Forbidden\r\nContent-Length: 0\r\nConnection: close\r\n\r\n"

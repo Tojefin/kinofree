@@ -17,7 +17,7 @@
         "height": 800,
         "resizable": true,
         "maximized": true,
-        "additionalBrowserArgs": "--disable-features=msWebOOUI,msPdfOOUI,msSmartScreenProxy --host-rules=\"MAP *.doubleclick.net ~NOTFOUND,MAP *.googlesyndication.com ~NOTFOUND,MAP *.googleadservices.com ~NOTFOUND,MAP *.adriver.ru ~NOTFOUND,MAP *.adfox.ru ~NOTFOUND,MAP an.yandex.ru ~NOTFOUND,MAP awaps.yandex.net ~NOTFOUND,MAP *.adhigh.net ~NOTFOUND,MAP *.betweendigital.com ~NOTFOUND,MAP *.adsniper.ru ~NOTFOUND,MAP *.admixer.net ~NOTFOUND,MAP *.bumlam.com ~NOTFOUND,MAP *.alloviewroll.com ~NOTFOUND\""
+        "additionalBrowserArgs": "--disable-features=msWebOOUI,msPdfOOUI,msSmartScreenProxy --host-rules=\"MAP alloviewroll.com ~NOTFOUND,MAP *.alloviewroll.com ~NOTFOUND,MAP vuegenesisvue.com ~NOTFOUND,MAP *.vuegenesisvue.com ~NOTFOUND,MAP distribrey.com ~NOTFOUND,MAP *.distribrey.com ~NOTFOUND,MAP buzzoola.com ~NOTFOUND,MAP *.buzzoola.com ~NOTFOUND,MAP ufouxbwn.com ~NOTFOUND,MAP *.ufouxbwn.com ~NOTFOUND,MAP stats.getaim.org ~NOTFOUND,MAP *.stats.getaim.org ~NOTFOUND\""
       }
     ],
     "security": {

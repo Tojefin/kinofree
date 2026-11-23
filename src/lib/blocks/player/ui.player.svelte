@@ -1,5 +1,5 @@
 <script>
-	import { onDestroy, onMount } from 'svelte';
+	import { onDestroy } from 'svelte';
 	import { afterNavigate } from '$app/navigation';
 	import { Button } from '$lib/elements/button';
 	import { page } from '$app/stores';
@@ -34,17 +34,10 @@
 		{ id: 'view', label: 'Смотрю' }
 	];
 
-	let isTauriAndroid = false;
-	let isAppFullscreen = false;
 	let inPlayer = false;
 	let focusPollingInterval = null;
 
-	onMount(() => {
-		isTauriAndroid = '__TAURI_INTERNALS__' in window && /android/i.test(navigator.userAgent);
-	});
-
 	onDestroy(() => {
-		if (isAppFullscreen) setAppFullscreen(false);
 		stopFocusPolling();
 	});
 
@@ -103,29 +96,6 @@
 		}
 	}
 
-	async function setAppFullscreen(state) {
-		if (!isTauriAndroid) return
-
-		isAppFullscreen = state;
-
-		try {
-			if (state) {
-				await screen.orientation?.lock?.('landscape');
-			} else {
-				screen.orientation?.unlock?.();
-			}
-		} catch (error) {
-			console.error(error);
-		}
-
-		try {
-			const { getCurrentWindow } = await import('@tauri-apps/api/window');
-			await getCurrentWindow().setFullscreen(state);
-		} catch (error) {
-			console.error(error);
-		}
-	}
-
 	function setActiveIframe(select) {
 		activeIframe = select;
 		inPlayer = false;
@@ -140,12 +110,8 @@
 			message = event.data
 		}
 
-		if (message.event === "enterfullscreen") {
-			setAppFullscreen(true)
-		}
 		if (message.event === "exitfullscreen") {
 			document.querySelector("iframe").contentWindow.postMessage(JSON.stringify({api: "getTimeSave"}), "*");
-			setAppFullscreen(false)
 			returnToOverlay()
 		}
 		if (message.event === "pause") {
@@ -215,22 +181,21 @@
 <svelte:window on:message={playerMessageHandler} on:focus={handleWindowFocus} />
 <section>
 	<div class="box">
-		<div class="player" class:fullscreen={isAppFullscreen}>
+		<div class="player">
 			{#key activeIframe}
 				{#if !isBlocked}
 					{#if activeIframe}
-						<div
+						<button
+							type="button"
 							class="player-overlay"
 							class:active={inPlayer}
-							tabindex="0"
-							role="button"
 							aria-label="Управление плеером"
 							on:keydown={handleOverlayKeydown}
 						>
 							{#if !inPlayer}
 								<span class="hint">OK — перейти в плеер</span>
 							{/if}
-						</div>
+						</button>
 						<iframe
 							title="player"
 							allowfullscreen="true"

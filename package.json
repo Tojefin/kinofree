@@ -4,7 +4,7 @@
 	"private": true,
 	"scripts": {
 		"dev": "vite dev --port 80 --host",
-		"build": "vite build",
+		"build": "node ./sync-adblock.js && vite build",
 		"preview": "vite preview --port 80 --host",
 		"check": "svelte-kit sync && svelte-check --tsconfig ./jsconfig.json",
 		"check:watch": "svelte-kit sync && svelte-check --tsconfig ./jsconfig.json --watch",
@@ -12,6 +12,8 @@
 		"format": "prettier --write .",
 		"deploy": "node ./gh-pages.js",
 		"release": "node ./bump-version.js",
+		"sync-adblock": "node ./sync-adblock.js",
+		"sync-adblock:check": "node ./sync-adblock.js --check",
 		"tauri": "tauri"
 	},
 	"devDependencies": {
