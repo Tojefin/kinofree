@@ -1,6 +1,6 @@
 [package]
 name = "kinofree"
-version = "5.0.12"
+version = "5.0.13"
 description = "Kinofree desktop app"
 authors = ["Tojefin"]
 license = ""
