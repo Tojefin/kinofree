@@ -1,0 +1,2 @@
+windows-start.bat -text
+mac-linux-start.sh text eol=lf
