@@ -167,9 +167,6 @@
 		color: var(--white, #fff);
 		margin-bottom: 8px;
 		transition: color 0.25s ease;
-		text-overflow: ellipsis;
-		white-space: nowrap;
-		overflow: hidden;
 	}
 
 	time {
