@@ -36,21 +36,62 @@
 
 	let inPlayer = false;
 	let focusPollingInterval = null;
+	let focusLostTicks = 0;
+	let lastPlayerMessage = 0;
+	let nativeFullscreen = false;
 
 	onDestroy(() => {
 		stopFocusPolling();
 	});
 
+	// Пассивная проверка: можно ли сейчас безопасно перехватить фокус.
+	// Не используем события fullscreenchange — только текущее состояние,
+	// т.к. у разных плееров полный экран реализован по-разному.
+	function canTakeFocus() {
+		if (nativeFullscreen) return false; // нативный полноэкранный слой (Android TV) — пульт у плеера
+		if (document.hidden) return false; // страница скрыта
+		if (!document.hasFocus()) return false; // окно не в фокусе
+		if (document.fullscreenElement || document.webkitFullscreenElement) return false; // DOM-полноэкран
+		if (Date.now() - lastPlayerMessage < 2000) return false; // плеер только что присылал сообщение — он жив
+		return true;
+	}
+
+	// Событие приходит из нативного слоя (Kotlin FullscreenChromeClient)
+	function handleAppFullscreen(event) {
+		nativeFullscreen = !!event.detail;
+		if (nativeFullscreen) {
+			focusLostTicks = 0;
+			// удерживаем DOM-фокус в плеере, если он слетел при переходе в полный экран
+			if (inPlayer) {
+				const iframe = document.querySelector('iframe');
+				if (iframe && document.activeElement !== iframe) iframe.focus();
+			}
+		} else if (inPlayer) {
+			// вышли из нативного фулскрина — возвращаем фокус на оверлей
+			returnToOverlay(true);
+		}
+	}
+
 	function startFocusPolling() {
 		stopFocusPolling();
+		focusLostTicks = 0;
 		focusPollingInterval = setInterval(() => {
 			if (!inPlayer) {
 				stopFocusPolling();
 				return;
 			}
+			if (!canTakeFocus()) {
+				focusLostTicks = 0;
+				return;
+			}
 			const iframe = document.querySelector('iframe');
 			if (iframe && document.activeElement !== iframe && !iframe.matches(':focus')) {
-				returnToOverlay();
+				focusLostTicks++;
+				// Возвращаем фокус только после трёх проверок подряд (~1.2 с),
+				// чтобы не мешать кратковременной потере фокуса при переходе в полный экран
+				if (focusLostTicks >= 3) returnToOverlay();
+			} else {
+				focusLostTicks = 0;
 			}
 		}, 400);
 	}
@@ -62,7 +103,13 @@
 		}
 	}
 
-	function returnToOverlay() {
+	function returnToOverlay(force = false) {
+		// Никогда не перехватываем фокус, когда страница скрыта или активен полноэкран
+		if (nativeFullscreen) return;
+		if (document.hidden || !document.hasFocus()) return;
+		if (document.fullscreenElement || document.webkitFullscreenElement) return;
+		// Плеер недавно присылал сообщение — он жив, не мешаем (кроме явного выхода из полного экрана)
+		if (!force && Date.now() - lastPlayerMessage < 2000) return;
 		inPlayer = false;
 		stopFocusPolling();
 		const overlay = document.querySelector('.player-overlay');
@@ -83,16 +130,15 @@
 		}
 	}
 
-	function handleIframeBlur() {
-		// Если фокус вернулся в родительский документ, но не на конкретный элемент
-		if (document.activeElement === document.body) {
-			returnToOverlay();
-		}
-	}
-
 	function handleWindowFocus() {
+		// Окно снова получило фокус (например, вернулись из полноэкранного слоя)
 		if (inPlayer && document.activeElement === document.body) {
-			returnToOverlay();
+			// Даём плееру шанс самому вернуть фокус, проверяем с задержкой
+			setTimeout(() => {
+				if (inPlayer && document.activeElement === document.body) {
+					returnToOverlay();
+				}
+			}, 1500);
 		}
 	}
 
@@ -103,22 +149,34 @@
 	}
 
 	function playerMessageHandler(event) {
-		let message
-		if (typeof event.data === "string") {
-			message = JSON.parse(event.data)
+		let message;
+		if (typeof event.data === 'string') {
+			try {
+				message = JSON.parse(event.data);
+			} catch {
+				return;
+			}
 		} else {
-			message = event.data
+			message = event.data;
 		}
 
-		if (message.event === "exitfullscreen") {
-			document.querySelector("iframe").contentWindow.postMessage(JSON.stringify({api: "getTimeSave"}), "*");
-			returnToOverlay()
+		if (!message || typeof message !== 'object') return;
+		lastPlayerMessage = Date.now();
+
+		if (message.event === 'exitfullscreen') {
+			document
+				.querySelector('iframe')
+				.contentWindow.postMessage(JSON.stringify({ api: 'getTimeSave' }), '*');
+			// Явный выход из полного экрана — возвращаем фокус на оверлей
+			returnToOverlay(true);
 		}
-		if (message.event === "pause") {
-			document.querySelector("iframe").contentWindow.postMessage(JSON.stringify({api: "getTimeSave"}), "*");
+		if (message.event === 'pause') {
+			document
+				.querySelector('iframe')
+				.contentWindow.postMessage(JSON.stringify({ api: 'getTimeSave' }), '*');
 		}
-		if (message.event === "getTimeSave" && message.saveInfo.serial.season) {
-			watchHistory.setProgress(params.id, message.saveInfo.serial)
+		if (message.event === 'getTimeSave' && message?.saveInfo?.serial?.season) {
+			watchHistory.setProgress(params.id, message.saveInfo.serial);
 		}
 	}
 
@@ -162,7 +220,7 @@
 		try {
 			film = await apiGetFilm(params.id);
 			watchHistory.add(film);
-			progress = watchHistory.get(params.id)?._kinofree?.progress ?? null
+			progress = watchHistory.get(params.id)?._kinofree?.progress ?? null;
 
 			isLogin = pb.authStore.isValid;
 			if (isLogin) {
@@ -178,7 +236,11 @@
 	});
 </script>
 
-<svelte:window on:message={playerMessageHandler} on:focus={handleWindowFocus} />
+<svelte:window
+	on:message={playerMessageHandler}
+	on:focus={handleWindowFocus}
+	on:appfullscreen={handleAppFullscreen}
+/>
 <section>
 	<div class="box">
 		<div class="player">
@@ -186,7 +248,6 @@
 				{#if !isBlocked}
 					{#if activeIframe}
 						<button
-							type="button"
 							class="player-overlay"
 							class:active={inPlayer}
 							aria-label="Управление плеером"
@@ -203,7 +264,6 @@
 							sandbox="allow-scripts allow-same-origin"
 							src={activeIframe + params?.id}
 							on:message={playerMessageHandler}
-							on:blur={handleIframeBlur}
 						></iframe>
 					{/if}
 				{:else}

@@ -74,13 +74,27 @@ section {
 		cursor: pointer;
 		transition: all ease 0.25s;
 
+		// ТВ: нет мыши и нет тача → оверлей полноценный, фокусируемый и кликабельный
+		@media (hover: none) and (pointer: none) {
+			pointer-events: auto;
+		}
+
+		&:focus,
 		&:focus-visible {
 			outline: 3px solid var(--yellow, #fce802);
 			outline-offset: 3px;
+
+			.hint {
+				opacity: 1;
+			}
 		}
 
 		&.active {
 			outline: none;
+
+			.hint {
+				opacity: 0;
+			}
 		}
 
 		.hint {
@@ -92,10 +106,6 @@ section {
 			border-radius: 8px;
 			opacity: 0;
 			transition: opacity ease 0.25s;
-		}
-
-		&:focus-visible .hint {
-			opacity: 1;
 		}
 	}
 }

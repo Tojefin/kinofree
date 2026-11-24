@@ -26,6 +26,7 @@ import kotlin.concurrent.thread
 
 class MainActivity : TauriActivity() {
   private var fullscreenChromeClient: FullscreenChromeClient? = null
+  private var webView: RustWebView? = null
 
   override fun onCreate(savedInstanceState: Bundle?) {
     enableEdgeToEdge()
@@ -53,10 +54,37 @@ class MainActivity : TauriActivity() {
 
   private fun setupFullscreenSupport() {
     val webView = findWebView(window.decorView) ?: return
+    this.webView = webView
     val delegate = RustWebChromeClient(this, webView.id)
-    val client = FullscreenChromeClient(this, delegate)
+    val client = FullscreenChromeClient(this, delegate, webView)
     fullscreenChromeClient = client
     webView.webChromeClient = client
+  }
+
+  override fun dispatchKeyEvent(event: KeyEvent): Boolean {
+    val client = fullscreenChromeClient
+    // В нативном полноэкране перехватываем клавиши ДО dispatcher'ов:
+    // AppPlugin (tauri) регистрирует свой back-callback позже нашего и всегда делает goBack(),
+    // поэтому BACK в фулскрине обрабатываем здесь сами.
+    if (client?.isFullscreen == true) {
+      if (event.keyCode == KeyEvent.KEYCODE_BACK) {
+        if (event.action == KeyEvent.ACTION_UP) {
+          client.onHideCustomView()
+        }
+        return true
+      }
+      // Обычно клавиши уходят сфокусированному content view внутри custom view (Chromium
+      // сам конвертирует их в DOM-события). Fallback — если фокус не там: пробуем вручную.
+      if (super.dispatchKeyEvent(event)) return true
+      val cv = client.currentCustomView
+      val child = (cv as? ViewGroup)?.getChildAt(0)
+      for (target in listOfNotNull(child, cv, webView)) {
+        if (target.dispatchKeyEvent(event)) return true
+      }
+      // В полном экране больше некому отдавать клавиши
+      return true
+    }
+    return super.dispatchKeyEvent(event)
   }
 
   private fun findWebView(view: View): RustWebView? {

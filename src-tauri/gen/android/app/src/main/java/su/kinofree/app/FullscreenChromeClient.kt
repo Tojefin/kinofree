@@ -16,7 +16,8 @@ import android.widget.FrameLayout
  */
 class FullscreenChromeClient(
     private val activity: WryActivity,
-    private val delegate: RustWebChromeClient
+    private val delegate: RustWebChromeClient,
+    private val webView: WebView
 ) : WebChromeClient() {
 
     private var customView: View? = null
@@ -25,6 +26,9 @@ class FullscreenChromeClient(
 
     val isFullscreen: Boolean
         get() = customView != null
+
+    val currentCustomView: View?
+        get() = customView
 
     override fun onShowCustomView(view: View, callback: CustomViewCallback) {
         if (customView != null) {
@@ -51,8 +55,16 @@ class FullscreenChromeClient(
         }
 
         view.isClickable = true
+        // Фокус должен попасть ВНУТРЬ custom view: его ребёнок — это content view Chromium,
+        // который конвертирует клавиши пульта в DOM-события полноэкранного контента.
+        // Сам FrameLayout клавиши не обрабатывает, поэтому FOCUS_AFTER_DESCENDANTS.
+        if (view is ViewGroup) {
+            view.descendantFocusability = ViewGroup.FOCUS_AFTER_DESCENDANTS
+        }
         view.isFocusable = true
+        view.isFocusableInTouchMode = false
         view.requestFocus()
+        notifyWebFullscreen(true)
     }
 
     override fun onHideCustomView() {
@@ -70,6 +82,20 @@ class FullscreenChromeClient(
 
         customView = null
         customViewCallback = null
+        notifyWebFullscreen(false)
+    }
+
+    /** Сообщает странице о нативном полноэкране, чтобы фокус-логика не мешала плееру. */
+    private fun notifyWebFullscreen(state: Boolean) {
+        webView.post {
+            try {
+                webView.evaluateJavascript(
+                    "window.dispatchEvent(new CustomEvent('appfullscreen',{detail:$state}))",
+                    null
+                )
+            } catch (_: Exception) {
+            }
+        }
     }
 
     // Делегирование остальных методов оригинальному клиенту
