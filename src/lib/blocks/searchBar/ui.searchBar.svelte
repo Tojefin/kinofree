@@ -23,7 +23,7 @@
 		input.focus();
 	}
 	function wrapperKeydown(e) {
-		if (e.key === 'Enter' || e.key === ' ') {
+		if (e.key === 179) {
 			e.preventDefault();
 			activateInput();
 		}
